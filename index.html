@@ -24,7 +24,10 @@
             margin: 0;
             padding: 0;
             min-height: 100vh; 
+            
+            /* ⚠️ ЗДЕСЬ ССЫЛКА НА ФОН (можно заменить на banket.JPG, если хотите) */
             background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
@@ -113,7 +116,7 @@
             color: var(--text-dark);
             animation: bounce 2s infinite;
             opacity: 0.6;
-            pointer-events: none; /* Чтобы стрелочка не мешала кликать */
+            pointer-events: none;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -367,7 +370,7 @@
 </head>
 <body>
 
-    <!-- ФОНОВАЯ МУЗЫКА (⚠️ ЗАМЕНИТЕ ССЫЛКУ НА СВОЙ MP3) -->
+    <!-- ФОНОВАЯ МУЗЫКА (⚠️ ЗАМЕНИТЕ ССЫЛКУ НА СВОЙ MP3, КОГДА ЗАГРУЗИТЕ) -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
@@ -389,20 +392,20 @@
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
             <div class="polaroid tilt-left">
-                <!-- ⚠️ ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 160px; height: 200px;">
+                <!-- ВАШЕ ФОТО: julia.jpg -->
+                <img src="julia.jpg" alt="Юлия" style="width: 160px; height: 200px;">
             </div>
             <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
             <div class="polaroid tilt-right">
-                <!-- ⚠️ ДЕТСКОЕ ФОТО ЖЕНИХА -->
-                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 160px; height: 200px;">
+                <!-- ВАШЕ ФОТО: alex.jpg -->
+                <img src="alex.jpg" alt="Александр" style="width: 160px; height: 200px;">
             </div>
         </div>
 
         <h1 class="handwritten names-title">Александр & Юлия</h1>
         <div class="hero-date">13 июня 2027</div>
 
-        <!-- ТЕПЕРЬ ЭТО КНОПКА С ЖЕСТКИМ СКРИПТОМ ПРОКРУТКИ -->
+        <!-- КНОПКА ОТКРЫТИЯ -->
         <button class="btn-open" onclick="openInvitation()">Открыть приглашение</button>
         
         <div class="scroll-down">↓</div>
@@ -428,8 +431,8 @@
                 Речной проезд, 17, Жуковский
             </p>
             <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
-                <!-- ⚠️ ФОТО МЕСТА ПРОВЕДЕНИЯ -->
-                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Место" style="height: 250px;">
+                <!-- ВАШЕ ФОТО: banket.JPG -->
+                <img src="banket.JPG" alt="Место" style="height: 250px;">
             </div>
             <br>
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
@@ -523,7 +526,7 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT ВМЕСТО "ВАШ_КОД" -->
+                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT ВМЕСТО "ВАШ_КОД" (сейчас форма отправлять не будет) -->
                 <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
                     <div class="form-group">
                         <label for="nama">Ваше Имя</label>
@@ -565,9 +568,9 @@
             </p>
             
             <div class="contact-card">
-                <!-- ⚠️ ФОТО ОРГАНИЗАТОРА (ЗАМЕНИТЕ ССЫЛКУ) -->
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Организатор">
-                <h3 style="margin: 0; font-family: 'Montserrat';">Кристина</h3>
+                <!-- ВАШЕ ФОТО: oksana.PNG -->
+                <img src="oksana.PNG" alt="Организатор">
+                <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
                 <div class="contact-phone">+7 (926) 888-77-XX</div>
                 <a href="tel:+792688877XX" class="btn-outline">Написать</a>
             </div>
@@ -580,8 +583,8 @@
             <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
 
             <div class="polaroid tilt-right" style="margin-top: 30px;">
-                <!-- ⚠️ ВАШЕ СОВМЕСТНОЕ ФОТО (ЗАМЕНИТЕ ССЫЛКУ) -->
-                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
+                <!-- ВАШЕ ФОТО: phon.JPG -->
+                <img src="phon.JPG" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
             </div>
         </section>
@@ -610,7 +613,6 @@
 
         // --- 2. УПРАВЛЕНИЕ МУЗЫКОЙ И ПРОКРУТКОЙ ---
         function openInvitation() {
-            // 1. Включаем музыку
             const audio = document.getElementById('bg-music');
             const musicBtn = document.getElementById('music-btn');
             
@@ -618,20 +620,16 @@
                 audio.play().then(() => {
                     musicBtn.classList.add('playing');
                 }).catch(error => {
-                    // Если браузер заблокировал музыку, мы просто игнорируем это,
-                    // чтобы страница ВСЁ РАВНО прокрутилась вниз.
                     console.log("Музыка заблокирована браузером");
                 });
             }
 
-            // 2. Жесткая прокрутка к контенту
             const content = document.getElementById('main-content');
             if (content) {
                 content.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
-        // Функция для плавающей кнопки музыки
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
             const musicBtn = document.getElementById('music-btn');
