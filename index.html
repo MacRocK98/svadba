@@ -1,504 +1,423 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Александр & Юлия — Приглашение на свадьбу</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="countdown/circle.css" />
-    <script src="countdown/simplyCountdown.umd.js"></script>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Александр & Юлия — Свадьба</title>
+    
+    <!-- Подключение шрифтов (рукописный и обычный) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Таймер -->
+    <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
+    
+    <style>
+        /* --- ОБЩИЕ СТИЛИ (Стиль скрапбукинга) --- */
+        :root {
+            --paper-bg: #f7f4ec; /* Цвет старой бумаги */
+            --text-dark: #333;
+            --red: #e63946;
+        }
 
-    <!-- БЛОК 1: ГЛАВНЫЙ ЭКРАН -->
-    <section id="hero" class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white">
-      <main>
-        <h4>Уважаемый(ая) <span>Гость, </span></h4>
-        <h1>Александр & Юлия</h1>
-        <p>Приглашаем вас на нашу свадьбу, которая состоится через:</p>
-        <div id="countdown" class="countdown simply-countdown-circle mt-4 mb-4"></div>
-        <a href="#home" class="btn mt-4" btn-lg onClick="enableScroll()">Открыть приглашение</a>
-      </main>
-    </section>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper-bg);
+            /* Добавляем легкую текстуру бумаги через CSS */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
 
-    <!-- БЛОК 2: НАВИГАЦИЯ -->
-    <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
-      <div class="container">
-        <a class="navbar-brand" href="#">Александр & Юлия</a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Александр & Юлия</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <div class="navbar-nav ms-auto">
-              <a class="nav-link" href="#home">Главная</a>
-              <a class="nav-link" href="#info">Информация</a>
-              <a class="nav-link" href="#story">История</a>
-              <a class="nav-link" href="#gallery">Галерея</a>
-              <a class="nav-link" href="#rsvp">Подтверждение</a>
-              <a class="nav-link" href="#gifts">Подарки</a>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Рукописный шрифт для заголовков */
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: var(--red);
+            margin: 0;
+        }
+
+        /* --- ЭФФЕКТ ПОЛАРОИДА --- */
+        .polaroid {
+            background: #fff;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin: 15px;
+        }
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        /* Наклоны для фото */
+        .tilt-left { transform: rotate(-5deg); }
+        .tilt-right { transform: rotate(5deg); }
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+            position: relative;
+        }
+
+        /* --- СЕКЦИИ --- */
+        section { margin-bottom: 80px; }
+
+        /* Блок 1: Обложка */
+        .hero-section { position: relative; }
+        .banner-text {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            color: #555;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .names-title {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+
+        /* Блок 2: Приглашение */
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: #555;
+        }
+
+        /* Блок 3: Место */
+        .place-title { font-size: 3rem; margin-bottom: 10px; }
+        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #666; }
+
+        /* Блок 4: Календарь */
+        .month-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        .calendar {
+            display: inline-grid;
+            grid-template-columns: repeat(7, 40px);
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        .calendar .day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+        }
+        .calendar .day-name { font-weight: 600; color: #999; }
+        .calendar .wedding-day {
+            border: 2px solid var(--red);
+            border-radius: 50%;
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        /* Блок 5: Тайминг */
+        .timeline-item {
+            margin: 30px 0;
+            font-size: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .timeline-time {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--red);
+        }
+        .timeline-desc {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Блок 6: RSVP */
+        .rsvp-form {
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .rsvp-form input, .rsvp-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+        .rsvp-form button {
+            background-color: var(--red);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .rsvp-form button:hover { background-color: #c1121f; }
+
+        /* Таймер */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .countdown div {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            min-width: 60px;
+        }
+        .countdown span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--red);
+        }
+        .countdown small { font-size: 0.8rem; color: #777; }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 768px) {
+            .names-title { font-size: 2.5rem; }
+            .banner-text { font-size: 1.5rem; }
+            .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
+            .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
+            .polaroid { width: 80%; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- БЛОК 1: ОБЛОЖКА -->
+        <section class="hero-section">
+            <div class="banner-text">
+                <span style="color:#e76f51">У</span>
+                <span style="color:#f4a261">Н</span>
+                <span style="color:#e9c46a">А</span>
+                <span style="color:#2a9d8f">С</span>
+                <br>
+                СВАДЬБА
             </div>
-          </div>
-        </div>
-      </div>
-    </nav>
 
-    <!-- БЛОК 3: ГЛАВНАЯ -->
-    <section id="home" class="home">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 text-center">
-            <h2>Свадебное торжество</h2>
-            <h3>Состоится 13 июня 2027 года в Жуковском</h3>
-            <p>По этому случаю мы с уважением приглашаем Вас, Вашу семью и близких разделить с нами радость этого дня.</p>
-          </div>
-
-          <div class="row couple">
-            <!-- Жених -->
-            <div class="col-lg-6">
-              <div class="row">
-                <div class="col-8 text-end">
-                  <h3>Александр</h3>
-                  <!-- ⚠️ ВРЕМЕННО: описание жениха не заполнено -->
-                  <p>[⚠️ Здесь будет описание жениха]</p>
-                  <p>Сын Елены</p>
+            <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px;">
+                <div class="polaroid tilt-left">
+                    <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 200px; height: 250px;">
+                    <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Юлия</p>
                 </div>
-                <div class="col-4">
-                  <!-- ⚠️ ЗАМЕНИТЬ: фото жениха -->
-                  <img src="img/pengantinPria.png" alt="Жених" class="img-responsive rounded-circle">
+                <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
+                <div class="polaroid tilt-right">
+                    <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ДЕТСКОЕ ФОТО ЖЕНИХА -->
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 200px; height: 250px;">
+                    <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Александр</p>
                 </div>
-              </div>
+            </div>
+        </section>
+
+        <!-- БЛОК 2: ПРИГЛАШЕНИЕ -->
+        <section>
+            <h2 class="handwritten names-title">Юлия + Александр</h2>
+            <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
+            
+            <h3 class="handwritten" style="font-size: 2.5rem;">Узнали этих малышей?</h3>
+            <p class="intro-text">
+                Время пролетело незаметно. И вот наступил момент, когда наши детские мечты стали реальностью. 
+                Разделите с нами это главное событие лета — подарите нам своё внимание и поддержку!
+            </p>
+        </section>
+
+        <!-- БЛОК 3: МЕСТО -->
+        <section>
+            <h2 class="handwritten place-title">Место</h2>
+            <p class="place-address">
+                Капитан club<br>
+                Речной проезд, 17, Жуковский
+            </p>
+            <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
+                <!-- ⚠️ ЗАМЕНИТЕ НА ФОТО ЗАЛА ИЛИ МЕСТА -->
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Место" style="height: 300px;">
+            </div>
+            <br>
+            <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
+        </section>
+
+        <!-- БЛОК 4: КАЛЕНДАРЬ -->
+        <section>
+            <h3 class="handwritten" style="font-size: 2.5rem; text-align: left; margin-left: 15%;">Дорогие наши<br>друзья и родные!</h3>
+            <p class="intro-text" style="text-align: left; margin-left: 15%;">
+                Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этом день рядом с нами!
+            </p>
+
+            <div style="display: flex; justify-content: center; align-items: baseline; gap: 10px; margin: 30px 0;">
+                <span class="handwritten" style="font-size: 2.5rem; color: #2a9d8f;">Июнь</span>
+                <span class="handwritten" style="font-size: 5rem; color: var(--red);">13</span>
+                <span class="handwritten" style="font-size: 2.5rem; color: #e76f51;">2027</span>
             </div>
 
-            <span class="heart"><i class="bi bi-heart-fill"></i></span>
+            <div class="calendar">
+                <div class="day day-name">ПН</div>
+                <div class="day day-name">ВТ</div>
+                <div class="day day-name">СР</div>
+                <div class="day day-name">ЧТ</div>
+                <div class="day day-name">ПТ</div>
+                <div class="day day-name">СБ</div>
+                <div class="day day-name">ВС</div>
 
-            <!-- Невеста -->
-            <div class="col-lg-6">
-              <div class="row">
-                <div class="col-4">
-                  <!-- ⚠️ ЗАМЕНИТЬ: фото невесты -->
-                  <img src="img/pengantinWanita.png" alt="Невеста" class="img-responsive rounded-circle">
-                </div>
-                <div class="col-8">
-                  <h3>Юлия</h3>
-                  <!-- ⚠️ ВРЕМЕННО: описание невесты не заполнено -->
-                  <p>[⚠️ Здесь будет описание невесты]</p>
-                  <p>Дочь Геннадия и Светланы</p>
-                </div>
-              </div>
+                <!-- Пустые дни до 1 июня (1 июня 2027 - это вторник) -->
+                <div class="day"></div>
+                <div class="day">1</div>
+                <div class="day">2</div>
+                <div class="day">3</div>
+                <div class="day">4</div>
+                <div class="day">5</div>
+                <div class="day">6</div>
+                
+                <div class="day">7</div>
+                <div class="day">8</div>
+                <div class="day">9</div>
+                <div class="day">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day wedding-day">13</div>
+
+                <div class="day">14</div>
+                <div class="day">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day">20</div>
+                
+                <div class="day">21</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+                <div class="day">24</div>
+                <div class="day">25</div>
+                <div class="day">26</div>
+                <div class="day">27</div>
+                
+                <div class="day">28</div>
+                <div class="day">29</div>
+                <div class="day">30</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- БЛОК 4: ИНФОРМАЦИЯ -->
-    <section id="info" class="info">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-10 text-center">
-            <h2>Информация о мероприятии</h2>
-            <p class="alamat">Адрес: <br>Капитан club <br>Речной проезд, 17, Жуковский, Московская область, 140182</p>
-
-            <!-- Карта по адресу (Google Maps embed) -->
-            <iframe src="https://maps.google.com/maps?q=Капитан%20club,%20Речной%20проезд,%2017,%20Жуковский&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-            <!-- Ссылка на Яндекс.Карты -->
-            <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" class="btn btn-light btn-sm my-4">Открыть карту</a>
-
-            <p class="description">Пожалуйста, не перепутайте адрес и дату. Если вы приедете, а признаков свадьбы не будет — возможно, вы ошиблись местом или временем.</p>
-          </div>
-        </div>
-
-        <div class="row justify-content-center mt-4">
-          <!-- Церемония -->
-          <div class="col-md-5 col-10">
-            <div class="card text-center text-bg-light mb-5">
-              <div class="card-header">Церемония бракосочетания</div>
-              <div class="card-body">
-                <div class="row justify-content-center">
-                  <div class="col-md-6">
-                    <i class="bi bi-clock d-block"></i>
-                    <span>14:00 - 15:00</span>
-                  </div>
-                  <div class="col-md-6">
-                    <i class="bi bi-calendar3 d-block"></i>
-                    <span>Воскресенье, 13 июня 2027</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">Просим соблюдать тишину во время церемонии, чтобы сохранить торжественность момента.</div>
+        <!-- БЛОК 5: ТАЙМИНГ -->
+        <section>
+            <h2 class="handwritten" style="font-size: 3.5rem;">Тайминг</h2>
+            <p style="font-family: 'Caveat'; color: #777; font-size: 1.5rem; transform: rotate(-5deg);">Самого важного дня</p>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">14:00</div>
+                <div class="timeline-desc">Сбор гостей</div>
             </div>
-          </div>
+            
+            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">💍</div>
 
-          <!-- Банкет -->
-          <div class="col-md-5 col-10">
-            <div class="card text-center text-bg-light">
-              <div class="card-header">Банкет</div>
-              <div class="card-body">
-                <div class="row justify-content-center">
-                  <div class="col-md-6">
-                    <i class="bi bi-clock d-block"></i>
-                    <span>15:00 - 23:00</span>
-                  </div>
-                  <div class="col-md-6">
-                    <i class="bi bi-calendar3 d-block"></i>
-                    <span>Воскресенье, 13 июня 2027</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">Для нас будет честью и радостью, если Вы сможете присутствовать и разделить с нами этот день.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- БЛОК 5: ИСТОРИЯ (⚠️ ВРЕМЕННО — оставлено как есть, потом поправим) -->
-    <section id="story" class="story">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-10 text-center">
-            <span>Как расцвела наша любовь</span>
-            <h2>Наша история</h2>
-            <p>Несколько слов о том, как мы познакомились и пришли к этому дню.</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <ul class="timeline">
-              <!-- ⚠️ ВРЕМЕННО: событие 1 -->
-              <li>
-                <div class="timeline-image" style="background-image: url(img/prewed2.jpeg);"></div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h3>Первая встреча</h3>
-                    <span>[⚠️ Дата события]</span>
-                  </div>
-                  <div class="timeline-body">
-                    <p>[⚠️ Описание события — временно]</p>
-                  </div>
-                </div>
-              </li>
-
-              <!-- ⚠️ ВРЕМЕННО: событие 2 -->
-              <li class="timeline-inverted">
-                <div class="timeline-image" style="background-image: url(https://picsum.photos/id/1/300/300);"></div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h3>Начало серьёзных отношений</h3>
-                    <span>[⚠️ Дата события]</span>
-                  </div>
-                  <div class="timeline-body">
-                    <p>[⚠️ Описание события — временно]</p>
-                  </div>
-                </div>
-              </li>
-
-              <!-- ⚠️ ВРЕМЕННО: событие 3 -->
-              <li>
-                <div class="timeline-image" style="background-image: url(https://picsum.photos/id/1/301/301);"></div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h3>Помолвка</h3>
-                    <span>[⚠️ Дата события]</span>
-                  </div>
-                  <div class="timeline-body">
-                    <p>[⚠️ Описание события — временно]</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- БЛОК 6: ГАЛЕРЕЯ (⚠️ ВРЕМЕННО — оставлено как есть) -->
-    <section id="gallery" class="gallery">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-10 text-center">
-            <span>Наши воспоминания</span>
-            <h2>Фотогалерея</h2>
-            <p>Несколько снимков из нашей совместной жизни.</p>
-          </div>
-
-          <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
-            <!-- ⚠️ ВРЕМЕННО: все фото — заглушки. Замените ссылки на свои -->
-            <div class="col mt-3">
-              <a href="img/gallery/galleryMain1.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 1" data-galery="mygallery">
-                <img src="https://picsum.photos/id/200/1200/768" alt="Фото 1" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/galleryMain2.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 2" data-galery="mygallery">
-                <img src="https://picsum.photos/id/5/1200/768" alt="Фото 2" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/gallery1.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 3" data-galery="mygallery">
-                <img src="https://picsum.photos/id/500/1200/768" alt="Фото 3" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/gallery2.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 4" data-galery="mygallery">
-                <img src="https://picsum.photos/id/900/1200/768" alt="Фото 4" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/gallery3.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 5" data-galery="mygallery">
-                <img src="https://picsum.photos/id/700/1200/768" alt="Фото 5" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/gallery4.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 6" data-galery="mygallery">
-                <img src="https://picsum.photos/id/375/1200/768" alt="Фото 6" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-            <div class="col mt-3">
-              <a href="img/gallery/tumbnail/galleryMain2.jpeg" data-toggle="lightbox" data-caption="Александр & Юлия 7" data-galery="mygallery">
-                <img src="https://picsum.photos/id/260/1200/768" alt="Фото 7" class="img-fluid w-100 rounded">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- БЛОК 7: RSVP -->
-    <section id="rsvp" class="rsvp">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-10 text-center">
-            <h2>Подтверждение присутствия</h2>
-            <p>Пожалуйста, заполните форму ниже, чтобы мы знали, сможете ли вы прийти.</p>
-          </div>
-
-          <!-- ⚠️ ЗАМЕНИТЬ: action="..." — ссылка на ваш Google Apps Script (пока стоит заглушка) -->
-          <form class="row row-cols-md-auto g-3 align-items-center justify-content-center" method="POST"
-          action="https://script.google.com/macros/s/ВАШ_КОД/exec" id="my-form">
-
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="nama" class="form-label">Имя</label>
-                <input type="text" class="form-control" id="nama" name="nama">
-              </div>
+            <div class="timeline-item">
+                <div class="timeline-time">14:30</div>
+                <div class="timeline-desc">Церемония регистрации</div>
             </div>
 
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="jumlah" class="form-label">Сколько человек придёт (включая вас)</label>
-                <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" max="5" value="1">
-              </div>
+            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">🥂</div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <div class="timeline-desc">Банкет</div>
             </div>
+        </section>
 
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="status" class="form-label">Подтверждение</label>
-                <select name="status" id="status" class="form-select">
-                  <option selected>Выберите вариант</option>
-                  <option value="Приду">Приду</option>
-                  <option value="Не приду">Не приду</option>
-                </select>
-              </div>
+        <!-- БЛОК 6: ТАЙМЕР И RSVP -->
+        <section>
+            <h2 class="handwritten" style="font-size: 2.5rem;">До нашей свадьбы осталось:</h2>
+            
+            <div id="countdown" class="countdown"></div>
+
+            <div class="rsvp-form">
+                <h3 class="handwritten" style="font-size: 2rem; margin-bottom: 15px;">Подтверждение</h3>
+                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT ВМЕСТО "ВАШ_КОД" -->
+                <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
+                    <input type="text" name="nama" id="nama" placeholder="Ваше Имя" required>
+                    <input type="number" name="jumlah" id="jumlah" min="1" max="5" value="1" placeholder="Количество гостей" required>
+                    <select name="status" id="status" required>
+                        <option value="" disabled selected>Придете ли вы?</option>
+                        <option value="Приду">Обязательно буду!</option>
+                        <option value="Не приду">К сожалению, не смогу</option>
+                    </select>
+                    <button type="submit">Отправить</button>
+                </form>
             </div>
+        </section>
 
-            <div class="col-12" style="margin-top: 30px">
-              <button class="btn btn-primary">Отправить</button>
-            </div>
-          </form>
-
-          <!-- Комментарии Disqus (вы сказали «да» — оставлено) -->
-          <div class="row justify-content-center mt-5">
-            <div class="col-md-8">
-              <div id="disqus_thread"></div>
-              <script>
-                (function() {
-                  var d = document, s = d.createElement('script');
-                  // ⚠️ ЗАМЕНИТЬ: если хотите свои комментарии — замените mywedding1-1 на ваш shortname Disqus
-                  s.src = 'https://mywedding1-1.disqus.com/embed.js';
-                  s.setAttribute('data-timestamp', +new Date());
-                  (d.head || d.body).appendChild(s);
-                })();
-              </script>
-              <noscript>Включите JavaScript, чтобы увидеть комментарии.</noscript>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 8: ПОДАРКИ (⚠️ ВРЕМЕННО — оставлено как есть) -->
-    <section id="gifts" class="gifts">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-10 text-center">
-            <span>Знак благодарности</span>
-            <h2>Отправить подарок</h2>
-            <p>Если вы хотите сделать нам подарок, вот реквизиты.</p>
-          </div>
-        </div>
-
-        <div class="row justify-content-center text-center">
-          <div class="col-md-6">
-            <ul class="list-group">
-              <!-- ⚠️ ВРЕМЕННО: реквизиты не заполнены -->
-              <li class="list-group-item">
-                <div class="fw-bold">Банк</div>
-                [⚠️ Номер карты] — [⚠️ Имя владельца]
-              </li>
-              <li class="list-group-item">
-                <div class="fw-bold">Saweria</div>
-                <img src="" alt="" class="" width="">
-              </li>
-            </ul>
-          </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 9: ПОДВАЛ -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col text-center">
-            <small class="block">&copy;2027 Александр & Юлия. Все права защищены.</small>
-            <small class="block">Дизайн: <a href="#">[⚠️ Ваше имя / соцсеть]</a></small>
-            <!-- ⚠️ ВРЕМЕННО: ссылки на соцсети не заполнены -->
-            <ul class="mt-3">
-              <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-              <li><a href="#"><i class="bi bi-youtube"></i></a></li>
-              <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-              <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-              <li><a href="#"><i class="bi bi-tiktok"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- БЛОК 10: АУДИО (⚠️ ВРЕМЕННО — файл не заменён) -->
-    <div id="audio-container">
-      <audio id="backSong" autoplay loop>
-        <source src="audio/cintaVina.mp3" type="audio/mp3">
-      </audio>
-      <div class="audio-icon-wrapper" style="display: none;">
-        <i class="bi bi-disc"></i>
-      </div>
     </div>
 
     <!-- СКРИПТЫ -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
-
-    <!-- Таймер -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+        // --- 1. ТАЙМЕР ---
         simplyCountdown('#countdown', {
-          year: 2027,
-          month: 6,
-          day: 13,
-          hours: 14,
-          minutes: 0,
-          seconds: 0,
-          words: {
-            days: { root: 'день', lambda: (root, n) => (n > 1 ? root + 'дня' : root) },
-            hours: { root: 'час', lambda: (root, n) => (n > 1 ? root + 'а' : root) },
-            minutes: { root: 'минута', lambda: (root, n) => (n > 1 ? root + 'ы' : root) },
-            seconds: { root: 'секунда', lambda: (root, n) => (n > 1 ? root + 'ы' : root) },
-          },
-          plural: true,
-          inline: false,
-          enableUtc: false,
-          refresh: 1000,
+            year: 2027,
+            month: 6, // Июнь
+            day: 13,
+            hours: 14, // 14:00
+            minutes: 0,
+            seconds: 0,
+            words: {
+                days: { root: 'дн', lambda: (root, n) => n > 1 ? 'дней' : 'день' },
+                hours: { root: 'ч', lambda: (root, n) => n > 1 ? 'часов' : 'час' },
+                minutes: { root: 'м', lambda: (root, n) => n > 1 ? 'минут' : 'минута' },
+                seconds: { root: 'с', lambda: (root, n) => n > 1 ? 'секунд' : 'секунда' },
+            },
+            plural: true,
+            inline: false,
         });
-      });
-    </script>
 
-    <!-- Фиксация шапки -->
-    <script>
-      const stickyTop = document.querySelector('.sticky-top');
-      const offcanvas = document.querySelector('.offcanvas');
-      offcanvas.addEventListener('show.bs.offcanvas', function() { stickyTop.style.overflow = 'visible'; });
-      offcanvas.addEventListener('hidden.bs.offcanvas', function() { stickyTop.style.overflow = 'hidden'; });
-    </script>
+        // --- 2. ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ ---
+        window.addEventListener("load", function() {
+            const form = document.getElementById('my-form');
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                const action = e.target.action;
+                fetch(action, { method: 'POST', body: data })
+                    .then(() => { 
+                        alert("Спасибо! Ваш ответ отправлен."); 
+                        form.reset();
+                    });
+            });
+        });
 
-    <!-- Прокрутка и музыка -->
-    <script>
-      const rootElement = document.querySelector(':root');
-      const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
-      const audioIcon = document.querySelector('.audio-icon-wrapper i');
-      const backSong = document.querySelector('#backSong');
-      let isPlaying = false;
-
-      function disableScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        window.onscroll = function() { window.scrollTo(scrollTop, scrollLeft); };
-        rootElement.style.scrollBehavior = 'auto';
-      }
-
-      function enableScroll() {
-        window.onscroll = function() { };
-        rootElement.style.scrollBehavior = 'smooth';
-        playAudio();
-      }
-
-      function playAudio() {
-        backSong.volume = 0.5;
-        backSong.play();
-        audioIconWrapper.style.display = 'flex';
-        isPlaying = true;
-      }
-
-      audioIconWrapper.onclick = function () {
-        if (isPlaying) {
-          backSong.pause();
-          audioIcon.classList.remove('bi-disc');
-          audioIcon.classList.add('bi-pause-circle');
-        } else {
-          backSong.play();
-          audioIcon.classList.add('bi-disc');
-          audioIcon.classList.remove('bi-pause-circle');
+        // --- 3. ИМЯ ГОСТЯ ИЗ ССЫЛКИ ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('n') || '';
+        if(nama) {
+            document.getElementById('nama').value = nama;
         }
-        isPlaying = !isPlaying;
-      };
-
-      disableScroll();
     </script>
-
-    <!-- Отправка формы RSVP -->
-    <script>
-      window.addEventListener("load", function() {
-        const form = document.getElementById('my-form');
-        form.addEventListener("submit", function(e) {
-          e.preventDefault();
-          const data = new FormData(form);
-          const action = e.target.action;
-          fetch(action, { method: 'POST', body: data })
-            .then(() => { alert("Спасибо! Ваш ответ отправлен."); });
-        });
-      });
-    </script>
-
-    <!-- Подстановка имени гостя из URL -->
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const nama = urlParams.get('n') || '';
-      const pronoun = urlParams.get('p') || '';
-      const namaContainer = document.querySelector('.hero h4 span');
-      namaContainer.innerText = `${pronoun} ${nama},`;
-      document.querySelector('#nama').value = nama;
-    </script>
-
-  </body>
+</body>
 </html>
