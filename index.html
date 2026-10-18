@@ -24,20 +24,17 @@
             margin: 0;
             padding: 0;
             min-height: 100vh; 
-            
-            /* ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ФОН НИЖЕ НА СВОЮ */
             background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
             background-attachment: fixed; 
-            
             background-color: var(--paper-bg); 
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
+            scroll-behavior: smooth; /* Плавная прокрутка для всей страницы */
         }
 
         .container {
@@ -86,8 +83,10 @@
             margin-bottom: 30px;
         }
 
-        /* Кнопка открытия */
+        /* Кнопка открытия (теперь это ссылка <a>) */
         .btn-open {
+            display: inline-block; /* Важно для правильного отображения ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
             background-color: transparent;
             color: var(--red);
             border: 2px dashed var(--red);
@@ -403,7 +402,8 @@
         <h1 class="handwritten names-title">Александр & Юлия</h1>
         <div class="hero-date">13 июня 2027</div>
 
-        <button class="btn-open" onclick="openInvitation()">Открыть приглашение</button>
+        <!-- ТЕПЕРЬ ЭТО ССЫЛКА, А НЕ КНОПКА (БУДЕТ РАБОТАТЬ 100%) -->
+        <a href="#main-content" class="btn-open" onclick="openInvitation()">Открыть приглашение</a>
         
         <div class="scroll-down">↓</div>
     </section>
@@ -614,15 +614,16 @@
 
         // Функция для кнопки "Открыть приглашение"
         function openInvitation() {
+            // Включаем музыку (браузер разрешит это, так как был клик)
             audio.play().then(() => {
                 musicBtn.classList.add('playing');
-            }).catch(error => console.log("Автовоспроизведение заблокировано браузером"));
-            
-            // Плавный скролл к контенту
-            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+            }).catch(error => {
+                console.log("Автовоспроизведение заблокировано браузером");
+            });
+            // Прокрутка страницы вниз произойдет автоматически, так как это теперь <a href="#main-content">
         }
 
-        // Функция для плавающей кнопки
+        // Функция для плавающей кнопки музыки
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
