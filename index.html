@@ -31,8 +31,8 @@
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
-            background-attachment: fixed; /* Фон не прокручивается, стоит на месте */
-            background-color: var(--paper-bg); /* Запасной цвет, если фото не загрузится */
+            background-attachment: fixed; 
+            background-color: var(--paper-bg); 
             
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
@@ -45,7 +45,7 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.4); /* Полупрозрачная подложка для читаемости */
+            background: rgba(255, 255, 255, 0.4); 
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
@@ -152,7 +152,8 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- ПОЛАРОИДЫ --- */
+        /* --- СТИЛИ ДЛЯ ФОТО --- */
+        /* Классический полароид (с белой рамкой) */
         .polaroid {
             background: #fff;
             padding: 15px 15px 45px 15px;
@@ -168,9 +169,28 @@
             object-fit: cover;
             border: 1px solid #eee;
         }
+
+        /* НОВЫЙ КЛАСС: Чистое фото без белой рамки (для Юлии и Саши) */
+        .photo-clean {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin: 15px;
+        }
+        .photo-clean img {
+            width: 160px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px; /* Закругленные углы */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Красивая тень */
+            display: block;
+            border: none; /* Убираем рамку */
+        }
+
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(5deg); }
-        .polaroid:hover {
+        
+        /* Эффект при наведении для обоих типов фото */
+        .polaroid:hover, .photo-clean:hover {
             transform: rotate(0deg) scale(1.05);
             z-index: 10;
             position: relative;
@@ -363,9 +383,10 @@
             .banner-text { font-size: 1.5rem; }
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
-            .polaroid { width: 80%; margin: 10px auto; }
+            .polaroid, .photo-clean { width: 80%; margin: 10px auto; }
+            .photo-clean img { width: 100%; }
             .color-circle { width: 30px; height: 30px; }
-            .container { background: rgba(255, 255, 255, 0.7); } /* На телефоне подложка чуть плотнее */
+            .container { background: rgba(255, 255, 255, 0.7); }
         }
     </style>
 </head>
@@ -392,14 +413,14 @@
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <div class="polaroid tilt-left">
-                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: julia.jpg -->
-                <img src="img/julia.jpg" alt="Юлия" style="width: 160px; height: 200px;">
+            <!-- ФОТО ЮЛИИ (БЕЗ БЕЛОЙ РАМКИ) -->
+            <div class="photo-clean tilt-left">
+                <img src="img/julia.jpg" alt="Юлия">
             </div>
             <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
-            <div class="polaroid tilt-right">
-                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: alex.jpg -->
-                <img src="img/alex.jpg" alt="Александр" style="width: 160px; height: 200px;">
+            <!-- ФОТО САШИ (БЕЗ БЕЛОЙ РАМКИ) -->
+            <div class="photo-clean tilt-right">
+                <img src="img/alex.jpg" alt="Александр">
             </div>
         </div>
 
