@@ -5,48 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Александр & Юлия — Свадьба</title>
     
-    <!-- Подключение шрифтов (рукописный и обычный) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Таймер -->
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- ОБЩИЕ СТИЛИ (Стиль скрапбукинга) --- */
+        /* --- БАЗОВЫЕ СТИЛИ --- */
         :root {
-            --paper-bg: #f7f4ec; /* Цвет старой бумаги */
+            --paper-bg: #f7f4ec;
             --text-dark: #333;
             --red: #e63946;
+            --green: #2a9d8f;
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--paper-bg);
-            /* Добавляем легкую текстуру бумаги через CSS */
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
         }
 
-        /* Рукописный шрифт для заголовков */
         .handwritten {
             font-family: 'Caveat', cursive;
             color: var(--red);
             margin: 0;
         }
 
-        /* --- ЭФФЕКТ ПОЛАРОИДА --- */
+        /* --- ПОЛАРОИДЫ --- */
         .polaroid {
             background: #fff;
             padding: 15px 15px 45px 15px;
@@ -62,7 +60,6 @@
             object-fit: cover;
             border: 1px solid #eee;
         }
-        /* Наклоны для фото */
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(5deg); }
         .polaroid:hover {
@@ -73,9 +70,10 @@
 
         /* --- СЕКЦИИ --- */
         section { margin-bottom: 80px; }
+        h2 { font-size: 2.8rem; margin-bottom: 20px; }
+        h3 { font-size: 2rem; margin-bottom: 15px; }
 
         /* Блок 1: Обложка */
-        .hero-section { position: relative; }
         .banner-text {
             font-size: 2.5rem;
             letter-spacing: 5px;
@@ -83,30 +81,23 @@
             margin-bottom: 30px;
             text-transform: uppercase;
         }
-        .names-title {
-            font-size: 4rem;
-            margin: 20px 0;
-        }
+        .names-title { font-size: 4rem; margin: 20px 0; }
 
         /* Блок 2: Приглашение */
         .intro-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px auto;
             color: #555;
+            text-align: justify;
+            text-align-last: center;
         }
 
         /* Блок 3: Место */
-        .place-title { font-size: 3rem; margin-bottom: 10px; }
         .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #666; }
 
         /* Блок 4: Календарь */
-        .month-title {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
-        }
+        .month-title { font-size: 3rem; margin-bottom: 10px; letter-spacing: 3px; }
         .calendar {
             display: inline-grid;
             grid-template-columns: repeat(7, 40px);
@@ -131,8 +122,8 @@
 
         /* Блок 5: Тайминг */
         .timeline-item {
-            margin: 30px 0;
-            font-size: 1.3rem;
+            margin: 20px 0;
+            font-size: 1.2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -141,60 +132,131 @@
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--red);
+            line-height: 1;
         }
-        .timeline-desc {
-            font-weight: 600;
-            margin-top: 5px;
+        .timeline-desc { font-weight: 600; margin-top: 5px; }
+
+        /* Блок 6: Дресс-код */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .color-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
-        /* Блок 6: RSVP */
-        .rsvp-form {
-            background: rgba(255,255,255,0.7);
+        /* Блок 7: Пожелания */
+        .wishes-text {
+            background: rgba(255,255,255,0.6);
             padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            border: 1px dashed #ccc;
+            margin: 20px 0;
+            font-size: 1.1rem;
         }
-        .rsvp-form input, .rsvp-form select {
+
+        /* Блок 8: Анкета / RSVP */
+        .rsvp-box {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .rsvp-box p { margin-bottom: 20px; color: #666; }
+        .rsvp-box .date-highlight {
+            font-size: 2.5rem;
+            font-family: 'Caveat', cursive;
+            color: var(--red);
+            margin: 10px 0;
+        }
+        
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; }
+        .form-control {
             width: 100%;
             padding: 12px;
-            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
             box-sizing: border-box;
         }
-        .rsvp-form button {
-            background-color: var(--red);
-            color: white;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 8px;
+        .btn-submit {
+            background-color: transparent;
+            color: var(--red);
+            border: 2px solid var(--red);
+            padding: 12px 30px;
+            border-radius: 30px;
             font-size: 1.1rem;
             cursor: pointer;
             transition: 0.3s;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
         }
-        .rsvp-form button:hover { background-color: #c1121f; }
+        .btn-submit:hover {
+            background-color: var(--red);
+            color: white;
+        }
+
+        /* Блок 9: Контакты */
+        .contact-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .contact-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .contact-phone {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 10px 40px;
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background: var(--text-dark);
+            color: white;
+        }
 
         /* Таймер */
         .countdown {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 20px 0;
+            margin: 30px 0;
         }
         .countdown div {
             background: #fff;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            min-width: 60px;
+            min-width: 70px;
         }
         .countdown span {
             display: block;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--red);
         }
@@ -207,6 +269,7 @@
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .polaroid { width: 80%; margin: 10px auto; }
+            .color-circle { width: 30px; height: 30px; }
         }
     </style>
 </head>
@@ -220,21 +283,18 @@
                 <span style="color:#e76f51">У</span>
                 <span style="color:#f4a261">Н</span>
                 <span style="color:#e9c46a">А</span>
-                <span style="color:#2a9d8f">С</span>
-                <br>
+                <span style="color:#2a9d8f">С</span><br>
                 СВАДЬБА
             </div>
 
             <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px;">
                 <div class="polaroid tilt-left">
-                    <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 200px; height: 250px;">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 180px; height: 220px;">
                     <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Юлия</p>
                 </div>
                 <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
                 <div class="polaroid tilt-right">
-                    <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ДЕТСКОЕ ФОТО ЖЕНИХА -->
-                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 200px; height: 250px;">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 180px; height: 220px;">
                     <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Александр</p>
                 </div>
             </div>
@@ -245,7 +305,7 @@
             <h2 class="handwritten names-title">Юлия + Александр</h2>
             <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
             
-            <h3 class="handwritten" style="font-size: 2.5rem;">Узнали этих малышей?</h3>
+            <h3 class="handwritten">Узнали этих малышей?</h3>
             <p class="intro-text">
                 Время пролетело незаметно. И вот наступил момент, когда наши детские мечты стали реальностью. 
                 Разделите с нами это главное событие лета — подарите нам своё внимание и поддержку!
@@ -254,14 +314,13 @@
 
         <!-- БЛОК 3: МЕСТО -->
         <section>
-            <h2 class="handwritten place-title">Место</h2>
+            <h2 class="handwritten">Место</h2>
             <p class="place-address">
-                Капитан club<br>
+                <strong>Капитан club</strong><br>
                 Речной проезд, 17, Жуковский
             </p>
             <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
-                <!-- ⚠️ ЗАМЕНИТЕ НА ФОТО ЗАЛА ИЛИ МЕСТА -->
-                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Место" style="height: 300px;">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Место" style="height: 250px;">
             </div>
             <br>
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
@@ -269,110 +328,159 @@
 
         <!-- БЛОК 4: КАЛЕНДАРЬ -->
         <section>
-            <h3 class="handwritten" style="font-size: 2.5rem; text-align: left; margin-left: 15%;">Дорогие наши<br>друзья и родные!</h3>
-            <p class="intro-text" style="text-align: left; margin-left: 15%;">
+            <h3 class="handwritten" style="font-size: 2.5rem; text-align: left; margin-left: 10%;">Дорогие наши<br>друзья и родные!</h3>
+            <p class="intro-text" style="text-align: left; margin-left: 10%;">
                 Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этом день рядом с нами!
             </p>
 
             <div style="display: flex; justify-content: center; align-items: baseline; gap: 10px; margin: 30px 0;">
-                <span class="handwritten" style="font-size: 2.5rem; color: #2a9d8f;">Июнь</span>
-                <span class="handwritten" style="font-size: 5rem; color: var(--red);">13</span>
+                <span class="handwritten" style="font-size: 2.5rem; color: var(--green);">Июнь</span>
+                <span class="handwritten" style="font-size: 5rem;">13</span>
                 <span class="handwritten" style="font-size: 2.5rem; color: #e76f51;">2027</span>
             </div>
 
             <div class="calendar">
-                <div class="day day-name">ПН</div>
-                <div class="day day-name">ВТ</div>
-                <div class="day day-name">СР</div>
-                <div class="day day-name">ЧТ</div>
-                <div class="day day-name">ПТ</div>
-                <div class="day day-name">СБ</div>
-                <div class="day day-name">ВС</div>
-
-                <!-- Пустые дни до 1 июня (1 июня 2027 - это вторник) -->
-                <div class="day"></div>
-                <div class="day">1</div>
-                <div class="day">2</div>
-                <div class="day">3</div>
-                <div class="day">4</div>
-                <div class="day">5</div>
-                <div class="day">6</div>
+                <div class="day day-name">ПН</div><div class="day day-name">ВТ</div><div class="day day-name">СР</div>
+                <div class="day day-name">ЧТ</div><div class="day day-name">ПТ</div><div class="day day-name">СБ</div><div class="day day-name">ВС</div>
                 
-                <div class="day">7</div>
-                <div class="day">8</div>
-                <div class="day">9</div>
-                <div class="day">10</div>
-                <div class="day">11</div>
-                <div class="day">12</div>
-                <div class="day wedding-day">13</div>
-
-                <div class="day">14</div>
-                <div class="day">15</div>
-                <div class="day">16</div>
-                <div class="day">17</div>
-                <div class="day">18</div>
-                <div class="day">19</div>
-                <div class="day">20</div>
-                
-                <div class="day">21</div>
-                <div class="day">22</div>
-                <div class="day">23</div>
-                <div class="day">24</div>
-                <div class="day">25</div>
-                <div class="day">26</div>
-                <div class="day">27</div>
-                
-                <div class="day">28</div>
-                <div class="day">29</div>
-                <div class="day">30</div>
+                <div class="day"></div><div class="day">1</div><div class="day">2</div><div class="day">3</div>
+                <div class="day">4</div><div class="day">5</div><div class="day">6</div>
+                <div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div>
+                <div class="day">11</div><div class="day">12</div><div class="day wedding-day">13</div>
+                <div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div>
+                <div class="day">18</div><div class="day">19</div><div class="day">20</div>
+                <div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div>
+                <div class="day">25</div><div class="day">26</div><div class="day">27</div>
+                <div class="day">28</div><div class="day">29</div><div class="day">30</div>
             </div>
         </section>
 
         <!-- БЛОК 5: ТАЙМИНГ -->
         <section>
-            <h2 class="handwritten" style="font-size: 3.5rem;">Тайминг</h2>
+            <h2 class="handwritten">Тайминг</h2>
             <p style="font-family: 'Caveat'; color: #777; font-size: 1.5rem; transform: rotate(-5deg);">Самого важного дня</p>
             
             <div class="timeline-item">
-                <div class="timeline-time">14:00</div>
+                <div class="timeline-time">12:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            
             <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">💍</div>
 
             <div class="timeline-item">
-                <div class="timeline-time">14:30</div>
+                <div class="timeline-time">12:30</div>
                 <div class="timeline-desc">Церемония регистрации</div>
             </div>
-
             <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">🥂</div>
 
             <div class="timeline-item">
-                <div class="timeline-time">15:00</div>
+                <div class="timeline-time">13:30</div>
                 <div class="timeline-desc">Банкет</div>
+            </div>
+            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">🎉</div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">23:00</div>
+                <div class="timeline-desc">Завершение вечера</div>
             </div>
         </section>
 
-        <!-- БЛОК 6: ТАЙМЕР И RSVP -->
+        <!-- БЛОК 6: ДРЕСС-КОД -->
         <section>
-            <h2 class="handwritten" style="font-size: 2.5rem;">До нашей свадьбы осталось:</h2>
-            
-            <div id="countdown" class="countdown"></div>
+            <h2 class="handwritten">Дресс-код</h2>
+            <p class="intro-text">
+                Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.
+            </p>
+            <div class="color-palette">
+                <div class="color-circle" style="background-color: #f4c2c2;"></div> <!-- Розовый -->
+                <div class="color-circle" style="background-color: #c15b5b;"></div> <!-- Красный -->
+                <div class="color-circle" style="background-color: #d9a0a0;"></div> <!-- Пыльно-розовый -->
+                <div class="color-circle" style="background-color: #a3b18a;"></div> <!-- Оливковый -->
+                <div class="color-circle" style="background-color: #b3cde0;"></div> <!-- Голубой -->
+            </div>
+        </section>
 
-            <div class="rsvp-form">
-                <h3 class="handwritten" style="font-size: 2rem; margin-bottom: 15px;">Подтверждение</h3>
+        <!-- БЛОК 7: ПОЖЕЛАНИЯ -->
+        <section>
+            <h2 class="handwritten">Пожелания</h2>
+            <div class="wishes-text">
+                <p>Будем очень признательны, если Вы воздержитесь от криков «Горько». Ведь поцелуй — это знак выражения чувств, и он не может быть по заказу.</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 8: АНКЕТА ГОСТЯ (RSVP) и ПОДАРКИ -->
+        <section>
+            <div class="rsvp-box">
+                <h2 class="handwritten" style="font-size: 3rem;">Анкета</h2>
+                <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
+                <div class="date-highlight">13.06.2027</div>
+                
                 <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT ВМЕСТО "ВАШ_КОД" -->
                 <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
-                    <input type="text" name="nama" id="nama" placeholder="Ваше Имя" required>
-                    <input type="number" name="jumlah" id="jumlah" min="1" max="5" value="1" placeholder="Количество гостей" required>
-                    <select name="status" id="status" required>
-                        <option value="" disabled selected>Придете ли вы?</option>
-                        <option value="Приду">Обязательно буду!</option>
-                        <option value="Не приду">К сожалению, не смогу</option>
-                    </select>
-                    <button type="submit">Отправить</button>
+                    <div class="form-group">
+                        <label for="nama">Ваше Имя</label>
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Придете ли вы?</label>
+                        <select class="form-control" name="status" id="status" required>
+                            <option value="" disabled selected>Выберите вариант</option>
+                            <option value="Приду">Обязательно буду!</option>
+                            <option value="Не приду">К сожалению, не смогу</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlah">Количество гостей (включая вас)</label>
+                        <input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Подтвердить</button>
                 </form>
             </div>
+
+            <!-- Информация про подарки и детей -->
+            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #555;">
+                <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
+                <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
+                <p style="margin-bottom: 20px;">Присоединяйтесь к нашему чату с важной информацией и делитесь своими фото и видео со свадьбы.</p>
+                <a href="#" style="display: inline-block; padding: 10px 30px; border: 1px solid #777; border-radius: 30px; text-decoration: none; color: #333; font-weight: 600;">ТЕЛЕГРАМ</a>
+            </div>
+        </section>
+
+        <!-- БЛОК 9: КОНТАКТЫ -->
+        <section>
+            <h2 class="handwritten" style="font-size: 3rem;">Контакты</h2>
+            <p class="intro-text" style="margin-bottom: 20px;">
+                По всем вопросам, связанным с трансфером, торжественным вечером и сюрпризами, просьба обращаться к свадебному организатору:
+            </p>
+            
+            <div class="contact-card">
+                <!-- ⚠️ ФОТО ОРГАНИЗАТОРА (ЗАМЕНИТЕ ССЫЛКУ) -->
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Организатор">
+                <h3 style="margin: 0; font-family: 'Montserrat';">Кристина</h3>
+                <div class="contact-phone">+7 (926) 888-77-XX</div>
+                <a href="tel:+792688877XX" class="btn-outline">Написать</a>
+            </div>
+        </section>
+
+        <!-- БЛОК 10: ЗАВЕРШЕНИЕ -->
+        <section style="margin-bottom: 20px;">
+            <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
+            <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
+            <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #777;">С любовью,<br>Юлия и Александр</p>
+
+            <div class="polaroid tilt-right" style="margin-top: 30px;">
+                <!-- ⚠️ ВАШЕ СОВМЕСТНОЕ ФОТО (ЗАМЕНИТЕ ССЫЛКУ) -->
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
+                <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
+            </div>
+        </section>
+
+        <!-- ТАЙМЕР -->
+        <section>
+            <h3 class="handwritten" style="font-size: 2rem;">До нашей свадьбы осталось:</h3>
+            <div id="countdown" class="countdown"></div>
         </section>
 
     </div>
@@ -384,7 +492,7 @@
             year: 2027,
             month: 6, // Июнь
             day: 13,
-            hours: 14, // 14:00
+            hours: 12, // 12:00 (сбор гостей)
             minutes: 0,
             seconds: 0,
             words: {
@@ -412,7 +520,7 @@
             });
         });
 
-        // --- 3. ИМЯ ГОСТЯ ИЗ ССЫЛКИ ---
+        // --- 3. ИМЯ ГОСТЯ ИЗ ССЫЛКИ (?n=Имя) ---
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('n') || '';
         if(nama) {
