@@ -26,15 +26,14 @@
             min-height: 100vh; 
             
             /* ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ФОН НИЖЕ НА СВОЮ */
-            background-image: url('https://static.vecteezy.com/system/resources/previews/013/629/721/large_2x/the-crumpled-paper-background-free-photo.jpg');
+            background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             
-            /* Настройки, чтобы фон растянулся на весь экран */
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
-            background-attachment: fixed; /* Фон замирает, когда вы листаете вниз */
+            background-attachment: fixed; 
             
-            background-color: var(--paper-bg); /* Запасной цвет */
+            background-color: var(--paper-bg); 
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
@@ -46,11 +45,10 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            /* Небольшая тень и светлый фон для читаемости текста на любом фоне */
             background: rgba(255, 255, 255, 0.4); 
             border-radius: 20px;
             margin-top: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 80px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
@@ -58,6 +56,97 @@
             font-family: 'Caveat', cursive;
             color: var(--red);
             margin: 0;
+        }
+
+        /* --- ШАПКА (HERO SECTION) --- */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .banner-text {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            color: #555;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .names-title { font-size: 4.5rem; margin: 20px 0; }
+        .hero-date {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--green);
+            margin-bottom: 30px;
+        }
+
+        /* Кнопка открытия */
+        .btn-open {
+            background-color: transparent;
+            color: var(--red);
+            border: 2px dashed var(--red);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.1);
+        }
+        .btn-open:hover {
+            background-color: var(--red);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Стрелочка вниз */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            font-size: 2rem;
+            color: var(--text-dark);
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+
+        /* --- ПЛАВАЮЩАЯ КНОПКА МУЗЫКИ --- */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .music-btn:hover { transform: scale(1.1); }
+        .music-btn.playing {
+            animation: spin 3s linear infinite;
+            color: var(--red);
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
 
         /* --- ПОЛАРОИДЫ --- */
@@ -89,17 +178,6 @@
         h2 { font-size: 2.8rem; margin-bottom: 20px; }
         h3 { font-size: 2rem; margin-bottom: 15px; }
 
-        /* Блок 1: Обложка */
-        .banner-text {
-            font-size: 2.5rem;
-            letter-spacing: 5px;
-            color: #555;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-        .names-title { font-size: 4rem; margin: 20px 0; }
-
-        /* Блок 2: Приглашение */
         .intro-text {
             font-size: 1.1rem;
             max-width: 600px;
@@ -109,10 +187,9 @@
             text-align-last: center;
         }
 
-        /* Блок 3: Место */
         .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #555; }
 
-        /* Блок 4: Календарь */
+        /* --- КАЛЕНДАРЬ --- */
         .calendar {
             display: inline-grid;
             grid-template-columns: repeat(7, 40px);
@@ -135,7 +212,7 @@
             font-weight: bold;
         }
 
-        /* Блок 5: Тайминг */
+        /* --- ТАЙМИНГ --- */
         .timeline-item {
             margin: 20px 0;
             font-size: 1.2rem;
@@ -151,7 +228,7 @@
         }
         .timeline-desc { font-weight: 600; margin-top: 5px; }
 
-        /* Блок 6: Дресс-код */
+        /* --- ДРЕСС-КОД --- */
         .color-palette {
             display: flex;
             justify-content: center;
@@ -165,7 +242,7 @@
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
-        /* Блок 7: Пожелания */
+        /* --- ПОЖЕЛАНИЯ --- */
         .wishes-text {
             background: rgba(255,255,255,0.7);
             padding: 30px;
@@ -175,7 +252,7 @@
             font-size: 1.1rem;
         }
 
-        /* Блок 8: Анкета / RSVP */
+        /* --- АНКЕТА / RSVP --- */
         .rsvp-box {
             background: #fff;
             padding: 40px 30px;
@@ -221,7 +298,7 @@
             color: white;
         }
 
-        /* Блок 9: Контакты */
+        /* --- КОНТАКТЫ --- */
         .contact-card {
             background: #fff;
             padding: 30px;
@@ -255,7 +332,7 @@
             color: white;
         }
 
-        /* Таймер */
+        /* --- ТАЙМЕР --- */
         .countdown {
             display: flex;
             justify-content: center;
@@ -279,7 +356,7 @@
 
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
-            .names-title { font-size: 2.5rem; }
+            .names-title { font-size: 3rem; }
             .banner-text { font-size: 1.5rem; }
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
@@ -291,39 +368,52 @@
 </head>
 <body>
 
-    <div class="container">
+    <!-- ФОНОВАЯ МУЗЫКА (⚠️ ЗАМЕНИТЕ ССЫЛКУ НА СВОЙ MP3) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- КНОПКА МУЗЫКИ -->
+    <div class="music-btn" id="music-btn" onclick="toggleMusic()">
+        🎵
+    </div>
+
+    <!-- ШАПКА -->
+    <section class="hero-section" id="hero">
+        <div class="banner-text">
+            <span style="color:#e76f51">У</span>
+            <span style="color:#f4a261">Н</span>
+            <span style="color:#e9c46a">А</span>
+            <span style="color:#2a9d8f">С</span><br>
+            СВАДЬБА
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
+            <div class="polaroid tilt-left">
+                <!-- ⚠️ ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 160px; height: 200px;">
+            </div>
+            <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
+            <div class="polaroid tilt-right">
+                <!-- ⚠️ ДЕТСКОЕ ФОТО ЖЕНИХА -->
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 160px; height: 200px;">
+            </div>
+        </div>
+
+        <h1 class="handwritten names-title">Александр & Юлия</h1>
+        <div class="hero-date">13 июня 2027</div>
+
+        <button class="btn-open" onclick="openInvitation()">Открыть приглашение</button>
         
-        <!-- БЛОК 1: ОБЛОЖКА -->
-        <section class="hero-section">
-            <div class="banner-text">
-                <span style="color:#e76f51">У</span>
-                <span style="color:#f4a261">Н</span>
-                <span style="color:#e9c46a">А</span>
-                <span style="color:#2a9d8f">С</span><br>
-                СВАДЬБА
-            </div>
+        <div class="scroll-down">↓</div>
+    </section>
 
-            <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px;">
-                <div class="polaroid tilt-left">
-                    <!-- ⚠️ ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 180px; height: 220px;">
-                    <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Юлия</p>
-                </div>
-                <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
-                <div class="polaroid tilt-right">
-                    <!-- ⚠️ ДЕТСКОЕ ФОТО ЖЕНИХА -->
-                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 180px; height: 220px;">
-                    <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Александр</p>
-                </div>
-            </div>
-        </section>
-
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="container" id="main-content">
+        
         <!-- БЛОК 2: ПРИГЛАШЕНИЕ -->
         <section>
-            <h2 class="handwritten names-title">Юлия + Александр</h2>
-            <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
-            
-            <h3 class="handwritten">Узнали этих малышей?</h3>
+            <h2 class="handwritten">Узнали этих малышей?</h2>
             <p class="intro-text">
                 Время пролетело незаметно. И вот наступил момент, когда наши детские мечты стали реальностью. 
                 Разделите с нами это главное событие лета — подарите нам своё внимание и поддержку!
@@ -508,23 +598,42 @@
     <script>
         // --- 1. ТАЙМЕР ---
         simplyCountdown('#countdown', {
-            year: 2027,
-            month: 6, // Июнь
-            day: 13,
-            hours: 12, // 12:00 (сбор гостей)
-            minutes: 0,
-            seconds: 0,
+            year: 2027, month: 6, day: 13, hours: 12, minutes: 0, seconds: 0,
             words: {
                 days: { root: 'дн', lambda: (root, n) => n > 1 ? 'дней' : 'день' },
                 hours: { root: 'ч', lambda: (root, n) => n > 1 ? 'часов' : 'час' },
                 minutes: { root: 'м', lambda: (root, n) => n > 1 ? 'минут' : 'минута' },
                 seconds: { root: 'с', lambda: (root, n) => n > 1 ? 'секунд' : 'секунда' },
             },
-            plural: true,
-            inline: false,
+            plural: true, inline: false,
         });
 
-        // --- 2. ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ ---
+        // --- 2. УПРАВЛЕНИЕ МУЗЫКОЙ ---
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+
+        // Функция для кнопки "Открыть приглашение"
+        function openInvitation() {
+            audio.play().then(() => {
+                musicBtn.classList.add('playing');
+            }).catch(error => console.log("Автовоспроизведение заблокировано браузером"));
+            
+            // Плавный скролл к контенту
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Функция для плавающей кнопки
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.classList.add('playing');
+            } else {
+                audio.pause();
+                musicBtn.classList.remove('playing');
+            }
+        }
+
+        // --- 3. ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ ---
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             form.addEventListener("submit", function(e) {
@@ -539,7 +648,7 @@
             });
         });
 
-        // --- 3. ИМЯ ГОСТЯ ИЗ ССЫЛКИ (?n=Имя) ---
+        // --- 4. ИМЯ ГОСТЯ ИЗ ССЫЛКИ (?n=Имя) ---
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('n') || '';
         if(nama) {
