@@ -25,13 +25,15 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ⚠️ ФОН ВСЕГО САЙТА */
+            /* ФОН ВСЕГО САЙТА */
             background-image: url('img/phon.JPG'); 
             
-            background-size: cover;       
-            background-position: center;  
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
+            /* ⚠️ ИЗМЕНЕНИЯ ДЛЯ ФОНА: */
+            background-size: auto;        /* Картинка не растягивается */
+            background-repeat: no-repeat; /* Не повторяется плиткой */
+            background-position: center top; /* По центру сверху */
+            background-attachment: scroll;   /* Убирает размытость на телефонах */
+            
             background-color: var(--paper-bg); 
             
             font-family: 'Montserrat', sans-serif;
@@ -45,7 +47,7 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.4); 
+            background: rgba(255, 255, 255, 0.6); /* Чуть плотнее подложка, так как фон теперь может быть виден */
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
@@ -160,27 +162,26 @@
             display: inline-block;
             transition: transform 0.3s ease;
             margin: 15px;
-            max-width: 100%; /* Чтобы не вылезало за экран */
+            max-width: 100%;
         }
         
-        /* Общие настройки для всех картинок внутри рамок */
         .polaroid img {
             display: block;
             object-fit: cover; 
             border: 1px solid #eee;
-            width: 100%; /* Картинка занимает всю ширину рамки */
+            width: 100%; 
         }
 
-        /* Специально для детских фото в шапке (квадрат) */
+        /* Рамки в шапке */
         .hero-polaroid {
-            width: 230px; /* Размер самой рамки */
+            width: 230px; 
         }
         .hero-polaroid img {
-            aspect-ratio: 1 / 1; /* Делает картинку идеальным квадратом */
+            aspect-ratio: 1 / 1; 
             height: auto;
         }
 
-        /* Специально для фото банкета */
+        /* Фото банкета */
         .place-polaroid {
             width: 100%;
             max-width: 500px;
@@ -190,7 +191,7 @@
             height: 250px;
         }
 
-        /* Специально для финального фото */
+        /* Финальное фото */
         .final-polaroid {
             width: 100%;
             max-width: 400px;
@@ -207,6 +208,13 @@
             transform: rotate(0deg) scale(1.05);
             z-index: 10;
             position: relative;
+        }
+
+        /* Значок & */
+        .ampersand {
+            font-size: 3rem; 
+            color: var(--red); 
+            margin: 0 10px;
         }
 
         /* --- СЕКЦИИ --- */
@@ -390,26 +398,38 @@
         }
         .countdown small { font-size: 0.8rem; color: #777; }
 
-        /* --- АДАПТИВ --- */
+        /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
             .names-title { font-size: 3rem; }
             .banner-text { font-size: 1.5rem; }
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
-            .hero-polaroid { width: 40%; margin: 10px 5px; } /* Уменьшаем на телефонах */
+            
+            /* ⚠️ ИЗМЕНЕНИЯ ДЛЯ ФОТО НА ТЕЛЕФОНЕ (ЧТОБЫ НЕ ПЕРЕНОСИЛИСЬ) */
+            .hero-polaroid { 
+                width: 42%;      /* Уменьшаем рамку */
+                margin: 5px;     /* Уменьшаем отступы */
+                padding: 8px 8px 25px 8px; /* Делаем рамку тоньше */
+            }
+            .hero-polaroid img {
+                border: none;
+            }
+            .ampersand {
+                font-size: 2rem; /* Уменьшаем значок & */
+                margin: 0 2px;
+            }
+            
             .color-circle { width: 30px; height: 30px; }
-            .container { background: rgba(255, 255, 255, 0.7); }
+            .container { background: rgba(255, 255, 255, 0.8); } /* Делаем подложку плотнее для читаемости */
         }
     </style>
 </head>
 <body>
 
-    <!-- ФОНОВАЯ МУЗЫКА -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- КНОПКА МУЗЫКИ -->
     <div class="music-btn" id="music-btn" onclick="toggleMusic()">
         🎵
     </div>
@@ -424,13 +444,12 @@
             СВАДЬБА
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <!-- ФОТО ЮЛИИ -->
+        <!-- ⚠️ ЗДЕСЬ УБРАН flex-wrap: wrap, ЧТОБЫ ФОТО БЫЛИ В ОДНУ ЛИНИЮ -->
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 10px;">
             <div class="polaroid hero-polaroid tilt-left">
                 <img src="img/julia.jpg" alt="Юлия">
             </div>
-            <div style="font-size: 3rem; color: var(--red); margin: 0 10px;">&</div>
-            <!-- ФОТО САШИ -->
+            <div class="ampersand">&</div> <!-- Добавлен класс для управления размером -->
             <div class="polaroid hero-polaroid tilt-right">
                 <img src="img/alex.jpg" alt="Александр">
             </div>
@@ -439,7 +458,6 @@
         <h1 class="handwritten names-title">Александр & Юлия</h1>
         <div class="hero-date">13 июня 2027</div>
 
-        <!-- КНОПКА ОТКРЫТИЯ -->
         <button class="btn-open" onclick="openInvitation()">Открыть приглашение</button>
         
         <div class="scroll-down">↓</div>
@@ -448,7 +466,6 @@
     <!-- ОСНОВНОЙ КОНТЕНТ -->
     <div class="container" id="main-content">
         
-        <!-- БЛОК 2: ПРИГЛАШЕНИЕ -->
         <section>
             <h2 class="handwritten">Узнали этих малышей?</h2>
             <p class="intro-text">
@@ -457,7 +474,6 @@
             </p>
         </section>
 
-        <!-- БЛОК 3: МЕСТО -->
         <section>
             <h2 class="handwritten">Место</h2>
             <p class="place-address">
@@ -471,7 +487,6 @@
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
         </section>
 
-        <!-- БЛОК 4: КАЛЕНДАРЬ -->
         <section>
             <h3 class="handwritten" style="font-size: 2.5rem; text-align: left; margin-left: 10%;">Дорогие наши<br>друзья и родные!</h3>
             <p class="intro-text" style="text-align: left; margin-left: 10%;">
@@ -500,7 +515,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 5: ТАЙМИНГ -->
         <section>
             <h2 class="handwritten">Тайминг</h2>
             <p style="font-family: 'Caveat'; color: #777; font-size: 1.5rem; transform: rotate(-5deg);">Самого важного дня</p>
@@ -529,7 +543,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 6: ДРЕСС-КОД -->
         <section>
             <h2 class="handwritten">Дресс-код</h2>
             <p class="intro-text">
@@ -544,7 +557,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 7: ПОЖЕЛАНИЯ -->
         <section>
             <h2 class="handwritten">Пожелания</h2>
             <div class="wishes-text">
@@ -552,7 +564,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 8: АНКЕТА ГОСТЯ (RSVP) и ПОДАРКИ -->
         <section>
             <div class="rsvp-box">
                 <h2 class="handwritten" style="font-size: 3rem;">Анкета</h2>
@@ -591,7 +602,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 9: КОНТАКТЫ -->
         <section>
             <h2 class="handwritten" style="font-size: 3rem;">Контакты</h2>
             <p class="intro-text" style="margin-bottom: 20px;">
@@ -606,7 +616,6 @@
             </div>
         </section>
 
-        <!-- БЛОК 10: ЗАВЕРШЕНИЕ -->
         <section style="margin-bottom: 20px;">
             <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
@@ -618,7 +627,6 @@
             </div>
         </section>
 
-        <!-- ТАЙМЕР -->
         <section>
             <h3 class="handwritten" style="font-size: 2rem;">До нашей свадьбы осталось:</h3>
             <div id="countdown" class="countdown"></div>
@@ -627,7 +635,6 @@
     </div>
 
     <script>
-        // --- 1. ТАЙМЕР ---
         simplyCountdown('#countdown', {
             year: 2027, month: 6, day: 13, hours: 12, minutes: 0, seconds: 0,
             words: {
@@ -639,7 +646,6 @@
             plural: true, inline: false,
         });
 
-        // --- 2. УПРАВЛЕНИЕ МУЗЫКОЙ И ПРОКРУТКОЙ ---
         function openInvitation() {
             const audio = document.getElementById('bg-music');
             const musicBtn = document.getElementById('music-btn');
@@ -671,7 +677,6 @@
             }
         }
 
-        // --- 3. ОТПРАВКА ФОРМЫ ---
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             form.addEventListener("submit", function(e) {
@@ -686,7 +691,6 @@
             });
         });
 
-        // --- 4. ИМЯ ГОСТЯ ИЗ ССЫЛКИ ---
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('n') || '';
         if(nama) {
