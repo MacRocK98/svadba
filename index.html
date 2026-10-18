@@ -25,7 +25,7 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ⚠️ ФОН ВСЕГО САЙТА: здесь ваша картинка из папки img */
+            /* ⚠️ ФОН ВСЕГО САЙТА */
             background-image: url('img/banket.JPG'); 
             
             background-size: cover;       
@@ -170,20 +170,21 @@
             border: 1px solid #eee;
         }
 
-        /* НОВЫЙ КЛАСС: Чистое фото без белой рамки (для Юлии и Саши) */
+        /* Чистое фото без белой рамки (для Юлии и Саши) */
         .photo-clean {
             display: inline-block;
             transition: transform 0.3s ease;
             margin: 15px;
         }
         .photo-clean img {
-            width: 160px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px; /* Закругленные углы */
+            width: 200px;         /* Ширина */
+            height: 200px;        /* Высота (такая же, как ширина) */
+            aspect-ratio: 1 / 1;  /* Жестко задает квадрат 1 к 1 */
+            object-fit: cover;    /* Заполняет квадрат, не искажая пропорции */
+            border-radius: 10px;  /* Закругленные углы */
             box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Красивая тень */
             display: block;
-            border: none; /* Убираем рамку */
+            border: none; 
         }
 
         .tilt-left { transform: rotate(-5deg); }
@@ -384,7 +385,7 @@
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .polaroid, .photo-clean { width: 80%; margin: 10px auto; }
-            .photo-clean img { width: 100%; }
+            .photo-clean img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
             .color-circle { width: 30px; height: 30px; }
             .container { background: rgba(255, 255, 255, 0.7); }
         }
@@ -413,12 +414,12 @@
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <!-- ФОТО ЮЛИИ (БЕЗ БЕЛОЙ РАМКИ) -->
+            <!-- ФОТО ЮЛИИ (КВАДРАТ 1:1) -->
             <div class="photo-clean tilt-left">
                 <img src="img/julia.jpg" alt="Юлия">
             </div>
             <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
-            <!-- ФОТО САШИ (БЕЗ БЕЛОЙ РАМКИ) -->
+            <!-- ФОТО САШИ (КВАДРАТ 1:1) -->
             <div class="photo-clean tilt-right">
                 <img src="img/alex.jpg" alt="Александр">
             </div>
