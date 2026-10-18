@@ -25,7 +25,7 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ⚠️ ФОН ВСЕГО САЙТА (теперь phon.JPG) */
+            /* ⚠️ ФОН ВСЕГО САЙТА */
             background-image: url('img/phon.JPG'); 
             
             background-size: cover;       
@@ -160,12 +160,44 @@
             display: inline-block;
             transition: transform 0.3s ease;
             margin: 15px;
+            max-width: 100%; /* Чтобы не вылезало за экран */
         }
         
+        /* Общие настройки для всех картинок внутри рамок */
         .polaroid img {
             display: block;
-            object-fit: cover; /* Заполняет квадрат, не искажая фото */
+            object-fit: cover; 
             border: 1px solid #eee;
+            width: 100%; /* Картинка занимает всю ширину рамки */
+        }
+
+        /* Специально для детских фото в шапке (квадрат) */
+        .hero-polaroid {
+            width: 230px; /* Размер самой рамки */
+        }
+        .hero-polaroid img {
+            aspect-ratio: 1 / 1; /* Делает картинку идеальным квадратом */
+            height: auto;
+        }
+
+        /* Специально для фото банкета */
+        .place-polaroid {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .place-polaroid img {
+            height: 250px;
+        }
+
+        /* Специально для финального фото */
+        .final-polaroid {
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto 0;
+        }
+        .final-polaroid img {
+            height: 300px;
         }
 
         .tilt-left { transform: rotate(-5deg); }
@@ -364,7 +396,7 @@
             .banner-text { font-size: 1.5rem; }
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
-            .polaroid { width: 80%; margin: 10px auto; }
+            .hero-polaroid { width: 40%; margin: 10px 5px; } /* Уменьшаем на телефонах */
             .color-circle { width: 30px; height: 30px; }
             .container { background: rgba(255, 255, 255, 0.7); }
         }
@@ -372,7 +404,7 @@
 </head>
 <body>
 
-    <!-- ФОНОВАЯ МУЗЫКА (⚠️ ЗАМЕНИТЕ ССЫЛКУ НА СВОЙ MP3, КОГДА ЗАГРУЗИТЕ) -->
+    <!-- ФОНОВАЯ МУЗЫКА -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
@@ -393,14 +425,14 @@
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <!-- ФОТО ЮЛИИ (ФОТОКАРТОЧКА КВАДРАТ) -->
-            <div class="polaroid tilt-left">
-                <img src="img/julia.jpg" alt="Юлия" style="width: 200px; height: 200px; aspect-ratio: 1 / 1;">
+            <!-- ФОТО ЮЛИИ -->
+            <div class="polaroid hero-polaroid tilt-left">
+                <img src="img/julia.jpg" alt="Юлия">
             </div>
-            <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
-            <!-- ФОТО САШИ (ФОТОКАРТОЧКА КВАДРАТ) -->
-            <div class="polaroid tilt-right">
-                <img src="img/alex.jpg" alt="Александр" style="width: 200px; height: 200px; aspect-ratio: 1 / 1;">
+            <div style="font-size: 3rem; color: var(--red); margin: 0 10px;">&</div>
+            <!-- ФОТО САШИ -->
+            <div class="polaroid hero-polaroid tilt-right">
+                <img src="img/alex.jpg" alt="Александр">
             </div>
         </div>
 
@@ -432,9 +464,8 @@
                 <strong>Капитан club</strong><br>
                 Речной проезд, 17, Жуковский
             </p>
-            <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
-                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: banket.JPG -->
-                <img src="img/banket.JPG" alt="Место" style="height: 250px; width: 100%;">
+            <div class="polaroid place-polaroid tilt-left">
+                <img src="img/banket.JPG" alt="Место">
             </div>
             <br>
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
@@ -528,7 +559,6 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT -->
                 <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
                     <div class="form-group">
                         <label for="nama">Ваше Имя</label>
@@ -553,7 +583,6 @@
                 </form>
             </div>
 
-            <!-- Информация про подарки и детей -->
             <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #444;">
                 <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
                 <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
@@ -570,7 +599,6 @@
             </p>
             
             <div class="contact-card">
-                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: oksana.PNG -->
                 <img src="img/oksana.PNG" alt="Организатор">
                 <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
                 <div class="contact-phone">+7 (926) 888-77-XX</div>
@@ -584,9 +612,8 @@
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
             <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
 
-            <div class="polaroid tilt-right" style="margin-top: 30px;">
-                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: phon.JPG -->
-                <img src="img/phon.JPG" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
+            <div class="polaroid final-polaroid tilt-right">
+                <img src="img/phon.JPG" alt="Разделите с нами этот момент">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
             </div>
         </section>
@@ -599,7 +626,6 @@
 
     </div>
 
-    <!-- СКРИПТЫ -->
     <script>
         // --- 1. ТАЙМЕР ---
         simplyCountdown('#countdown', {
@@ -645,7 +671,7 @@
             }
         }
 
-        // --- 3. ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ ---
+        // --- 3. ОТПРАВКА ФОРМЫ ---
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             form.addEventListener("submit", function(e) {
@@ -660,7 +686,7 @@
             });
         });
 
-        // --- 4. ИМЯ ГОСТЯ ИЗ ССЫЛКИ (?n=Имя) ---
+        // --- 4. ИМЯ ГОСТЯ ИЗ ССЫЛКИ ---
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('n') || '';
         if(nama) {
