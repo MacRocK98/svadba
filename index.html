@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ --- */
+        /* --- БАЗОВЫЕ СТИЛИ И ФОН --- */
         :root {
             --paper-bg: #f7f4ec;
             --text-dark: #333;
@@ -20,11 +20,21 @@
             --green: #2a9d8f;
         }
 
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            background-color: var(--paper-bg);
-            background-image: url("https://i.pinimg.com/originals/0d/fd/0c/0dfd0c8408907cf9129750e088134155.jpg");
+            min-height: 100vh; 
+            
+            /* ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ФОН НИЖЕ НА СВОЮ */
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/591/339/large_2x/crumpled-paper-background-texture-free-photo.jpg');
+            
+            /* Настройки, чтобы фон растянулся на весь экран */
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            background-attachment: fixed; /* Фон замирает, когда вы листаете вниз */
+            
+            background-color: var(--paper-bg); /* Запасной цвет */
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
@@ -36,6 +46,12 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
+            /* Небольшая тень и светлый фон для читаемости текста на любом фоне */
+            background: rgba(255, 255, 255, 0.4); 
+            border-radius: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .handwritten {
@@ -88,16 +104,15 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px auto;
-            color: #555;
+            color: #444;
             text-align: justify;
             text-align-last: center;
         }
 
         /* Блок 3: Место */
-        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #666; }
+        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #555; }
 
         /* Блок 4: Календарь */
-        .month-title { font-size: 3rem; margin-bottom: 10px; letter-spacing: 3px; }
         .calendar {
             display: inline-grid;
             grid-template-columns: repeat(7, 40px);
@@ -152,7 +167,7 @@
 
         /* Блок 7: Пожелания */
         .wishes-text {
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.7);
             padding: 30px;
             border-radius: 10px;
             border: 1px dashed #ccc;
@@ -270,6 +285,7 @@
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .polaroid { width: 80%; margin: 10px auto; }
             .color-circle { width: 30px; height: 30px; }
+            .container { background: rgba(255, 255, 255, 0.7); }
         }
     </style>
 </head>
@@ -289,11 +305,13 @@
 
             <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px;">
                 <div class="polaroid tilt-left">
+                    <!-- ⚠️ ДЕТСКОЕ ФОТО НЕВЕСТЫ -->
                     <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Юлия" style="width: 180px; height: 220px;">
                     <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Юлия</p>
                 </div>
                 <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
                 <div class="polaroid tilt-right">
+                    <!-- ⚠️ ДЕТСКОЕ ФОТО ЖЕНИХА -->
                     <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Александр" style="width: 180px; height: 220px;">
                     <p class="handwritten" style="font-size: 2rem; margin-top: 10px;">Александр</p>
                 </div>
@@ -320,6 +338,7 @@
                 Речной проезд, 17, Жуковский
             </p>
             <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
+                <!-- ⚠️ ФОТО МЕСТА ПРОВЕДЕНИЯ -->
                 <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Место" style="height: 250px;">
             </div>
             <br>
@@ -391,11 +410,11 @@
                 Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.
             </p>
             <div class="color-palette">
-                <div class="color-circle" style="background-color: #f4c2c2;"></div> <!-- Розовый -->
-                <div class="color-circle" style="background-color: #c15b5b;"></div> <!-- Красный -->
-                <div class="color-circle" style="background-color: #d9a0a0;"></div> <!-- Пыльно-розовый -->
-                <div class="color-circle" style="background-color: #a3b18a;"></div> <!-- Оливковый -->
-                <div class="color-circle" style="background-color: #b3cde0;"></div> <!-- Голубой -->
+                <div class="color-circle" style="background-color: #f4c2c2;"></div>
+                <div class="color-circle" style="background-color: #c15b5b;"></div>
+                <div class="color-circle" style="background-color: #d9a0a0;"></div>
+                <div class="color-circle" style="background-color: #a3b18a;"></div>
+                <div class="color-circle" style="background-color: #b3cde0;"></div>
             </div>
         </section>
 
@@ -440,7 +459,7 @@
             </div>
 
             <!-- Информация про подарки и детей -->
-            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #555;">
+            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #444;">
                 <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
                 <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
                 <p style="margin-bottom: 20px;">Присоединяйтесь к нашему чату с важной информацией и делитесь своими фото и видео со свадьбы.</p>
@@ -468,7 +487,7 @@
         <section style="margin-bottom: 20px;">
             <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
-            <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #777;">С любовью,<br>Юлия и Александр</p>
+            <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
 
             <div class="polaroid tilt-right" style="margin-top: 30px;">
                 <!-- ⚠️ ВАШЕ СОВМЕСТНОЕ ФОТО (ЗАМЕНИТЕ ССЫЛКУ) -->
