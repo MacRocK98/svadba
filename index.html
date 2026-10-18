@@ -25,8 +25,8 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ⚠️ ФОН ВСЕГО САЙТА */
-            background-image: url('img/banket.JPG'); 
+            /* ⚠️ ФОН ВСЕГО САЙТА (теперь phon.JPG) */
+            background-image: url('img/phon.JPG'); 
             
             background-size: cover;       
             background-position: center;  
@@ -152,46 +152,26 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- СТИЛИ ДЛЯ ФОТО --- */
-        /* Классический полароид (с белой рамкой) */
+        /* --- СТИЛИ ДЛЯ ФОТОКАРТОЧЕК (ПОЛАРОИД) --- */
         .polaroid {
             background: #fff;
-            padding: 15px 15px 45px 15px;
+            padding: 15px 15px 45px 15px; /* Белая рамка с широким низом */
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             display: inline-block;
             transition: transform 0.3s ease;
             margin: 15px;
         }
+        
         .polaroid img {
-            width: 100%;
-            height: auto;
             display: block;
-            object-fit: cover;
+            object-fit: cover; /* Заполняет квадрат, не искажая фото */
             border: 1px solid #eee;
-        }
-
-        /* Чистое фото без белой рамки (для Юлии и Саши) */
-        .photo-clean {
-            display: inline-block;
-            transition: transform 0.3s ease;
-            margin: 15px;
-        }
-        .photo-clean img {
-            width: 200px;         /* Ширина */
-            height: 200px;        /* Высота (такая же, как ширина) */
-            aspect-ratio: 1 / 1;  /* Жестко задает квадрат 1 к 1 */
-            object-fit: cover;    /* Заполняет квадрат, не искажая пропорции */
-            border-radius: 10px;  /* Закругленные углы */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Красивая тень */
-            display: block;
-            border: none; 
         }
 
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(5deg); }
         
-        /* Эффект при наведении для обоих типов фото */
-        .polaroid:hover, .photo-clean:hover {
+        .polaroid:hover {
             transform: rotate(0deg) scale(1.05);
             z-index: 10;
             position: relative;
@@ -384,8 +364,7 @@
             .banner-text { font-size: 1.5rem; }
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
-            .polaroid, .photo-clean { width: 80%; margin: 10px auto; }
-            .photo-clean img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+            .polaroid { width: 80%; margin: 10px auto; }
             .color-circle { width: 30px; height: 30px; }
             .container { background: rgba(255, 255, 255, 0.7); }
         }
@@ -414,14 +393,14 @@
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <!-- ФОТО ЮЛИИ (КВАДРАТ 1:1) -->
-            <div class="photo-clean tilt-left">
-                <img src="img/julia.jpg" alt="Юлия">
+            <!-- ФОТО ЮЛИИ (ФОТОКАРТОЧКА КВАДРАТ) -->
+            <div class="polaroid tilt-left">
+                <img src="img/julia.jpg" alt="Юлия" style="width: 200px; height: 200px; aspect-ratio: 1 / 1;">
             </div>
             <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
-            <!-- ФОТО САШИ (КВАДРАТ 1:1) -->
-            <div class="photo-clean tilt-right">
-                <img src="img/alex.jpg" alt="Александр">
+            <!-- ФОТО САШИ (ФОТОКАРТОЧКА КВАДРАТ) -->
+            <div class="polaroid tilt-right">
+                <img src="img/alex.jpg" alt="Александр" style="width: 200px; height: 200px; aspect-ratio: 1 / 1;">
             </div>
         </div>
 
@@ -455,7 +434,7 @@
             </p>
             <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
                 <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: banket.JPG -->
-                <img src="img/banket.JPG" alt="Место" style="height: 250px;">
+                <img src="img/banket.JPG" alt="Место" style="height: 250px; width: 100%;">
             </div>
             <br>
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
@@ -549,7 +528,7 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT ВМЕСТО "ВАШ_КОД" (сейчас форма отправлять не будет) -->
+                <!-- ⚠️ СЮДА ВСТАВИТЬ ССЫЛКУ НА ВАШ GOOGLE APPS SCRIPT -->
                 <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
                     <div class="form-group">
                         <label for="nama">Ваше Имя</label>
