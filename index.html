@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ И ФОН --- */
+        /* --- БАЗОВЫЕ СТИЛИ И ФОН ВСЕГО САЙТА --- */
         :root {
             --paper-bg: #f7f4ec;
             --text-dark: #333;
@@ -25,14 +25,15 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ⚠️ ЗДЕСЬ ССЫЛКА НА ФОН (можно заменить на banket.JPG, если хотите) */
-            background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            /* ⚠️ ФОН ВСЕГО САЙТА: здесь ваша картинка из папки img */
+            background-image: url('img/banket.JPG'); 
             
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-color: var(--paper-bg); 
+            background-attachment: fixed; /* Фон не прокручивается, стоит на месте */
+            background-color: var(--paper-bg); /* Запасной цвет, если фото не загрузится */
+            
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
@@ -44,7 +45,7 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.4); 
+            background: rgba(255, 255, 255, 0.4); /* Полупрозрачная подложка для читаемости */
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
@@ -364,7 +365,7 @@
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .polaroid { width: 80%; margin: 10px auto; }
             .color-circle { width: 30px; height: 30px; }
-            .container { background: rgba(255, 255, 255, 0.7); }
+            .container { background: rgba(255, 255, 255, 0.7); } /* На телефоне подложка чуть плотнее */
         }
     </style>
 </head>
@@ -392,13 +393,13 @@
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 10px;">
             <div class="polaroid tilt-left">
-                <!-- ВАШЕ ФОТО: julia.jpg -->
-                <img src="julia.jpg" alt="Юлия" style="width: 160px; height: 200px;">
+                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: julia.jpg -->
+                <img src="img/julia.jpg" alt="Юлия" style="width: 160px; height: 200px;">
             </div>
             <div style="font-size: 3rem; color: var(--red); margin: 0 20px;">&</div>
             <div class="polaroid tilt-right">
-                <!-- ВАШЕ ФОТО: alex.jpg -->
-                <img src="alex.jpg" alt="Александр" style="width: 160px; height: 200px;">
+                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: alex.jpg -->
+                <img src="img/alex.jpg" alt="Александр" style="width: 160px; height: 200px;">
             </div>
         </div>
 
@@ -431,8 +432,8 @@
                 Речной проезд, 17, Жуковский
             </p>
             <div class="polaroid tilt-left" style="width: 80%; max-width: 500px; margin: 0 auto;">
-                <!-- ВАШЕ ФОТО: banket.JPG -->
-                <img src="banket.JPG" alt="Место" style="height: 250px;">
+                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: banket.JPG -->
+                <img src="img/banket.JPG" alt="Место" style="height: 250px;">
             </div>
             <br>
             <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--red); text-decoration: none; border-bottom: 1px dashed var(--red); font-weight: 600;">Как добраться</a>
@@ -568,8 +569,8 @@
             </p>
             
             <div class="contact-card">
-                <!-- ВАШЕ ФОТО: oksana.PNG -->
-                <img src="oksana.PNG" alt="Организатор">
+                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: oksana.PNG -->
+                <img src="img/oksana.PNG" alt="Организатор">
                 <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
                 <div class="contact-phone">+7 (926) 888-77-XX</div>
                 <a href="tel:+792688877XX" class="btn-outline">Написать</a>
@@ -583,8 +584,8 @@
             <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
 
             <div class="polaroid tilt-right" style="margin-top: 30px;">
-                <!-- ВАШЕ ФОТО: phon.JPG -->
-                <img src="phon.JPG" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
+                <!-- ВАШЕ ФОТО ИЗ ПАПКИ IMG: phon.JPG -->
+                <img src="img/phon.JPG" alt="Разделите с нами этот момент" style="width: 100%; max-width: 400px; height: 300px;">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
             </div>
         </section>
