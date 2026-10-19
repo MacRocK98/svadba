@@ -146,8 +146,20 @@
 
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
         .place-polaroid img { height: 250px; }
-        .final-polaroid { width: 100%; max-width: 400px; margin: 30px auto 0; }
-        .final-polaroid img { height: 300px; }
+        
+        /* ИЗМЕНЕНО: ФИНАЛЬНОЕ ФОТО ТЕПЕРЬ БЕЗ ЖЕСТКОЙ ВЫСОТЫ */
+        .final-polaroid { 
+            width: 100%; 
+            max-width: 400px; 
+            margin: 30px auto 0; 
+        }
+        .final-polaroid img { 
+            width: 100%;
+            height: auto; 
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(5deg); }
         .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; position: relative; }
@@ -160,7 +172,15 @@
         h3 { font-size: 2rem; margin-bottom: 15px; }
         
         .intro-text { font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto; text-align: justify; text-align-last: center; font-weight: 600; }
-        .place-address { font-size: 1.2rem; margin-bottom: 20px; font-weight: 600; }
+        
+        /* ИЗМЕНЕНО: АДРЕС ТЕПЕРЬ С ПЕРЕНОСАМИ И МЕНЬШЕ НА ТЕЛЕФОНАХ */
+        .place-address { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+            font-weight: 600; 
+            word-wrap: break-word;
+            padding: 0 10px;
+        }
 
         /* --- КАЛЕНДАРЬ --- */
         .calendar {
@@ -180,8 +200,20 @@
 
         /* --- ТАЙМИНГ --- */
         .timeline-item { margin: 0 0 25px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
-        .timeline-time { font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--red); line-height: 1; text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; margin-bottom: 5px; }
         
+        .timeline-time { 
+            font-family: 'Caveat', cursive; 
+            font-size: 2.5rem; 
+            color: var(--red); 
+            line-height: 1; 
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; 
+            margin-bottom: 10px; /* ИЗМЕНЕНО: ДОБАВЛЕН ОТСТУП МЕЖДУ ВРЕМЕНЕМ И ТЕКСТОМ */
+        }
+        
+        .timeline-desc {
+            padding: 0 15px; /* Чтобы текст не прилипал к краям */
+        }
+
         /* --- ДРЕСС-КОД --- */
         .color-palette { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .color-circle { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
@@ -236,6 +268,17 @@
             .contact-card { padding: 20px; }
             .contact-card img.avatar { width: 80px; height: 80px; }
             .contact-phone { font-size: 1.2rem; }
+
+            /* ИЗМЕНЕНО: АДРЕС НА ТЕЛЕФОНЕ ЧУТЬ МЕНЬШЕ */
+            .place-address {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            /* ИЗМЕНЕНО: ОТСТУП ДЛЯ ТАЙМИНГА НА ТЕЛЕФОНЕ */
+            .timeline-time {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 380px) {
@@ -244,6 +287,7 @@
             .hero-polaroid { width: 42%; }
             .countdown div { min-width: 45px; padding: 8px; }
             .countdown span { font-size: 1.1rem; }
+            .place-address { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -251,7 +295,6 @@
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
-            <!-- СЛИТНО У НАС -->
             <div>
                 <span style="color:#e76f51">У</span>
                 <span style="color:#f4a261"> </span>
@@ -290,9 +333,13 @@
 
         <section>
             <h2 class="handwritten">Место</h2>
-            <p class="place-address"><strong>Капитан club</strong><br>Речной проезд, 17, Жуковский</p>
+            <!-- АДРЕС ПОДОГНАН, ЧТОБЫ НЕ ВЫЕЗЖАТЬ -->
+            <p class="place-address">
+                <strong>Капитан club</strong><br>
+                Речной проезд, 17,<br>
+                Жуковский
+            </p>
             
-            <!-- ФОТО В РАМКЕ -->
             <div class="polaroid place-polaroid tilt-left">
                 <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: block;">
                     <img src="img/banket.JPG" alt="Место">
@@ -305,7 +352,6 @@
         </section>
 
         <section>
-            <!-- ПО ЦЕНТРУ -->
             <h3 class="handwritten" style="font-size: 2.5rem; text-align: center;">Дорогие наши<br>друзья и родные!</h3>
             <p class="intro-text" style="text-align: center;">Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этом день рядом с нами!</p>
 
@@ -327,9 +373,9 @@
 
         <section>
             <h2 class="handwritten">Тайминг</h2>
-            <p style="font-family: 'Caveat'; color: #333; font-size: 1.5rem; transform: rotate(-5deg); font-weight: 600;">Самого важного дня</p>
+            <!-- ОТСТУП ДЛЯ ПОДЗАГОЛОВКА -->
+            <p style="font-family: 'Caveat'; color: #333; font-size: 1.5rem; transform: rotate(-5deg); font-weight: 600; margin-bottom: 30px;">Самого важного дня</p>
             
-            <!-- ТАЙМИНГИ С ОТСТУПАМИ -->
             <div class="timeline-item">
                 <div class="timeline-time">14:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
@@ -446,10 +492,10 @@
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
             <p style="font-family: 'Caveat'; font-size: 1.8rem; font-weight: 600;">С любовью,<br>Юлия и Александр</p>
             
-            <!-- АДАПТИВНОЕ ФИНАЛЬНОЕ ФОТО -->
+            <!-- ТЕКСТ ТЕПЕРЬ ВНУТРИ РАМКИ, БЕЗ ВЫЕЗДА -->
             <div class="polaroid final-polaroid tilt-right">
                 <img src="img/fon.jpg" alt="Разделите с нами этот момент">
-                <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
+                <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px; word-wrap: break-word; padding: 0 5px;">Разделите с нами этот момент</p>
             </div>
         </section>
 
