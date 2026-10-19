@@ -203,9 +203,9 @@
         .calendar .day-name { font-weight: 600; color: #777; }
         .calendar .wedding-day { border: 2px solid var(--red); border-radius: 50%; color: var(--red); font-weight: bold; }
 
-        /* --- ТАЙМИНГ (ВОЗДУХ ВОКРУГ КАЖДОГО БЛОКА) --- */
+        /* --- ТАЙМИНГ --- */
         .timeline-item { 
-            margin: 30px 0; /* УВЕЛИЧЕНЫ ОТСТУПЫ СВЕРХУ И СНИЗУ */
+            margin: 30px 0; 
             font-size: 1.2rem; 
             display: flex; 
             flex-direction: column; 
@@ -226,11 +226,10 @@
             padding: 0 15px; 
         }
 
-        /* ИКОНКИ МЕЖДУ БЛОКАМИ */
         .timeline-icon {
             font-size: 1.5rem; 
             color: #777; 
-            margin: -15px 0; /* УБРАНЫ ОТСТУПЫ, ЧТОБЫ НЕ РАСТЯГИВАЛИ */
+            margin: -15px 0; 
             text-align: center;
         }
 
@@ -467,7 +466,8 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <form action="https://script.google.com/macros/s/ВАШ_КОД/exec" method="POST" id="my-form">
+                <!-- ВСТАВЛЕН ТВОЙ URL СКРИПТА -->
+                <form action="https://script.google.com/macros/s/AKfycbzfyH0XnsOge9uDYSN9IzrW2mlPaXPK6n2VfWRjgALBs73HdGOAMtk7fSzA-2ZoamQDwg/exec" method="POST" id="my-form">
                     <div class="form-group"><label for="nama">Ваше Имя</label><input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required></div>
                     <div class="form-group"><label for="status">Придете ли вы?</label>
                         <select class="form-control" name="status" id="status" required>
