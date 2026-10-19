@@ -134,6 +134,7 @@
             transition: transform 0.3s ease;
             margin: 15px;
             max-width: 100%; 
+            box-sizing: border-box; /* Важно, чтобы padding не увеличивал ширину */
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
@@ -144,9 +145,16 @@
             object-fit: cover; 
         }
 
+        /* ФОТО МЕСТА ТЕПЕРЬ АДАПТИВНОЕ */
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
-        .place-polaroid img { height: 250px; }
-        
+        .place-polaroid img { 
+            width: 100%;
+            height: auto; 
+            aspect-ratio: 16 / 9; /* Сохраняет пропорции, но подстраивается под ширину */
+            border-radius: 5px;
+        }
+
+        /* ФИНАЛЬНОЕ ФОТО ТЕПЕРЬ АДАПТИВНОЕ */
         .final-polaroid { 
             width: 100%; 
             max-width: 400px; 
@@ -155,6 +163,7 @@
         .final-polaroid img { 
             width: 100%;
             height: auto; 
+            aspect-ratio: 4 / 3; /* Сохраняет пропорции */
             border-radius: 5px;
             margin-bottom: 10px;
         }
@@ -197,7 +206,7 @@
         .calendar .wedding-day { border: 2px solid var(--red); border-radius: 50%; color: var(--red); font-weight: bold; }
 
         /* --- ТАЙМИНГ --- */
-        .timeline-item { margin: 0 0 25px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
+        .timeline-item { margin: 0 0 30px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
         
         .timeline-time { 
             font-family: 'Caveat', cursive; 
@@ -205,7 +214,7 @@
             color: var(--red); 
             line-height: 1; 
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; 
-            margin-bottom: 2px; 
+            margin-bottom: 5px; 
         }
         
         .timeline-desc {
@@ -275,6 +284,11 @@
             .timeline-time {
                 font-size: 2.8rem;
             }
+
+            /* На телефонах рамка становится чуть меньше, чтобы точно влезла */
+            .place-polaroid, .final-polaroid {
+                max-width: 90%; 
+            }
         }
 
         @media (max-width: 380px) {
@@ -292,7 +306,6 @@
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
-            <!-- "У" ОТДЕЛЬНО, "НАС" СЛИТНО -->
             <div>
                 <span style="color:#e76f51">У</span> 
                 <span style="color:#f4a261">Н</span><span style="color:#e9c46a">А</span><span style="color:#2a9d8f">С</span>
@@ -335,6 +348,7 @@
                 Жуковский
             </p>
             
+            <!-- ФОТО МЕСТА ТЕПЕРЬ НЕ ВЫЕЗЖАЕТ -->
             <div class="polaroid place-polaroid tilt-left">
                 <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: block;">
                     <img src="img/banket.JPG" alt="Место">
@@ -368,43 +382,43 @@
 
         <section>
             <h2 class="handwritten">Тайминг</h2>
-            <p style="font-family: 'Caveat'; color: #333; font-size: 1.5rem; transform: rotate(-5deg); font-weight: 600; margin-top: -5px; margin-bottom: 20px;">Самого важного дня</p>
+            <p style="font-family: 'Caveat'; color: #333; font-size: 1.5rem; transform: rotate(-5deg); font-weight: 600; margin-top: -5px; margin-bottom: 40px;">Самого важного дня</p>
             
             <div class="timeline-item">
                 <div class="timeline-time">14:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">🥂</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🥂</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">14:30</div>
                 <div class="timeline-desc">Фуршет</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">💍</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">💍</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:00</div>
                 <div class="timeline-desc">Выездная церемония</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">📸</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">📸</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:30</div>
                 <div class="timeline-desc">Памятная фотосессия с молодоженами</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">🎉</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🎉</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">16:00</div>
                 <div class="timeline-desc">Банкет</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">🍰</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🍰</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">20:00</div>
                 <div class="timeline-desc">Вынос свадебного торта</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: -10px 0 15px 0;">✨</div>
+            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">✨</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">21:00</div>
@@ -486,6 +500,7 @@
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
             <p style="font-family: 'Caveat'; font-size: 1.8rem; font-weight: 600;">С любовью,<br>Юлия и Александр</p>
             
+            <!-- ФИНАЛЬНОЕ ФОТО ТЕПЕРЬ НЕ ВЫЕЗЖАЕТ -->
             <div class="polaroid final-polaroid tilt-right">
                 <img src="img/fon.jpg" alt="Разделите с нами этот момент">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px; word-wrap: break-word; padding: 0 5px;">Раздели с нами этот момент</p>
