@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ И ФОН ВСЕГО САЙТА --- */
+        /* --- БАЗОВЫЕ СТИЛИ --- */
         :root {
             --paper-bg: #f7f4ec;
             --text-dark: #333;
@@ -24,21 +24,27 @@
             margin: 0;
             padding: 0;
             min-height: 100vh; 
-            
-            /* ФОН ВСЕГО САЙТА (из папки img) */
-            background-image: url('img/phon.JPG'); 
-            
-            background-size: cover;        /* Растягивает на весь экран */
-            background-repeat: no-repeat; 
-            background-position: center center; 
-            background-attachment: fixed; /* Делает фон статичным */
-            
-            background-color: var(--paper-bg); 
-            
+            background-color: var(--paper-bg); /* Запасной цвет фона */
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        /* --- НЕВИДИМЫЙ СЛОЙ ДЛЯ ФОНА (НА ВЕСЬ ЭКРАН И СТАТИЧНЫЙ) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Убирает фон за весь контент */
+            
+            background-image: url('img/phon.JPG'); /* Твой фон */
+            background-size: cover;       /* Растягивает на весь экран */
+            background-position: center;  /* Центрирует */
+            background-repeat: no-repeat;
         }
 
         .container {
