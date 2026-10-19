@@ -73,13 +73,12 @@
 
         /* --- ШАПКА --- */
         .hero-section {
-            /* ⚠️ 100dvh решает проблему с обрезанием на телефонах */
             min-height: 100dvh; 
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* ⚠️ ПРИЖИМАЕМ К ВЕРХУ */
             align-items: center;
-            padding: 10px 20px; /* Уменьшил отступы */
+            padding: 40px 20px 20px 20px; /* Добавили отступ сверху */
             text-align: center;
             position: relative;
         }
@@ -88,7 +87,7 @@
             font-size: 2.5rem;
             letter-spacing: 5px;
             color: #444;
-            margin-bottom: 20px; /* Уменьшил отступ */
+            margin-bottom: 20px;
             text-transform: uppercase;
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
@@ -98,7 +97,7 @@
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--green);
-            margin-bottom: 20px; /* Уменьшил отступ */
+            margin-bottom: 20px; 
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
 
@@ -107,7 +106,7 @@
             background-color: rgba(255, 255, 255, 0.9);
             color: var(--red);
             border: 2px dashed var(--red);
-            padding: 12px 30px; /* Уменьшил кнопку */
+            padding: 12px 30px;
             border-radius: 30px;
             font-family: 'Caveat', cursive;
             font-size: 1.8rem;
@@ -125,7 +124,7 @@
 
         .scroll-down {
             position: absolute;
-            bottom: 15px; /* Прижал стрелочку ниже */
+            bottom: 15px;
             font-size: 2rem;
             color: #333;
             animation: bounce 2s infinite;
@@ -149,7 +148,7 @@
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
-        .hero-polaroid { width: 200px; } /* Чуть уменьшил фото для мобильных */
+        .hero-polaroid { width: 200px; }
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
@@ -227,10 +226,10 @@
 
         /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
-            .hero-section { padding: 10px; }
-            .banner-text { font-size: 1.5rem; margin-bottom: 15px; }
+            .hero-section { padding: 20px 10px 10px 10px; } /* Подняли текст выше */
+            .banner-text { font-size: 1.5rem; margin-bottom: 10px; }
             .names-title { font-size: 2.8rem; margin: 10px 0; }
-            .hero-date { font-size: 2rem; margin-bottom: 15px; }
+            .hero-date { font-size: 2rem; margin-bottom: 10px; }
             .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
             
             .hero-polaroid { width: 38%; margin: 5px; padding: 8px 8px 25px 8px; }
