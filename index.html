@@ -12,21 +12,14 @@
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ И ФОН --- */
+        /* --- БАЗОВЫЕ СТИЛИ --- */
         :root {
             --text-dark: #111;
             --red: #e63946;
             --green: #2a9d8f;
         }
 
-        /* ФОН СТРОГО НА HTML */
         html {
-            background-image: url('img/phon.jpg'); 
-            background-size: contain; /* ⚠️ ИЗМЕНЕНО: contain вместо cover (фото не растягивается) */
-            background-position: center top; /* Центрируем фото */
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-color: #f7f4ec; /* Добавил цвет фона на случай пустых краев */
             height: 100%;
         }
 
@@ -38,9 +31,27 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* УБРАЛИ ВСЕ БЕЛЫЕ ПЛАШКИ, КОНТЕЙНЕР ПРОЗРАЧНЫЙ */
+        /* --- ФОН (РАБОТАЕТ ИДЕАЛЬНО НА ПК И ТЕЛЕФОНАХ) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Отправляет фон за весь текст */
+            
+            background-image: url('img/phon.JPG'); 
+            background-size: cover; /* ⚠️ Заполняет весь экран, закрывая бока */
+            background-position: center center; /* Центрирует фото */
+            background-repeat: no-repeat;
+            background-color: #f7f4ec; 
+        }
+
+        /* Контейнер с текстом (прозрачный, чтобы видеть фон) */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -164,7 +175,7 @@
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
-            object-fit: contain; /* ⚠️ ИЗМЕНЕНО: contain вместо cover (фото не обрезается) */
+            object-fit: contain; /* Оставляем contain, чтобы лица не обрезались */
         }
 
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
@@ -192,7 +203,7 @@
             gap: 10px;
             margin-top: 20px;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.85); /* Оставил только для календаря, иначе цифры не видно */
+            background: rgba(255, 255, 255, 0.85); 
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -236,7 +247,7 @@
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
         .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; text-shadow: none; }
 
-        /* --- АДАПТИВ --- */
+        /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
             .names-title { font-size: 3rem; }
             .banner-text { font-size: 1.5rem; }
