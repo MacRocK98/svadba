@@ -19,29 +19,38 @@
             --green: #2a9d8f;
         }
 
-        html, body {
+        html {
+            height: 100%;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background-color: #f7f4ec; /* Запасной цвет, если фото не загрузится */
+            background: transparent;
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- ФОН (ЖЕЛЕЗОБЕТОННЫЙ СПОСОБ ЧЕРЕЗ ТЕГ IMG) --- */
-        .bg-image {
-            position: fixed;     /* Приколачиваем к экрану */
+        /* --- ФОН (КАК БЫЛО ДО РАСТЯГИВАНИЯ) --- */
+        body::before {
+            content: "";
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;        /* На всю ширину экрана */
-            height: 100vh;       /* На всю высоту экрана */
-            object-fit: cover;   /* ⚠️ РАСТЯГИВАЕТ, ЧТОБЫ ЗАКРЫТЬ БОКА И НЕ ИСКАЖАТЬ ФОТО */
-            z-index: -1;         /* Отправляем за весь текст */
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            
+            background-image: url('img/phon.JPG'); 
+            background-size: auto; /* ⚠️ Вернул auto (картинка не растягивается) */
+            background-position: center top; 
+            background-repeat: no-repeat;
+            background-color: #f7f4ec; /* Бежевый фон, если есть пустые края */
         }
 
-        /* Контейнер с текстом */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -52,7 +61,7 @@
             box-shadow: none;
         }
 
-        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА, ЧТОБЫ ОН ЧИТАЛСЯ НА ЛЮБОМ ФОНЕ */
+        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА */
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0px 2px 8px rgba(255,255,255,0.8);
         }
@@ -160,12 +169,12 @@
             max-width: 100%;
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
-        .hero-polaroid { width: 230px; }
         
+        .hero-polaroid { width: 230px; }
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
-            object-fit: contain; /* Чтобы лица не обрезались */
+            object-fit: cover; /* Вернул cover, чтобы фото ровно заполняло квадрат */
         }
 
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
@@ -250,9 +259,6 @@
     </style>
 </head>
 <body>
-
-    <!-- ФОН (ТЕГ IMG, ЖЕЛЕЗОБЕТОННЫЙ ВАРИАНТ) -->
-    <img src="https://picsum.photos/1920/1080" class="bg-image" alt="Фон">
 
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
