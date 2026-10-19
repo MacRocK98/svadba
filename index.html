@@ -19,39 +19,29 @@
             --green: #2a9d8f;
         }
 
-        html {
-            height: 100%;
-        }
-
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: transparent;
+            background-color: #f7f4ec; /* Запасной цвет, если фото не загрузится */
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- ФОН (РАБОТАЕТ ИДЕАЛЬНО НА ПК И ТЕЛЕФОНАХ) --- */
-        body::before {
-            content: "";
-            position: fixed;
+        /* --- ФОН (ЖЕЛЕЗОБЕТОННЫЙ СПОСОБ ЧЕРЕЗ ТЕГ IMG) --- */
+        .bg-image {
+            position: fixed;     /* Приколачиваем к экрану */
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1; /* Отправляет фон за весь текст */
-            
-            background-image: url('img/phon.JPG'); 
-            background-size: cover; /* ⚠️ Заполняет весь экран, закрывая бока */
-            background-position: center center; /* Центрирует фото */
-            background-repeat: no-repeat;
-            background-color: #f7f4ec; 
+            width: 100vw;        /* На всю ширину экрана */
+            height: 100vh;       /* На всю высоту экрана */
+            object-fit: cover;   /* ⚠️ РАСТЯГИВАЕТ, ЧТОБЫ ЗАКРЫТЬ БОКА И НЕ ИСКАЖАТЬ ФОТО */
+            z-index: -1;         /* Отправляем за весь текст */
         }
 
-        /* Контейнер с текстом (прозрачный, чтобы видеть фон) */
+        /* Контейнер с текстом */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -175,7 +165,7 @@
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
-            object-fit: contain; /* Оставляем contain, чтобы лица не обрезались */
+            object-fit: contain; /* Чтобы лица не обрезались */
         }
 
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
@@ -260,6 +250,9 @@
     </style>
 </head>
 <body>
+
+    <!-- ФОН (ТЕГ IMG, ЖЕЛЕЗОБЕТОННЫЙ ВАРИАНТ) -->
+    <img src="img/phon.JPG" class="bg-image" alt="Фон">
 
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
