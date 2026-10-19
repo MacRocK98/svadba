@@ -92,6 +92,7 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+            line-height: 1.1; /* Чтобы строки не сливались */
         }
         
         .names-title { font-size: 4.5rem; margin: 15px 0; }
@@ -132,7 +133,7 @@
             display: inline-block;
             transition: transform 0.3s ease;
             margin: 15px;
-            max-width: 100%;
+            max-width: 100%; /* Чтобы не вылезало за экран */
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
@@ -212,10 +213,10 @@
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
         .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; text-shadow: none; }
 
-        /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
+        /* --- АДАПТИВ ДЛЯ ВСЕХ ЭКРАНОВ --- */
         @media (max-width: 768px) {
             .hero-section { padding: 20px 10px 10px 10px; } 
-            .banner-text { font-size: 1.5rem; margin-bottom: 10px; }
+            .banner-text { font-size: 1.5rem; margin-bottom: 10px; line-height: 1.2; }
             .names-title { font-size: 2.8rem; margin: 10px 0; }
             .hero-date { font-size: 2rem; margin-bottom: 10px; }
             .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
@@ -226,6 +227,23 @@
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .color-circle { width: 30px; height: 30px; }
+            
+            .countdown { gap: 5px; margin: 20px 0; }
+            .countdown div { padding: 10px; min-width: 55px; }
+            .countdown span { font-size: 1.3rem; }
+            .countdown small { font-size: 0.65rem; }
+            
+            .contact-card { padding: 20px; }
+            .contact-card img.avatar { width: 80px; height: 80px; }
+            .contact-phone { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 380px) {
+            .names-title { font-size: 2.2rem; }
+            .banner-text { font-size: 1.2rem; }
+            .hero-polaroid { width: 42%; }
+            .countdown div { min-width: 45px; padding: 8px; }
+            .countdown span { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -233,7 +251,14 @@
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
-            <span style="color:#e76f51">У</span><span style="color:#f4a261">Н</span><span style="color:#e9c46a">А</span><span style="color:#2a9d8f">С</span><br>СВАДЬБА
+            <!-- РАЗДЕЛЕНО НА ДВЕ СТРОКИ, ЧТОБЫ НЕ СЛИВАЛОСЬ -->
+            <div style="margin-bottom: 5px;">
+                <span style="color:#e76f51">У</span>
+                <span style="color:#f4a261">Н</span>
+                <span style="color:#e9c46a">А</span>
+                <span style="color:#2a9d8f">С</span>
+            </div>
+            <div>СВАДЬБА</div>
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 5px;">
@@ -350,6 +375,7 @@
                             <option value="" disabled selected>Выберите вариант</option>
                             <option value="Приду">Обязательно буду!</option>
                             <option value="Не приду">К сожалению, не смогу</option>
+                            <option value="Позже">Дам ответ позже</option>
                         </select>
                     </div>
                     <div class="form-group"><label for="jumlah">Количество гостей (включая вас)</label><input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required></div>
@@ -358,7 +384,6 @@
             </div>
         </section>
 
-        <!-- ОБНОВЛЕННЫЙ БЛОК КОНТАКТОВ С ПОДСКАЗКОЙ НА MAX -->
         <section>
             <h2 class="handwritten" style="font-size: 3rem;">Контакты</h2>
             <p class="intro-text" style="margin-bottom: 20px;">
