@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- ⚠️ ЭТА СТРОЧКА ОТВЕЧАЕТ ЗА ТАЙМЕР. Я ЕЁ ВЕРНУЛ -->
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
@@ -34,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* --- ФОН (КАК БЫЛО ДО РАСТЯГИВАНИЯ) --- */
+        /* --- ФОН --- */
         body::before {
             content: "";
             position: fixed;
@@ -44,11 +45,12 @@
             height: 100vh;
             z-index: -1;
             
-            background-image: url('img/phon.JPG'); 
-            background-size: auto; /* ⚠️ Вернул auto (картинка не растягивается) */
+            /* ⚠️ ТЕПЕРЬ ЗДЕСЬ fon.jpg (МАЛЕНЬКИМИ БУКВАМИ) */
+            background-image: url('img/fon.jpg'); 
+            background-size: auto; 
             background-position: center top; 
             background-repeat: no-repeat;
-            background-color: #f7f4ec; /* Бежевый фон, если есть пустые края */
+            background-color: #f7f4ec; 
         }
 
         .container {
@@ -61,7 +63,6 @@
             box-shadow: none;
         }
 
-        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА */
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0px 2px 8px rgba(255,255,255,0.8);
         }
@@ -174,7 +175,7 @@
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
-            object-fit: cover; /* Вернул cover, чтобы фото ровно заполняло квадрат */
+            object-fit: cover; 
         }
 
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
@@ -399,7 +400,7 @@
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
             <p style="font-family: 'Caveat'; font-size: 1.8rem; font-weight: 600;">С любовью,<br>Юлия и Александр</p>
             <div class="polaroid final-polaroid tilt-right">
-                <img src="img/phon.JPG" alt="Разделите с нами этот момент">
+                <img src="img/fon.jpg" alt="Разделите с нами этот момент">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
             </div>
         </section>
