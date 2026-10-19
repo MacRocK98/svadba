@@ -122,9 +122,10 @@
             transform: scale(1.05);
         }
 
+        /* --- СТРЕЛОЧКА (ПОДНЯТА ВЫШЕ) --- */
         .scroll-down {
             position: absolute;
-            bottom: 15px;
+            bottom: 40px; /* ⚠️ БЫЛО 15px, СТАЛО 40px */
             font-size: 2rem;
             color: #333;
             animation: bounce 2s infinite;
@@ -238,7 +239,9 @@
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             .color-circle { width: 30px; height: 30px; }
-            .scroll-down { bottom: 5px; }
+            
+            /* ⚠️ СТРЕЛОЧКА НА ТЕЛЕФОНЕ ТОЖЕ ПОДНЯТА */
+            .scroll-down { bottom: 20px; } 
         }
     </style>
 </head>
@@ -360,7 +363,6 @@
             </div>
         </section>
 
-        <!-- ОБНОВЛЕННЫЙ БЛОК КОНТАКТОВ -->
         <section>
             <h2 class="handwritten" style="font-size: 3rem;">Контакты</h2>
             <p class="intro-text" style="margin-bottom: 20px;">
@@ -368,7 +370,6 @@
             </p>
             
             <div class="contact-card">
-                <!-- ФОТО ОКСАНЫ -->
                 <img src="img/oksana.PNG" alt="Оксана">
                 <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
                 <div class="contact-phone">+7 (925) 122-72-52</div>
