@@ -466,8 +466,8 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <!-- ВСТАВЛЕН ТВОЙ URL СКРИПТА -->
-                <form action="https://script.google.com/macros/s/AKfycbzfyH0XnsOge9uDYSN9IzrW2mlPaXPK6n2VfWRjgALBs73HdGOAMtk7fSzA-2ZoamQDwg/exec" method="POST" id="my-form">
+                <!-- НОВАЯ ССЫЛКА НА СКРИПТ -->
+                <form action="https://script.google.com/macros/s/AKfycbwMOcZwUP3_rWBqjiYz1R0yfAhrHVdHWs32XAON-KZwyjliPSj0EPgtIXvsT87iUfi0AQ/exec" method="POST" id="my-form">
                     <div class="form-group"><label for="nama">Ваше Имя</label><input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required></div>
                     <div class="form-group"><label for="status">Придете ли вы?</label>
                         <select class="form-control" name="status" id="status" required>
@@ -567,6 +567,7 @@
                 e.preventDefault();
                 const data = new FormData(form);
                 const action = e.target.action;
+                // ТЕПЕРЬ ЗАПРОС ОТПРАВЛЯЕТСЯ БЕЗ ОШИБКИ CORS
                 fetch(action, { method: 'POST', body: data }).then(() => { alert("Спасибо! Ваш ответ отправлен."); form.reset(); });
             });
         });
