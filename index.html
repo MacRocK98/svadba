@@ -21,11 +21,12 @@
 
         /* ФОН СТРОГО НА HTML */
         html {
-            background-image: url('img/phon.JPG'); /* ПРОВЕРЬ НАЗВАНИЕ ФАЙЛА! */
-            background-size: cover;
-            background-position: center;
+            background-image: url('img/phon.JPG'); 
+            background-size: contain; /* ⚠️ ИЗМЕНЕНО: contain вместо cover (фото не растягивается) */
+            background-position: center top; /* Центрируем фото */
             background-attachment: fixed;
             background-repeat: no-repeat;
+            background-color: #f7f4ec; /* Добавил цвет фона на случай пустых краев */
             height: 100%;
         }
 
@@ -159,7 +160,13 @@
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         .hero-polaroid { width: 230px; }
-        .hero-polaroid img { aspect-ratio: 1 / 1; height: auto; }
+        
+        .hero-polaroid img { 
+            aspect-ratio: 1 / 1; 
+            height: auto; 
+            object-fit: contain; /* ⚠️ ИЗМЕНЕНО: contain вместо cover (фото не обрезается) */
+        }
+
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
         .place-polaroid img { height: 250px; }
         .final-polaroid { width: 100%; max-width: 400px; margin: 30px auto 0; }
@@ -202,7 +209,7 @@
         .color-palette { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .color-circle { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
 
-        /* --- ПОЖЕЛАНИЯ (Оставил белую подложку для формы) --- */
+        /* --- ПОЖЕЛАНИЯ --- */
         .wishes-text { background: rgba(255,255,255,0.85); padding: 30px; border-radius: 15px; border: 1px dashed #aaa; margin: 20px 0; font-size: 1.1rem; font-weight: 500; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         /* --- АНКЕТА / RSVP --- */
