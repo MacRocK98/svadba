@@ -25,14 +25,13 @@
             padding: 0;
             min-height: 100vh; 
             
-            /* ФОН ВСЕГО САЙТА */
+            /* ФОН ВСЕГО САЙТА (из папки img) */
             background-image: url('img/phon.JPG'); 
             
-            /* ⚠️ ИЗМЕНЕНИЯ ДЛЯ ФОНА: */
-            background-size: auto;        /* Картинка не растягивается */
-            background-repeat: no-repeat; /* Не повторяется плиткой */
-            background-position: center top; /* По центру сверху */
-            background-attachment: scroll;   /* Убирает размытость на телефонах */
+            background-size: auto;        
+            background-repeat: no-repeat; 
+            background-position: center top; 
+            background-attachment: scroll;   
             
             background-color: var(--paper-bg); 
             
@@ -47,7 +46,7 @@
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.6); /* Чуть плотнее подложка, так как фон теперь может быть виден */
+            background: rgba(255, 255, 255, 0.6); 
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
@@ -157,7 +156,7 @@
         /* --- СТИЛИ ДЛЯ ФОТОКАРТОЧЕК (ПОЛАРОИД) --- */
         .polaroid {
             background: #fff;
-            padding: 15px 15px 45px 15px; /* Белая рамка с широким низом */
+            padding: 15px 15px 45px 15px; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             display: inline-block;
             transition: transform 0.3s ease;
@@ -405,22 +404,21 @@
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             
-            /* ⚠️ ИЗМЕНЕНИЯ ДЛЯ ФОТО НА ТЕЛЕФОНЕ (ЧТОБЫ НЕ ПЕРЕНОСИЛИСЬ) */
             .hero-polaroid { 
-                width: 42%;      /* Уменьшаем рамку */
-                margin: 5px;     /* Уменьшаем отступы */
-                padding: 8px 8px 25px 8px; /* Делаем рамку тоньше */
+                width: 42%;      
+                margin: 5px;     
+                padding: 8px 8px 25px 8px; 
             }
             .hero-polaroid img {
                 border: none;
             }
             .ampersand {
-                font-size: 2rem; /* Уменьшаем значок & */
+                font-size: 2rem; 
                 margin: 0 2px;
             }
             
             .color-circle { width: 30px; height: 30px; }
-            .container { background: rgba(255, 255, 255, 0.8); } /* Делаем подложку плотнее для читаемости */
+            .container { background: rgba(255, 255, 255, 0.8); }
         }
     </style>
 </head>
@@ -444,12 +442,13 @@
             СВАДЬБА
         </div>
 
-        <!-- ⚠️ ЗДЕСЬ УБРАН flex-wrap: wrap, ЧТОБЫ ФОТО БЫЛИ В ОДНУ ЛИНИЮ -->
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 10px;">
+            <!-- ФОТО ЮЛИИ -->
             <div class="polaroid hero-polaroid tilt-left">
                 <img src="img/julia.jpg" alt="Юлия">
             </div>
-            <div class="ampersand">&</div> <!-- Добавлен класс для управления размером -->
+            <div class="ampersand">&</div>
+            <!-- ФОТО САШИ -->
             <div class="polaroid hero-polaroid tilt-right">
                 <img src="img/alex.jpg" alt="Александр">
             </div>
@@ -480,6 +479,7 @@
                 <strong>Капитан club</strong><br>
                 Речной проезд, 17, Жуковский
             </p>
+            <!-- ФОТО БАНКЕТА -->
             <div class="polaroid place-polaroid tilt-left">
                 <img src="img/banket.JPG" alt="Место">
             </div>
@@ -609,6 +609,7 @@
             </p>
             
             <div class="contact-card">
+                <!-- ФОТО ОКСАНЫ -->
                 <img src="img/oksana.PNG" alt="Организатор">
                 <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
                 <div class="contact-phone">+7 (926) 888-77-XX</div>
@@ -622,6 +623,7 @@
             <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
 
             <div class="polaroid final-polaroid tilt-right">
+                <!-- ФИНАЛЬНОЕ ФОТО -->
                 <img src="img/phon.JPG" alt="Разделите с нами этот момент">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px;">Разделите с нами этот момент</p>
             </div>
