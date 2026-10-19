@@ -12,65 +12,51 @@
     <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
     
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ --- */
+        /* --- БАЗОВЫЕ СТИЛИ И ФОН --- */
         :root {
             --text-dark: #222;
             --red: #e63946;
             --green: #2a9d8f;
         }
 
-        /* Убираем фон у body, чтобы был виден слой с картинкой */
-        html, body {
+        /* ФОН ПРИВЯЗАН К HTML, ЧТОБЫ БЫТЬ НА 100% СТРАНИЦЫ */
+        html {
+            background: url('img/phon.JPG') no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             min-height: 100vh; 
-            background: transparent; 
+            background: transparent; /* Прозрачный body, чтобы был виден фон html */
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* --- СЛОЙ ДЛЯ ФОНА (НА ВЕСЬ ЭКРАН И СТАТИЧНЫЙ) --- */
-        .bg-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1; /* Отправляет картинку за весь контент */
-            overflow: hidden;
-        }
-        
-        .bg-fixed img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Растягивает картинку на весь экран */
-            object-position: center;
-        }
-
-        /* Убираем белую плашку, чтобы фон был виден */
+        /* Убираем глухую белую плашку, оставляем легкое "стекло" */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: transparent; 
+            background: rgba(255, 255, 255, 0.3); /* Полупрозрачный фон для читаемости */
+            backdrop-filter: blur(5px); /* Легкое размытие заднего плана */
+            -webkit-backdrop-filter: blur(5px);
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
-        }
-
-        /* Добавляем тень всему тексту, чтобы он читался на фоне */
-        p, h1, h2, h3, .intro-text, .place-address, .wishes-text, .timeline-desc {
-            text-shadow: 0px 1px 4px rgba(255, 255, 255, 0.9), 0px 0px 10px rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .handwritten {
             font-family: 'Caveat', cursive;
             color: var(--red);
             margin: 0;
-            text-shadow: 0px 2px 5px rgba(255, 255, 255, 0.9);
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
 
         /* --- ШАПКА (HERO SECTION) --- */
@@ -88,7 +74,7 @@
         .banner-text {
             font-size: 2.5rem;
             letter-spacing: 5px;
-            color: #555;
+            color: #444;
             margin-bottom: 30px;
             text-transform: uppercase;
             text-shadow: 0px 2px 5px rgba(255, 255, 255, 0.9);
@@ -106,7 +92,7 @@
         /* Кнопка открытия */
         .btn-open {
             display: inline-block;
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.9);
             color: var(--red);
             border: 2px dashed var(--red);
             padding: 15px 40px;
@@ -131,9 +117,9 @@
             position: absolute;
             bottom: 30px;
             font-size: 2rem;
-            color: var(--text-dark);
+            color: #333;
             animation: bounce 2s infinite;
-            opacity: 0.6;
+            opacity: 0.8;
             pointer-events: none;
             text-shadow: 0px 2px 5px rgba(255, 255, 255, 0.9);
         }
@@ -239,26 +225,34 @@
         h2 { font-size: 2.8rem; margin-bottom: 20px; }
         h3 { font-size: 2rem; margin-bottom: 15px; }
 
+        /* ТЕНИ ДЛЯ ТЕКСТА, ЧТОБЫ ЧИТАЛОСЬ НА ФОНЕ */
         .intro-text {
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px auto;
-            color: #222;
+            color: #111;
             text-align: justify;
             text-align-last: center;
-            font-weight: 500; 
+            font-weight: 500;
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9); 
         }
 
-        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #333; font-weight: 500; }
+        .place-address { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+            color: #111; 
+            font-weight: 600; 
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9); 
+        }
 
-        /* --- КАЛЕНДАРЬ (Оставил легкую подложку для удобства) --- */
+        /* --- КАЛЕНДАРЬ --- */
         .calendar {
             display: inline-grid;
             grid-template-columns: repeat(7, 40px);
             gap: 10px;
             margin-top: 20px;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85); /* Оставил подложку для читаемости */
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -286,6 +280,7 @@
             flex-direction: column;
             align-items: center;
             font-weight: 600;
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9);
         }
         .timeline-time {
             font-family: 'Caveat', cursive;
@@ -310,7 +305,7 @@
 
         /* --- ПОЖЕЛАНИЯ --- */
         .wishes-text {
-            background: rgba(255,255,255,0.8); 
+            background: rgba(255,255,255,0.85); 
             padding: 30px;
             border-radius: 10px;
             border: 1px dashed #aaa;
@@ -322,7 +317,7 @@
 
         /* --- АНКЕТА / RSVP --- */
         .rsvp-box {
-            background: rgba(255, 255, 255, 0.95); /* Плотный фон для формы */
+            background: rgba(255, 255, 255, 0.95); 
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -445,15 +440,15 @@
             }
             
             .color-circle { width: 30px; height: 30px; }
+            
+            /* На телефонах делаем фон чуть темнее для читаемости */
+            .container {
+                background: rgba(255, 255, 255, 0.5); 
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- НЕВИДИМЫЙ СЛОЙ С ФОНОВЫМ ФОТО (РАСТЯНУТ НА ВЕСЬ ЭКРАН И НЕ ДВИГАЕТСЯ) -->
-    <div class="bg-fixed">
-        <img src="img/phon.JPG" alt="Фон">
-    </div>
 
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
@@ -548,7 +543,7 @@
 
         <section>
             <h2 class="handwritten">Тайминг</h2>
-            <p style="font-family: 'Caveat'; color: #444; font-size: 1.5rem; transform: rotate(-5deg); text-shadow: 0px 1px 4px rgba(255, 255, 255, 0.9);">Самого важного дня</p>
+            <p style="font-family: 'Caveat'; color: #333; font-size: 1.5rem; transform: rotate(-5deg); text-shadow: 0px 1px 4px rgba(255, 255, 255, 0.9);">Самого важного дня</p>
             
             <div class="timeline-item">
                 <div class="timeline-time">12:00</div>
@@ -625,7 +620,7 @@
                 </form>
             </div>
 
-            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #222; font-weight: 500;">
+            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #111; font-weight: 500; text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9);">
                 <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
                 <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
                 <p style="margin-bottom: 20px;">Присоединяйтесь к нашему чату с важной информацией и делитесь своими фото и видео со свадьбы.</p>
