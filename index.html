@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- ⚠️ ЭТА СТРОЧКА ОТВЕЧАЕТ ЗА ТАЙМЕР. Я ЕЁ ВЕРНУЛ -->
-    <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@1.6.1/dist/simplyCountdown.min.js"></script>
+    <!-- ВНЕШНИЕ СКРИПТЫ УДАЛЕНЫ, ЧТОБЫ ИЗБЕЖАТЬ ОШИБОК -->
     
     <style>
         /* --- БАЗОВЫЕ СТИЛИ --- */
@@ -45,7 +44,7 @@
             height: 100vh;
             z-index: -1;
             
-            /* ⚠️ ТЕПЕРЬ ЗДЕСЬ fon.jpg (МАЛЕНЬКИМИ БУКВАМИ) */
+            /* ⚠️ ТУТ ДОЛЖНО БЫТЬ fon.jpg (МАЛЕНЬКИМИ БУКВАМИ) */
             background-image: url('img/fon.jpg'); 
             background-size: auto; 
             background-position: center top; 
@@ -63,6 +62,7 @@
             box-shadow: none;
         }
 
+        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА, ЧТОБЫ ОН ЧИТАЛСЯ НА ЛЮБОМ ФОНЕ */
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0px 2px 8px rgba(255,255,255,0.8);
         }
@@ -138,26 +138,6 @@
             40% { transform: translateY(-15px); }
             60% { transform: translateY(-7px); }
         }
-
-        /* --- КНОПКА МУЗЫКИ --- */
-        .music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #fff;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1000;
-            font-size: 1.5rem;
-        }
-        .music-btn.playing { animation: spin 3s linear infinite; color: var(--red); }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* --- ФОТОКАРТОЧКИ --- */
         .polaroid {
@@ -241,9 +221,9 @@
         .btn-outline { display: inline-block; padding: 10px 40px; border: 1px solid var(--text-dark); color: var(--text-dark); text-decoration: none; transition: 0.3s; font-weight: 600; text-shadow: none; }
         .btn-outline:hover { background: var(--text-dark); color: white; }
 
-        /* --- ТАЙМЕР --- */
+        /* --- ТАЙМЕР (НОВЫЕ СТИЛИ ДЛЯ ВСТРОЕННОГО ТАЙМЕРА) --- */
         .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
-        .countdown div { background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 70px; }
+        .countdown div { background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 70px; text-align: center; }
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
         .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; text-shadow: none; }
 
@@ -261,11 +241,7 @@
 </head>
 <body>
 
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="music-btn" id="music-btn" onclick="toggleMusic()">🎵</div>
+    <!-- ТЕПЕРЬ БЕЗ КНОПКИ МУЗЫКИ И АУДИО -->
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
@@ -407,37 +383,47 @@
 
         <section>
             <h3 class="handwritten" style="font-size: 2rem;">До нашей свадьбы осталось:</h3>
-            <div id="countdown" class="countdown"></div>
+            <!-- ВСТРОЕННЫЙ ТАЙМЕР -->
+            <div id="countdown" class="countdown">
+                <div><span id="days">0</span><small>дней</small></div>
+                <div><span id="hours">0</span><small>часов</small></div>
+                <div><span id="minutes">0</span><small>минут</small></div>
+                <div><span id="seconds">0</span><small>секунд</small></div>
+            </div>
         </section>
     </div>
 
     <script>
-        simplyCountdown('#countdown', {
-            year: 2027, month: 6, day: 13, hours: 12, minutes: 0, seconds: 0,
-            words: {
-                days: { root: 'дн', lambda: (root, n) => n > 1 ? 'дней' : 'день' },
-                hours: { root: 'ч', lambda: (root, n) => n > 1 ? 'часов' : 'час' },
-                minutes: { root: 'м', lambda: (root, n) => n > 1 ? 'минут' : 'минута' },
-                seconds: { root: 'с', lambda: (root, n) => n > 1 ? 'секунд' : 'секунда' },
-            },
-            plural: true, inline: false,
-        });
+        // --- ВСТРОЕННЫЙ ТАЙМЕР (БЕЗ ВНЕШНИХ БИБЛИОТЕК) ---
+        const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
 
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
+            }
+        }, 1000);
+
+        // --- КНОПКА ОТКРЫТИЯ ---
         function openInvitation() {
-            const audio = document.getElementById('bg-music');
-            const musicBtn = document.getElementById('music-btn');
-            if (audio) { audio.play().then(() => { musicBtn.classList.add('playing'); }).catch(error => { console.log("Музыка заблокирована"); }); }
             const content = document.getElementById('main-content');
             if (content) { content.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         }
 
-        function toggleMusic() {
-            const audio = document.getElementById('bg-music');
-            const musicBtn = document.getElementById('music-btn');
-            if (audio.paused) { audio.play(); musicBtn.classList.add('playing'); } 
-            else { audio.pause(); musicBtn.classList.remove('playing'); }
-        }
-
+        // --- ОТПРАВКА ФОРМЫ ---
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             form.addEventListener("submit", function(e) {
