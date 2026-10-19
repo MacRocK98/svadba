@@ -134,7 +134,7 @@
             transition: transform 0.3s ease;
             margin: 15px;
             max-width: 100%; 
-            box-sizing: border-box; /* Важно, чтобы padding не увеличивал ширину */
+            box-sizing: border-box;
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
@@ -145,16 +145,16 @@
             object-fit: cover; 
         }
 
-        /* ФОТО МЕСТА ТЕПЕРЬ АДАПТИВНОЕ */
+        /* ФОТО МЕСТА */
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
         .place-polaroid img { 
             width: 100%;
             height: auto; 
-            aspect-ratio: 16 / 9; /* Сохраняет пропорции, но подстраивается под ширину */
+            aspect-ratio: 16 / 9; 
             border-radius: 5px;
         }
 
-        /* ФИНАЛЬНОЕ ФОТО ТЕПЕРЬ АДАПТИВНОЕ */
+        /* ФИНАЛЬНОЕ ФОТО */
         .final-polaroid { 
             width: 100%; 
             max-width: 400px; 
@@ -163,7 +163,7 @@
         .final-polaroid img { 
             width: 100%;
             height: auto; 
-            aspect-ratio: 4 / 3; /* Сохраняет пропорции */
+            aspect-ratio: 4 / 3; 
             border-radius: 5px;
             margin-bottom: 10px;
         }
@@ -206,7 +206,7 @@
         .calendar .wedding-day { border: 2px solid var(--red); border-radius: 50%; color: var(--red); font-weight: bold; }
 
         /* --- ТАЙМИНГ --- */
-        .timeline-item { margin: 0 0 30px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
+        .timeline-item { margin: 0 0 15px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
         
         .timeline-time { 
             font-family: 'Caveat', cursive; 
@@ -219,6 +219,13 @@
         
         .timeline-desc {
             padding: 0 15px; 
+        }
+
+        /* УМЕНЬШЕННЫЕ ЭМОДЗИ МЕЖДУ БЛОКАМИ */
+        .timeline-icon {
+            font-size: 1.5rem; /* Было 2rem */
+            color: #777; 
+            margin: 0 0 10px 0; /* Уменьшили отступы */
         }
 
         /* --- ДРЕСС-КОД --- */
@@ -284,8 +291,12 @@
             .timeline-time {
                 font-size: 2.8rem;
             }
+            
+            /* ЭМОДЗИ НА ТЕЛЕФОНЕ ТОЖЕ МЕНЬШЕ */
+            .timeline-icon {
+                font-size: 1.2rem;
+            }
 
-            /* На телефонах рамка становится чуть меньше, чтобы точно влезла */
             .place-polaroid, .final-polaroid {
                 max-width: 90%; 
             }
@@ -331,9 +342,11 @@
 
     <div class="container" id="main-content">
         
+        <!-- УЗНАЛИ С НОВОЙ СТРОКИ -->
         <section>
             <p class="intro-text" style="text-align: center; margin-bottom: 20px;">
-                <strong style="font-size: 1.3rem; color: var(--red);">Узнали этих малышей?</strong> Спешим поделиться с тобой радостью — мы женимся!<br><br>
+                <strong style="font-size: 1.3rem; color: var(--red); display: block; margin-bottom: 10px;">Узнали этих малышей?</strong>
+                Спешим поделиться с тобой радостью — мы женимся!<br><br>
                 Мы верим и надеемся, что этот день станет красивым началом долгой и счастливой жизни.<br><br>
                 И мы не представляем этот праздник без тебя, близкого и дорогого нам человека.<br><br>
                 Раздели с нами нашу радость, подари свою поддержку и добрые пожелания!
@@ -348,7 +361,6 @@
                 Жуковский
             </p>
             
-            <!-- ФОТО МЕСТА ТЕПЕРЬ НЕ ВЫЕЗЖАЕТ -->
             <div class="polaroid place-polaroid tilt-left">
                 <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" style="display: block;">
                     <img src="img/banket.JPG" alt="Место">
@@ -360,8 +372,8 @@
             </p>
         </section>
 
+        <!-- УБРАН ЗАГОЛОВОК "ДОРОГИЕ НАШИ..." -->
         <section>
-            <h3 class="handwritten" style="font-size: 2.5rem; text-align: center;">Дорогие наши<br>друзья и родные!</h3>
             <p class="intro-text" style="text-align: center;">Это официальное приглашение на нашу свадьбу! А получил ты его потому, что мы очень хотим видеть тебя в этот день рядом с нами!</p>
 
             <div style="display: flex; justify-content: center; align-items: baseline; gap: 10px; margin: 30px 0; flex-wrap: wrap;">
@@ -388,37 +400,37 @@
                 <div class="timeline-time">14:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🥂</div>
+            <div class="timeline-icon">🥂</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">14:30</div>
                 <div class="timeline-desc">Фуршет</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">💍</div>
+            <div class="timeline-icon">💍</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:00</div>
                 <div class="timeline-desc">Выездная церемония</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">📸</div>
+            <div class="timeline-icon">📸</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:30</div>
                 <div class="timeline-desc">Памятная фотосессия с молодоженами</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🎉</div>
+            <div class="timeline-icon">🎉</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">16:00</div>
                 <div class="timeline-desc">Банкет</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">🍰</div>
+            <div class="timeline-icon">🍰</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">20:00</div>
                 <div class="timeline-desc">Вынос свадебного торта</div>
             </div>
-            <div style="font-size: 2rem; color: #777; margin: 0 0 25px 0;">✨</div>
+            <div class="timeline-icon">✨</div>
             
             <div class="timeline-item">
                 <div class="timeline-time">21:00</div>
@@ -500,7 +512,6 @@
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
             <p style="font-family: 'Caveat'; font-size: 1.8rem; font-weight: 600;">С любовью,<br>Юлия и Александр</p>
             
-            <!-- ФИНАЛЬНОЕ ФОТО ТЕПЕРЬ НЕ ВЫЕЗЖАЕТ -->
             <div class="polaroid final-polaroid tilt-right">
                 <img src="img/fon.jpg" alt="Разделите с нами этот момент">
                 <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px; word-wrap: break-word; padding: 0 5px;">Раздели с нами этот момент</p>
