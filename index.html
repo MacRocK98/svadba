@@ -15,7 +15,7 @@
         /* --- БАЗОВЫЕ СТИЛИ --- */
         :root {
             --paper-bg: #f7f4ec;
-            --text-dark: #333;
+            --text-dark: #222; /* Сделал текст чуть темнее для читаемости */
             --red: #e63946;
             --green: #2a9d8f;
         }
@@ -24,7 +24,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh; 
-            background-color: var(--paper-bg); /* Запасной цвет фона */
+            background-color: var(--paper-bg); 
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
@@ -39,30 +39,38 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; /* Убирает фон за весь контент */
+            z-index: -1; 
             
             background-image: url('img/phon.JPG'); /* Твой фон */
-            background-size: cover;       /* Растягивает на весь экран */
-            background-position: center;  /* Центрирует */
+            background-size: cover;       
+            background-position: center;  
             background-repeat: no-repeat;
         }
 
+        /* Убрал плотную белую заливку, чтобы фон был виден */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.6); 
+            background: rgba(255, 255, 255, 0.2); /* Почти прозрачный фон */
             border-radius: 20px;
             margin-top: 30px;
             margin-bottom: 80px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(2px); /* Легкое размытие для читаемости */
+        }
+
+        /* Добавляем тень тексту, чтобы он читался на любом фоне */
+        p, h2, h3, .intro-text, .place-address, .wishes-text, .rsvp-box p {
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.8); 
         }
 
         .handwritten {
             font-family: 'Caveat', cursive;
             color: var(--red);
             margin: 0;
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
 
         /* --- ШАПКА (HERO SECTION) --- */
@@ -83,6 +91,7 @@
             color: #555;
             margin-bottom: 30px;
             text-transform: uppercase;
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
         
         .names-title { font-size: 4.5rem; margin: 20px 0; }
@@ -91,12 +100,13 @@
             font-size: 2.5rem;
             color: var(--green);
             margin-bottom: 30px;
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
 
         /* Кнопка открытия */
         .btn-open {
             display: inline-block;
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.8);
             color: var(--red);
             border: 2px dashed var(--red);
             padding: 15px 40px;
@@ -107,7 +117,7 @@
             transition: 0.3s;
             font-weight: 600;
             margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.1);
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
             text-decoration: none; 
         }
         .btn-open:hover {
@@ -220,6 +230,7 @@
             font-size: 3rem; 
             color: var(--red); 
             margin: 0 10px;
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
 
         /* --- СЕКЦИИ --- */
@@ -231,12 +242,13 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px auto;
-            color: #444;
+            color: #222;
             text-align: justify;
             text-align-last: center;
+            font-weight: 500; /* Чуть жирнее для читаемости */
         }
 
-        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #555; }
+        .place-address { font-size: 1.2rem; margin-bottom: 20px; color: #333; font-weight: 500; }
 
         /* --- КАЛЕНДАРЬ --- */
         .calendar {
@@ -245,6 +257,9 @@
             gap: 10px;
             margin-top: 20px;
             font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 15px;
         }
         .calendar .day {
             display: flex;
@@ -253,7 +268,7 @@
             height: 40px;
             width: 40px;
         }
-        .calendar .day-name { font-weight: 600; color: #999; }
+        .calendar .day-name { font-weight: 600; color: #777; }
         .calendar .wedding-day {
             border: 2px solid var(--red);
             border-radius: 50%;
@@ -268,12 +283,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            font-weight: 500;
         }
         .timeline-time {
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--red);
             line-height: 1;
+            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.9);
         }
         .timeline-desc { font-weight: 600; margin-top: 5px; }
 
@@ -288,43 +305,45 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
         }
 
         /* --- ПОЖЕЛАНИЯ --- */
         .wishes-text {
-            background: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.8); /* Чуть плотнее для читаемости */
             padding: 30px;
             border-radius: 10px;
-            border: 1px dashed #ccc;
+            border: 1px dashed #aaa;
             margin: 20px 0;
             font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* --- АНКЕТА / RSVP --- */
         .rsvp-box {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9); /* Плотный фон для формы */
             padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             max-width: 500px;
             margin: 30px auto;
             text-align: center;
         }
-        .rsvp-box p { margin-bottom: 20px; color: #666; }
+        .rsvp-box p { margin-bottom: 20px; color: #555; text-shadow: none; }
         .rsvp-box .date-highlight {
             font-size: 2.5rem;
             font-family: 'Caveat', cursive;
             color: var(--red);
             margin: 10px 0;
+            text-shadow: none;
         }
         
         .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; font-weight: 600; }
         .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
             box-sizing: border-box;
@@ -352,7 +371,7 @@
             background: #fff;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             max-width: 400px;
             margin: 0 auto;
         }
@@ -375,6 +394,7 @@
             color: var(--text-dark);
             text-decoration: none;
             transition: 0.3s;
+            font-weight: 600;
         }
         .btn-outline:hover {
             background: var(--text-dark);
@@ -389,10 +409,10 @@
             margin: 30px 0;
         }
         .countdown div {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.8);
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             min-width: 70px;
         }
         .countdown span {
@@ -401,13 +421,13 @@
             font-weight: bold;
             color: var(--red);
         }
-        .countdown small { font-size: 0.8rem; color: #777; }
+        .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; }
 
         /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
             .names-title { font-size: 3rem; }
             .banner-text { font-size: 1.5rem; }
-            .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
+            .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
             
             .hero-polaroid { 
@@ -424,7 +444,7 @@
             }
             
             .color-circle { width: 30px; height: 30px; }
-            .container { background: rgba(255, 255, 255, 0.8); }
+            .container { background: rgba(255, 255, 255, 0.4); } /* Чуть плотнее на телефоне */
         }
     </style>
 </head>
@@ -523,25 +543,25 @@
 
         <section>
             <h2 class="handwritten">Тайминг</h2>
-            <p style="font-family: 'Caveat'; color: #777; font-size: 1.5rem; transform: rotate(-5deg);">Самого важного дня</p>
+            <p style="font-family: 'Caveat'; color: #666; font-size: 1.5rem; transform: rotate(-5deg);">Самого важного дня</p>
             
             <div class="timeline-item">
                 <div class="timeline-time">12:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">💍</div>
+            <div style="font-size: 2rem; color: #aaa; margin: -10px 0;">💍</div>
 
             <div class="timeline-item">
                 <div class="timeline-time">12:30</div>
                 <div class="timeline-desc">Церемония регистрации</div>
             </div>
-            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">🥂</div>
+            <div style="font-size: 2rem; color: #aaa; margin: -10px 0;">🥂</div>
 
             <div class="timeline-item">
                 <div class="timeline-time">13:30</div>
                 <div class="timeline-desc">Банкет</div>
             </div>
-            <div style="font-size: 2rem; color: #ddd; margin: -10px 0;">🎉</div>
+            <div style="font-size: 2rem; color: #aaa; margin: -10px 0;">🎉</div>
 
             <div class="timeline-item">
                 <div class="timeline-time">23:00</div>
@@ -600,11 +620,11 @@
                 </form>
             </div>
 
-            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #444;">
+            <div style="margin-top: 40px; text-align: center; font-size: 0.95rem; color: #333; font-weight: 500;">
                 <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
                 <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
                 <p style="margin-bottom: 20px;">Присоединяйтесь к нашему чату с важной информацией и делитесь своими фото и видео со свадьбы.</p>
-                <a href="#" style="display: inline-block; padding: 10px 30px; border: 1px solid #777; border-radius: 30px; text-decoration: none; color: #333; font-weight: 600;">ТЕЛЕГРАМ</a>
+                <a href="#" style="display: inline-block; padding: 10px 30px; border: 1px solid #777; border-radius: 30px; text-decoration: none; color: #333; font-weight: 600; background: rgba(255,255,255,0.8);">ТЕЛЕГРАМ</a>
             </div>
         </section>
 
@@ -626,7 +646,7 @@
         <section style="margin-bottom: 20px;">
             <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
             <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
-            <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #555;">С любовью,<br>Юлия и Александр</p>
+            <p style="font-family: 'Caveat'; font-size: 1.8rem; color: #444;">С любовью,<br>Юлия и Александр</p>
 
             <div class="polaroid final-polaroid tilt-right">
                 <!-- ФИНАЛЬНОЕ ФОТО -->
