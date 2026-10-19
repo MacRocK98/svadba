@@ -9,8 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- ВНЕШНИЕ СКРИПТЫ УДАЛЕНЫ, ЧТОБЫ ИЗБЕЖАТЬ ОШИБОК -->
-    
     <style>
         /* --- БАЗОВЫЕ СТИЛИ --- */
         :root {
@@ -44,8 +42,7 @@
             height: 100vh;
             z-index: -1;
             
-            /* ⚠️ ТУТ ДОЛЖНО БЫТЬ fon.jpg (МАЛЕНЬКИМИ БУКВАМИ) */
-            background-image: url('img/fon.jpg'); 
+            background-image: url('img/fon.jpg'); /* ⚠️ ПРОВЕРЬ НАЗВАНИЕ! */
             background-size: auto; 
             background-position: center top; 
             background-repeat: no-repeat;
@@ -62,7 +59,7 @@
             box-shadow: none;
         }
 
-        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА, ЧТОБЫ ОН ЧИТАЛСЯ НА ЛЮБОМ ФОНЕ */
+        /* БЕЛАЯ ОБВОДКА ДЛЯ ТЕКСТА */
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0px 2px 8px rgba(255,255,255,0.8);
         }
@@ -76,12 +73,13 @@
 
         /* --- ШАПКА --- */
         .hero-section {
-            min-height: 100vh;
+            /* ⚠️ 100dvh решает проблему с обрезанием на телефонах */
+            min-height: 100dvh; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px 20px; /* Уменьшил отступы */
             text-align: center;
             position: relative;
         }
@@ -90,17 +88,17 @@
             font-size: 2.5rem;
             letter-spacing: 5px;
             color: #444;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Уменьшил отступ */
             text-transform: uppercase;
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
         
-        .names-title { font-size: 4.5rem; margin: 20px 0; }
+        .names-title { font-size: 4.5rem; margin: 15px 0; }
         .hero-date {
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--green);
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Уменьшил отступ */
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
 
@@ -109,14 +107,14 @@
             background-color: rgba(255, 255, 255, 0.9);
             color: var(--red);
             border: 2px dashed var(--red);
-            padding: 15px 40px;
+            padding: 12px 30px; /* Уменьшил кнопку */
             border-radius: 30px;
             font-family: 'Caveat', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: 0.3s;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 10px;
             text-decoration: none; 
         }
         .btn-open:hover {
@@ -127,7 +125,7 @@
 
         .scroll-down {
             position: absolute;
-            bottom: 30px;
+            bottom: 15px; /* Прижал стрелочку ниже */
             font-size: 2rem;
             color: #333;
             animation: bounce 2s infinite;
@@ -151,7 +149,7 @@
         }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
-        .hero-polaroid { width: 230px; }
+        .hero-polaroid { width: 200px; } /* Чуть уменьшил фото для мобильных */
         .hero-polaroid img { 
             aspect-ratio: 1 / 1; 
             height: auto; 
@@ -166,10 +164,10 @@
         .tilt-right { transform: rotate(5deg); }
         .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; position: relative; }
 
-        .ampersand { font-size: 3rem; color: var(--red); margin: 0 10px; text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
+        .ampersand { font-size: 3rem; color: var(--red); margin: 0 5px; text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
 
         /* --- СЕКЦИИ --- */
-        section { margin-bottom: 80px; }
+        section { margin-bottom: 60px; }
         h2 { font-size: 2.8rem; margin-bottom: 20px; }
         h3 { font-size: 2rem; margin-bottom: 15px; }
         
@@ -221,7 +219,7 @@
         .btn-outline { display: inline-block; padding: 10px 40px; border: 1px solid var(--text-dark); color: var(--text-dark); text-decoration: none; transition: 0.3s; font-weight: 600; text-shadow: none; }
         .btn-outline:hover { background: var(--text-dark); color: white; }
 
-        /* --- ТАЙМЕР (НОВЫЕ СТИЛИ ДЛЯ ВСТРОЕННОГО ТАЙМЕРА) --- */
+        /* --- ТАЙМЕР --- */
         .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
         .countdown div { background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 70px; text-align: center; }
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
@@ -229,26 +227,30 @@
 
         /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
-            .names-title { font-size: 3rem; }
-            .banner-text { font-size: 1.5rem; }
+            .hero-section { padding: 10px; }
+            .banner-text { font-size: 1.5rem; margin-bottom: 15px; }
+            .names-title { font-size: 2.8rem; margin: 10px 0; }
+            .hero-date { font-size: 2rem; margin-bottom: 15px; }
+            .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
+            
+            .hero-polaroid { width: 38%; margin: 5px; padding: 8px 8px 25px 8px; }
+            .ampersand { font-size: 2rem; margin: 0 2px; }
+            
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
-            .hero-polaroid { width: 42%; margin: 5px; padding: 8px 8px 25px 8px; }
-            .ampersand { font-size: 2rem; margin: 0 2px; }
             .color-circle { width: 30px; height: 30px; }
+            .scroll-down { bottom: 5px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- ТЕПЕРЬ БЕЗ КНОПКИ МУЗЫКИ И АУДИО -->
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
             <span style="color:#e76f51">У</span><span style="color:#f4a261">Н</span><span style="color:#e9c46a">А</span><span style="color:#2a9d8f">С</span><br>СВАДЬБА
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 10px;">
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 5px;">
             <!-- ФОТО САШИ -->
             <div class="polaroid hero-polaroid tilt-right">
                 <img src="img/alex.jpg" alt="Александр">
@@ -383,7 +385,6 @@
 
         <section>
             <h3 class="handwritten" style="font-size: 2rem;">До нашей свадьбы осталось:</h3>
-            <!-- ВСТРОЕННЫЙ ТАЙМЕР -->
             <div id="countdown" class="countdown">
                 <div><span id="days">0</span><small>дней</small></div>
                 <div><span id="hours">0</span><small>часов</small></div>
@@ -394,7 +395,6 @@
     </div>
 
     <script>
-        // --- ВСТРОЕННЫЙ ТАЙМЕР (БЕЗ ВНЕШНИХ БИБЛИОТЕК) ---
         const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
 
         const timer = setInterval(function() {
@@ -417,13 +417,11 @@
             }
         }, 1000);
 
-        // --- КНОПКА ОТКРЫТИЯ ---
         function openInvitation() {
             const content = document.getElementById('main-content');
             if (content) { content.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         }
 
-        // --- ОТПРАВКА ФОРМЫ ---
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             form.addEventListener("submit", function(e) {
