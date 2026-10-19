@@ -76,9 +76,9 @@
             min-height: 100dvh; 
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* ⚠️ ПРИЖИМАЕМ К ВЕРХУ */
+            justify-content: flex-start; 
             align-items: center;
-            padding: 40px 20px 20px 20px; /* Добавили отступ сверху */
+            padding: 40px 20px 20px 20px; 
             text-align: center;
             position: relative;
         }
@@ -226,7 +226,7 @@
 
         /* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
-            .hero-section { padding: 20px 10px 10px 10px; } /* Подняли текст выше */
+            .hero-section { padding: 20px 10px 10px 10px; } 
             .banner-text { font-size: 1.5rem; margin-bottom: 10px; }
             .names-title { font-size: 2.8rem; margin: 10px 0; }
             .hero-date { font-size: 2rem; margin-bottom: 10px; }
@@ -357,18 +357,33 @@
                 <p style="margin-bottom: 10px;"><strong>Дети:</strong><br>Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах.</p>
                 <p style="margin-bottom: 10px;"><strong>Цветы:</strong><br>Приятным комплиментом для нас вместо цветов будет бутылочка вашего любимого вина.</p>
                 <p style="margin-bottom: 20px;">Присоединяйтесь к нашему чату с важной информацией и делитесь своими фото и видео со свадьбы.</p>
-                <a href="#" style="display: inline-block; padding: 10px 30px; border: 1px solid #777; border-radius: 30px; text-decoration: none; color: #222; font-weight: 600; background: rgba(255,255,255,0.9);">ТЕЛЕГРАМ</a>
             </div>
         </section>
 
+        <!-- ОБНОВЛЕННЫЙ БЛОК КОНТАКТОВ -->
         <section>
             <h2 class="handwritten" style="font-size: 3rem;">Контакты</h2>
-            <p class="intro-text" style="margin-bottom: 20px;">По всем вопросам, связанным с трансфером, торжественным вечером и сюрпризами, просьба обращаться к свадебному организатору:</p>
+            <p class="intro-text" style="margin-bottom: 20px;">
+                По всем вопросам, связанным с торжественным вечером и сюрпризами, просьба обращаться к свадебному организатору Оксане.
+            </p>
+            
             <div class="contact-card">
-                <img src="img/oksana.PNG" alt="Организатор">
+                <!-- ФОТО ОКСАНЫ -->
+                <img src="img/oksana.PNG" alt="Оксана">
                 <h3 style="margin: 0; font-family: 'Montserrat';">Оксана</h3>
-                <div class="contact-phone">+7 (926) 888-77-XX</div>
-                <a href="tel:+792688877XX" class="btn-outline">Написать</a>
+                <div class="contact-phone">+7 (925) 122-72-52</div>
+                <a href="tel:+79251227252" class="btn-outline" style="margin-bottom: 20px;">Написать</a>
+                
+                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 20px 0;">
+
+                <p style="font-size: 0.95rem; margin-bottom: 15px; color: #444;">
+                    А также приглашаем вас вступить в общий чат в MAX
+                </p>
+                
+                <!-- ССЫЛКА НА ЧАТ MAX В ВИДЕ КАРТИНКИ -->
+                <a href="https://max.ru/join/vfZ-DhLhPPh5XFpMMZ7lOC8dTs2qhe_QoFZ_QWH7Fo4" target="_blank">
+                    <img src="img/max.jpg" alt="Чат в MAX" style="width: 100%; max-width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
             </div>
         </section>
 
