@@ -176,39 +176,11 @@
             display: block;
         }
 
-        /* НОВЫЕ ПОЗИЦИИ ДЛЯ 4-Х ФОТО */
-        .photo-4 { 
-            width: 130px; 
-            height: 160px; 
-            top: 70px; 
-            left: 2%; 
-            transform: rotate(-12deg); 
-            z-index: 1;
-        }
-        .photo-1 { 
-            width: 150px; 
-            height: 180px; 
-            top: 30px; 
-            left: 25%; 
-            transform: rotate(-5deg); 
-            z-index: 2;
-        }
-        .photo-2 { 
-            width: 150px; 
-            height: 180px; 
-            top: 30px; 
-            right: 25%; 
-            transform: rotate(5deg); 
-            z-index: 2;
-        }
-        .photo-5 { 
-            width: 130px; 
-            height: 160px; 
-            top: 70px; 
-            right: 2%; 
-            transform: rotate(12deg); 
-            z-index: 1;
-        }
+        /* ПОЗИЦИИ ДЛЯ 4-Х ФОТО */
+        .photo-4 { width: 130px; height: 160px; top: 70px; left: 2%; transform: rotate(-12deg); z-index: 1; }
+        .photo-1 { width: 150px; height: 180px; top: 30px; left: 25%; transform: rotate(-5deg); z-index: 2; }
+        .photo-2 { width: 150px; height: 180px; top: 30px; right: 25%; transform: rotate(5deg); z-index: 2; }
+        .photo-5 { width: 130px; height: 160px; top: 70px; right: 2%; transform: rotate(12deg); z-index: 1; }
 
         /* ТЕКСТ ИМЕН */
         .names-title { font-family: 'Caveat', cursive; font-size: 3.5rem; color: var(--red); margin: 10px 0; text-transform: uppercase; }
@@ -574,4 +546,57 @@
                 <div><span id="days">0</span><small>дней</small></div>
                 <div><span id="hours">0</span><small>часов</small></div>
                 <div><span id="minutes">0</span><small>минут</small></div>
-                <div><span
+                <div><span id="seconds">0</span><small>секунд</small></div>
+            </div>
+        </section>
+
+        <!-- ДОБАВЛЕНА КАРТИНКА В САМЫЙ НИЗ -->
+        <div class="bottom-image">
+            <img src="img/politura.webp" alt="С любовью">
+        </div>
+
+    </div>
+
+    <script>
+        const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
+            }
+        }, 1000);
+
+        function openInvitation() {
+            document.body.classList.remove('locked'); 
+            const content = document.getElementById('main-content');
+            if (content) {
+                setTimeout(() => {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            }
+        }
+
+        let submitted = false;
+        window.addEventListener("load", function() {
+            const form = document.getElementById('my-form');
+            form.addEventListener("submit", function() {
+                submitted = true;
+            });
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('n') || '';
+        if(nama) { document.getElementById('nama').value = nama; }
+    </script>
+</body>
+</html>
