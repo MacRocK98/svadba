@@ -152,12 +152,12 @@
         .letter:nth-child(10) { color: #27ae60; transform: rotate(5deg); }
         .letter:nth-child(11) { color: #d35400; transform: rotate(-1deg); }
 
-        /* КОЛЛАЖ ФОТО */
+        /* КОЛЛАЖ ФОТО (ОСТАВЛЕНЫ ТОЛЬКО 2 ФОТО) */
         .photo-collage {
             position: relative;
             width: 100%;
-            max-width: 700px; 
-            height: 350px; 
+            max-width: 500px; /* Уменьшил ширину, так как фото стало меньше */
+            height: 250px; 
             margin: 0 auto;
         }
 
@@ -176,11 +176,23 @@
             display: block;
         }
 
-        /* ПОЗИЦИИ ДЛЯ 4-Х ФОТО */
-        .photo-4 { width: 130px; height: 160px; top: 70px; left: 2%; transform: rotate(-12deg); z-index: 1; }
-        .photo-1 { width: 150px; height: 180px; top: 30px; left: 25%; transform: rotate(-5deg); z-index: 2; }
-        .photo-2 { width: 150px; height: 180px; top: 30px; right: 25%; transform: rotate(5deg); z-index: 2; }
-        .photo-5 { width: 130px; height: 160px; top: 70px; right: 2%; transform: rotate(12deg); z-index: 1; }
+        /* ПОЗИЦИИ ДЛЯ 2-Х ФОТО (ЦЕНТР) */
+        .photo-1 { 
+            width: 160px; 
+            height: 190px; 
+            top: 20px; 
+            left: 15%; 
+            transform: rotate(-6deg); 
+            z-index: 2;
+        }
+        .photo-2 { 
+            width: 160px; 
+            height: 190px; 
+            top: 20px; 
+            right: 15%; 
+            transform: rotate(6deg); 
+            z-index: 2;
+        }
 
         /* ТЕКСТ ИМЕН */
         .names-title { font-family: 'Caveat', cursive; font-size: 3.5rem; color: var(--red); margin: 10px 0; text-transform: uppercase; }
@@ -284,12 +296,9 @@
             .letter { width: 25px; height: 35px; font-size: 1.2rem; }
             .garland::before { height: 1px; }
             
-            .photo-collage { height: 260px; }
-            
-            .photo-4 { width: 90px; height: 110px; top: 50px; left: -5%; }
-            .photo-1 { width: 110px; height: 130px; left: 15%; top: 10px; }
-            .photo-2 { width: 110px; height: 130px; right: 15%; top: 10px; }
-            .photo-5 { width: 90px; height: 110px; top: 50px; right: -5%; }
+            .photo-collage { height: 220px; max-width: 320px; }
+            .photo-1 { width: 120px; height: 140px; left: 5%; top: 10px; }
+            .photo-2 { width: 120px; height: 140px; right: 5%; top: 10px; }
 
             .names-title { font-size: 2.5rem; }
             .hero-date { font-size: 2rem; }
@@ -317,7 +326,7 @@
 </head>
 <body class="locked">
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <section class="hero-section" id="hero">
         
@@ -338,15 +347,8 @@
             </div>
         </div>
 
-        <!-- Коллаж из 4 фото -->
+        <!-- Коллаж из 2 фото -->
         <div class="photo-collage">
-            <div class="collage-photo photo-4">
-                <img src="img/dop1.jpg" alt="Фото 4">
-            </div>
-            <div class="collage-photo photo-5">
-                <img src="img/dop2.jpg" alt="Фото 5">
-            </div>
-
             <div class="collage-photo photo-1">
                 <img src="img/julia.jpg" alt="Юлия">
             </div>
@@ -458,7 +460,7 @@
             </div>
         </section>
 
-        <!-- ОБНОВЛЕННЫЙ БЛОК ДРЕСС-КОДА -->
+        <!-- БЛОК ДРЕСС-КОДА -->
         <section>
             <h2 class="handwritten">Дресс-код</h2>
             <p class="intro-text">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.</p>
@@ -550,7 +552,7 @@
             </div>
         </section>
 
-        <!-- ДОБАВЛЕНА КАРТИНКА В САМЫЙ НИЗ -->
+        <!-- КАРТИНКА ВНИЗУ -->
         <div class="bottom-image">
             <img src="img/politura.webp" alt="С любовью">
         </div>
@@ -558,6 +560,20 @@
     </div>
 
     <script>
+        // ⚠️ ПЕРЕМЕННАЯ ВЫНЕСЕНА НАВЕРХ, ЧТОБЫ IFRAME ЕЕ ВИДЕЛ
+        let submitted = false;
+
+        function openInvitation() {
+            document.body.classList.remove('locked'); 
+            const content = document.getElementById('main-content');
+            if (content) {
+                setTimeout(() => {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            }
+        }
+
+        // Таймер
         const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
@@ -576,27 +592,32 @@
             }
         }, 1000);
 
-        function openInvitation() {
-            document.body.classList.remove('locked'); 
-            const content = document.getElementById('main-content');
-            if (content) {
-                setTimeout(() => {
-                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            }
-        }
-
-        let submitted = false;
+        // Обработка отправки формы
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
-            form.addEventListener("submit", function() {
-                submitted = true;
-            });
-        });
+            const iframe = document.getElementById('hidden_iframe');
+            
+            if (form && iframe) {
+                form.addEventListener("submit", function() {
+                    submitted = true;
+                });
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('n') || '';
-        if(nama) { document.getElementById('nama').value = nama; }
+                iframe.addEventListener('load', function() {
+                    if (submitted) {
+                        alert('Спасибо! Ваш ответ отправлен.');
+                        form.reset();
+                        submitted = false;
+                    }
+                });
+            }
+
+            // Подстановка имени гостя из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('n') || '';
+            if(nama) { 
+                document.getElementById('nama').value = nama; 
+            }
+        });
     </script>
 </body>
 </html>
