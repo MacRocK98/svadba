@@ -452,9 +452,9 @@
                 <div class="color-circle" style="background-color: #4f5c3c;"></div>
             </div>
 
-            <!-- ФОТО ЛЮДЕЙ ПОД КРУЖКАМИ (.WEBP) -->
+            <!-- ФОТО ЛЮДЕЙ ПОД КРУЖКАМИ (БЕЗ ОБВОДКИ) -->
             <div style="margin-top: 30px;">
-                <img src="img/politra.webp" alt="Дресс-код" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="img/politra.webp" alt="Дресс-код" style="max-width: 100%; border-radius: 0;">
             </div>
         </section>
 
@@ -472,7 +472,7 @@
             </div>
         </section>
 
-        <!-- БЛОК АНКЕТЫ С ИЗМЕНЕННЫМ ВОПРОСОМ -->
+        <!-- БЛОК АНКЕТЫ -->
         <section>
             <div class="rsvp-box">
                 <h2 class="handwritten" style="font-size: 3rem;">Анкета</h2>
@@ -491,7 +491,7 @@
                     </div>
                     <div class="form-group"><label for="jumlah">Количество гостей (включая вас)</label><input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required></div>
                     
-                    <!-- ИЗМЕНЕННЫЙ ВОПРОС ПРО НОЧЛЕГ -->
+                    <!-- ВОПРОС ПРО НОЧЛЕГ -->
                     <div class="form-group">
                         <label for="nochleg">Планируете ли Вы остаться на ночлег?</label>
                         <select class="form-control" name="nochleg" id="nochleg" required>
@@ -553,7 +553,6 @@
     </div>
 
     <script>
-        // ⚠️ ПЕРЕМЕННАЯ ВЫНЕСЕНА НАВЕРХ
         let submitted = false;
 
         function openInvitation() {
@@ -566,7 +565,6 @@
             }
         }
 
-        // Таймер
         const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
@@ -585,7 +583,6 @@
             }
         }, 1000);
 
-        // Обработка отправки формы
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
             const iframe = document.getElementById('hidden_iframe');
@@ -604,7 +601,6 @@
                 });
             }
 
-            // Подстановка имени гостя из URL
             const urlParams = new URLSearchParams(window.location.search);
             const nama = urlParams.get('n') || '';
             if(nama) { 
