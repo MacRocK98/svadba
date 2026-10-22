@@ -435,7 +435,7 @@
             </div>
         </section>
 
-        <!-- БЛОК ДРЕСС-КОДА (С НОВЫМ ТЕКСТОМ) -->
+        <!-- БЛОК ДРЕСС-КОДА -->
         <section>
             <h2 class="handwritten">Дресс-код</h2>
             <p class="intro-text" style="text-align: center; margin-bottom: 20px;">
@@ -472,6 +472,7 @@
             </div>
         </section>
 
+        <!-- БЛОК АНКЕТЫ С ДОБАВЛЕННЫМ ВОПРОСОМ -->
         <section>
             <div class="rsvp-box">
                 <h2 class="handwritten" style="font-size: 3rem;">Анкета</h2>
@@ -489,6 +490,18 @@
                         </select>
                     </div>
                     <div class="form-group"><label for="jumlah">Количество гостей (включая вас)</label><input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required></div>
+                    
+                    <!-- НОВЫЙ ВОПРОС ПРО НОЧЛЕГ -->
+                    <div class="form-group">
+                        <label for="nochleg">Какие у Вас планы на ночь?</label>
+                        <select class="form-control" name="nochleg" id="nochleg" required>
+                            <option value="" disabled selected>Выберите вариант</option>
+                            <option value="Да, планирую остаться">Да, планирую остаться</option>
+                            <option value="Нет, поеду домой">Нет, поеду домой</option>
+                            <option value="Еще не определился(ась)">Еще не определился(ась)</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn-submit">Подтвердить</button>
                 </form>
             </div>
@@ -555,49 +568,4 @@
 
         // Таймер
         const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
-            }
-        }, 1000);
-
-        // Обработка отправки формы
-        window.addEventListener("load", function() {
-            const form = document.getElementById('my-form');
-            const iframe = document.getElementById('hidden_iframe');
-            
-            if (form && iframe) {
-                form.addEventListener("submit", function() {
-                    submitted = true;
-                });
-
-                iframe.addEventListener('load', function() {
-                    if (submitted) {
-                        alert('Спасибо! Ваш ответ отправлен.');
-                        form.reset();
-                        submitted = false;
-                    }
-                });
-            }
-
-            // Подстановка имени гостя из URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const nama = urlParams.get('n') || '';
-            if(nama) { 
-                document.getElementById('nama').value = nama; 
-            }
-        });
-    </script>
-</body>
-</html>
+        const timer =
