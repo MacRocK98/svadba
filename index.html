@@ -156,7 +156,7 @@
         .photo-collage {
             position: relative;
             width: 100%;
-            max-width: 700px; /* Немного расширил, чтобы влезли новые фото */
+            max-width: 700px; 
             height: 400px; 
             margin: 0 auto;
         }
@@ -176,69 +176,49 @@
             display: block;
         }
 
-        /* ПОЗИЦИИ ФОТО */
-        /* Крайнее левое */
+        /* НОВЫЕ ПОЗИЦИИ ДЛЯ 4-Х ФОТО (без центрального) */
         .photo-4 { 
-            width: 120px; 
-            height: 140px; 
-            top: 120px; 
-            left: -2%; 
-            transform: rotate(-15deg); 
+            width: 130px; 
+            height: 160px; 
+            top: 70px; 
+            left: 2%; 
+            transform: rotate(-12deg); 
             z-index: 1;
         }
-        /* Левое (Юля) */
         .photo-1 { 
-            width: 140px; 
-            height: 160px; 
-            top: 50px; 
-            left: 18%; 
-            transform: rotate(-8deg); 
+            width: 150px; 
+            height: 180px; 
+            top: 30px; 
+            left: 25%; 
+            transform: rotate(-5deg); 
             z-index: 2;
         }
-        /* Центр (Вместе) */
-        .photo-3 { 
-            width: 180px; 
-            height: 200px; 
-            top: 20px; 
-            left: 50%; 
-            transform: translateX(-50%) rotate(2deg); 
-            z-index: 3;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        /* Правое (Саша) */
         .photo-2 { 
-            width: 140px; 
-            height: 160px; 
-            top: 50px; 
-            right: 18%; 
-            transform: rotate(8deg); 
+            width: 150px; 
+            height: 180px; 
+            top: 30px; 
+            right: 25%; 
+            transform: rotate(5deg); 
             z-index: 2;
         }
-        /* Крайнее правое */
         .photo-5 { 
-            width: 120px; 
-            height: 140px; 
-            top: 120px; 
-            right: -2%; 
-            transform: rotate(15deg); 
+            width: 130px; 
+            height: 160px; 
+            top: 70px; 
+            right: 2%; 
+            transform: rotate(12deg); 
             z-index: 1;
         }
 
-        /* Подписи и декор */
+        /* Подписи */
         .photo-label { position: absolute; font-family: 'Caveat', cursive; font-size: 1.8rem; z-index: 10; text-shadow: 1px 1px 2px #fff; }
-        .label-alex { top: 40px; left: 50%; transform: translateX(-130%); color: #5da9e9; }
-        .label-julia { bottom: 40px; left: 50%; transform: translateX(20%); color: #e76f51; }
+        .label-alex { top: 20px; left: 50%; transform: translateX(-120%); color: #5da9e9; }
+        .label-julia { bottom: 20px; left: 50%; transform: translateX(20%); color: #e76f51; }
 
         .decor-heart { position: absolute; color: var(--red); font-size: 1.2rem; z-index: 10; }
-        .h1 { top: 30px; left: 30%; }
-        .h2 { top: 30px; right: 30%; }
-        .h3 { bottom: 60px; left: 25%; }
-        .h4 { bottom: 60px; right: 25%; }
+        .h1 { top: 20px; left: 35%; }
+        .h2 { top: 20px; right: 35%; }
         
-        .decor-arrow { position: absolute; font-family: 'Caveat', cursive; font-size: 1.5rem; color: #555; z-index: 10; }
-        .arr-alex { top: 20px; left: 45%; transform: rotate(20deg); }
-        .arr-julia { bottom: 80px; right: 40%; transform: rotate(-30deg); }
-
         /* ТЕКСТ ИМЕН */
         .names-title { font-family: 'Caveat', cursive; font-size: 3.5rem; color: var(--red); margin: 10px 0; text-transform: uppercase; }
         .hero-date { font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--green); margin-bottom: 20px; }
@@ -324,23 +304,20 @@
             .hero-section { padding: 20px 10px 10px 10px; } 
             .banner-text { font-size: 1.5rem; margin-bottom: 10px; }
             
-            /* Уменьшаем гирлянду и коллаж на телефонах */
             .letter { width: 25px; height: 35px; font-size: 1.2rem; }
             .garland::before { height: 1px; }
             
             .photo-collage { height: 300px; }
             
-            /* Новые фото на телефонах */
-            .photo-4 { width: 80px; height: 100px; top: 130px; left: -5%; }
-            .photo-5 { width: 80px; height: 100px; top: 130px; right: -5%; }
-
-            .photo-1 { width: 100px; height: 120px; left: 10%; top: 40px; }
-            .photo-2 { width: 100px; height: 120px; right: 10%; top: 40px; }
-            .photo-3 { width: 130px; height: 150px; top: 10px; }
+            /* Уменьшаем 4 фото на телефонах */
+            .photo-4 { width: 90px; height: 110px; top: 60px; left: -2%; }
+            .photo-1 { width: 110px; height: 130px; left: 20%; top: 20px; }
+            .photo-2 { width: 110px; height: 130px; right: 20%; top: 20px; }
+            .photo-5 { width: 90px; height: 110px; top: 60px; right: -2%; }
             
             .photo-label { font-size: 1.4rem; }
-            .label-alex { top: 20px; left: 45%; transform: translateX(-100%); }
-            .label-julia { bottom: 20px; left: 55%; transform: translateX(0); }
+            .label-alex { top: 10px; left: 45%; transform: translateX(-100%); }
+            .label-julia { bottom: 10px; left: 55%; transform: translateX(0); }
 
             .names-title { font-size: 2.5rem; }
             .hero-date { font-size: 2rem; }
@@ -376,7 +353,8 @@
         <div class="garland">
             <div class="banner-letters">
                 <span class="letter">У</span>
-                <span class="letter">Н</span>
+                <!-- Пробел добавлен за счет margin-left у следующей буквы -->
+                <span class="letter" style="margin-left: 25px;">Н</span>
                 <span class="letter">А</span>
                 <span class="letter">С</span>
                 <span class="letter" style="margin-left: 15px;">С</span>
@@ -389,20 +367,15 @@
             </div>
         </div>
 
-        <!-- Коллаж из 5 фото -->
+        <!-- Коллаж из 4 фото -->
         <div class="photo-collage">
             
             <div class="decor-heart h1">❤️</div>
             <div class="decor-heart h2">❤️</div>
-            <div class="decor-heart h3">❤️</div>
-            <div class="decor-heart h4">❤️</div>
-            <div class="decor-arrow arr-alex">↘</div>
-            <div class="decor-arrow arr-julia">↖</div>
 
             <div class="photo-label label-alex">Александр</div>
             <div class="photo-label label-julia">Юлия</div>
 
-            <!-- НОВЫЕ ФОТО: Крайнее левое и Крайнее правое -->
             <!-- ⚠️ ЗАМЕНИТЕ img/dop1.jpg и img/dop2.jpg на названия ваших новых фото -->
             <div class="collage-photo photo-4">
                 <img src="img/dop1.jpg" alt="Фото 4">
@@ -411,12 +384,8 @@
                 <img src="img/dop2.jpg" alt="Фото 5">
             </div>
 
-            <!-- Старые фото -->
             <div class="collage-photo photo-1">
                 <img src="img/julia.jpg" alt="Юлия">
-            </div>
-            <div class="collage-photo photo-3">
-                <img src="img/fon.jpg" alt="Вместе">
             </div>
             <div class="collage-photo photo-2">
                 <img src="img/alex.jpg" alt="Александр">
@@ -589,74 +558,4 @@
                 <a href="https://max.ru/join/vfZ-DhLhPPh5XFpMMZ7lOC8dTs2qhe_QoFZ_QWH7Fo4" target="_blank" style="display: block;">
                     <img src="img/max.jpg" alt="Чат в MAX" style="width: 140px; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <p style="font-size: 0.8rem; color: #888; font-style: italic; margin-top: 8px;">
-                    👆 Нажмите на картинку, чтобы вступить в чат
-                </p>
-            </div>
-        </section>
-
-        <section style="margin-bottom: 20px;">
-            <div style="font-size: 3rem; color: var(--red); margin-bottom: 20px;">❤</div>
-            <h2 class="handwritten" style="font-size: 2.5rem;">До скорой встречи!</h2>
-            <p style="font-family: 'Caveat'; font-size: 1.8rem; font-weight: 600;">С любовью,<br>Юлия и Александр</p>
-            
-            <div class="polaroid final-polaroid tilt-right">
-                <img src="img/fon.jpg" alt="Разделите с нами этот момент">
-                <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px; word-wrap: break-word; padding: 0 5px;">Раздели с нами этот момент</p>
-            </div>
-        </section>
-
-        <section>
-            <h3 class="handwritten" style="font-size: 2rem;">До нашей свадьбы осталось:</h3>
-            <div id="countdown" class="countdown">
-                <div><span id="days">0</span><small>дней</small></div>
-                <div><span id="hours">0</span><small>часов</small></div>
-                <div><span id="minutes">0</span><small>минут</small></div>
-                <div><span id="seconds">0</span><small>секунд</small></div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
-            }
-        }, 1000);
-
-        function openInvitation() {
-            document.body.classList.remove('locked'); 
-            const content = document.getElementById('main-content');
-            if (content) {
-                setTimeout(() => {
-                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            }
-        }
-
-        let submitted = false;
-        window.addEventListener("load", function() {
-            const form = document.getElementById('my-form');
-            form.addEventListener("submit", function() {
-                submitted = true;
-            });
-        });
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('n') || '';
-        if(nama) { document.getElementById('nama').value = nama; }
-    </script>
-</body>
-</html>
+                <p style="font-size: 0.8rem;
