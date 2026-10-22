@@ -568,4 +568,49 @@
 
         // Таймер
         const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
-        const timer =
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
+            }
+        }, 1000);
+
+        // Обработка отправки формы
+        window.addEventListener("load", function() {
+            const form = document.getElementById('my-form');
+            const iframe = document.getElementById('hidden_iframe');
+            
+            if (form && iframe) {
+                form.addEventListener("submit", function() {
+                    submitted = true;
+                });
+
+                iframe.addEventListener('load', function() {
+                    if (submitted) {
+                        alert('Спасибо! Ваш ответ отправлен.');
+                        form.reset();
+                        submitted = false;
+                    }
+                });
+            }
+
+            // Подстановка имени гостя из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('n') || '';
+            if(nama) { 
+                document.getElementById('nama').value = nama; 
+            }
+        });
+    </script>
+</body>
+</html>
