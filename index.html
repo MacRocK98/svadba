@@ -231,13 +231,13 @@
         .timeline-time { font-family: 'Caveat', cursive; font-size: 3rem; color: var(--red); line-height: 1; margin-bottom: 5px; }
         .timeline-desc { padding: 0 15px; }
         
-        /* СДЕЛАЛИ СМАЙЛИКИ ЧЕРНО-БЕЛЫМИ */
+        /* СМАЙЛИКИ ЧЕРНО-БЕЛЫЕ */
         .timeline-icon { 
             font-size: 1.5rem; 
             color: #777; 
             margin: -15px 0; 
             text-align: center;
-            filter: grayscale(100%); /* Убирает цвет, делает серым */
+            filter: grayscale(100%); 
         }
 
         /* --- ПАЛИТРА ЦВЕТОВ --- */
@@ -298,7 +298,7 @@
             .contact-phone { font-size: 1.2rem; }
             .place-address { font-size: 1rem; line-height: 1.4; }
             .timeline-time { font-size: 2.8rem; }
-            .timeline-icon { font-size: 1.2rem; } /* Цвет сохраняется (черно-белый) на телефонах */
+            .timeline-icon { font-size: 1.2rem; }
             .place-polaroid, .final-polaroid { max-width: 90%; }
             .rsvp-box { padding: 20px 15px; }
         }
@@ -452,12 +452,18 @@
                 Пожалуйста, воздержитесь от белых, черных и красных оттенков, а также от каких-либо принтов (цветочки, горошек, рисунки и т.п).
             </p>
             <div class="color-palette">
-                <div class="color-circle" style="background-color: #4a3728;"></div>
+                <!-- 1. Горький шоколад -->
+                <div class="color-circle" style="background-color: #3b1f1d;"></div>
+                <!-- 2. Светло-коричневый / Бежевый -->
                 <div class="color-circle" style="background-color: #b09b82;"></div>
+                <!-- 3. Пыльно-розовый -->
                 <div class="color-circle" style="background-color: #d8c3bb;"></div>
+                <!-- 4. Светло-песочный -->
                 <div class="color-circle" style="background-color: #dbcfb8;"></div>
-                <div class="color-circle" style="background-color: #b2c29b;"></div>
-                <div class="color-circle" style="background-color: #4f5c3c;"></div>
+                <!-- 5. Оливковый (второй оттенок со второй картинки) -->
+                <div class="color-circle" style="background-color: #8b8c40;"></div>
+                <!-- 6. Темно-зеленый (третий оттенок со второй картинки) -->
+                <div class="color-circle" style="background-color: #4a5a2b;"></div>
             </div>
 
             <!-- ФОТО ЛЮДЕЙ ПОД КРУЖКАМИ (БЕЗ ОБВОДКИ) -->
