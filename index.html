@@ -230,7 +230,15 @@
         .timeline-item { margin: 30px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
         .timeline-time { font-family: 'Caveat', cursive; font-size: 3rem; color: var(--red); line-height: 1; margin-bottom: 5px; }
         .timeline-desc { padding: 0 15px; }
-        .timeline-icon { font-size: 1.5rem; color: #777; margin: -15px 0; text-align: center; }
+        
+        /* СДЕЛАЛИ СМАЙЛИКИ ЧЕРНО-БЕЛЫМИ */
+        .timeline-icon { 
+            font-size: 1.5rem; 
+            color: #777; 
+            margin: -15px 0; 
+            text-align: center;
+            filter: grayscale(100%); /* Убирает цвет, делает серым */
+        }
 
         /* --- ПАЛИТРА ЦВЕТОВ --- */
         .color-palette { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
@@ -290,7 +298,7 @@
             .contact-phone { font-size: 1.2rem; }
             .place-address { font-size: 1rem; line-height: 1.4; }
             .timeline-time { font-size: 2.8rem; }
-            .timeline-icon { font-size: 1.2rem; }
+            .timeline-icon { font-size: 1.2rem; } /* Цвет сохраняется (черно-белый) на телефонах */
             .place-polaroid, .final-polaroid { max-width: 90%; }
             .rsvp-box { padding: 20px 15px; }
         }
