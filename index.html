@@ -152,7 +152,7 @@
         .letter:nth-child(10) { color: #27ae60; transform: rotate(5deg); }
         .letter:nth-child(11) { color: #d35400; transform: rotate(-1deg); }
 
-        /* КОЛЛАЖ ФОТО (ОСТАВЛЕНЫ ТОЛЬКО 2 ФОТО) */
+        /* КОЛЛАЖ ФОТО (2 ФОТО) */
         .photo-collage {
             position: relative;
             width: 100%;
@@ -176,23 +176,8 @@
             display: block;
         }
 
-        /* ПОЗИЦИИ ДЛЯ 2-Х ФОТО (ЦЕНТР) */
-        .photo-1 { 
-            width: 160px; 
-            height: 190px; 
-            top: 20px; 
-            left: 15%; 
-            transform: rotate(-6deg); 
-            z-index: 2;
-        }
-        .photo-2 { 
-            width: 160px; 
-            height: 190px; 
-            top: 20px; 
-            right: 15%; 
-            transform: rotate(6deg); 
-            z-index: 2;
-        }
+        .photo-1 { width: 160px; height: 190px; top: 20px; left: 15%; transform: rotate(-6deg); z-index: 2; }
+        .photo-2 { width: 160px; height: 190px; top: 20px; right: 15%; transform: rotate(6deg); z-index: 2; }
 
         /* ТЕКСТ ИМЕН */
         .names-title { font-family: 'Caveat', cursive; font-size: 3.5rem; color: var(--red); margin: 10px 0; text-transform: uppercase; }
@@ -274,7 +259,7 @@
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
         .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; }
 
-        /* БЛОК С КАРТИНКОЙ ВНИЗУ */
+        /* БЛОК С КАРТИНКАМИ ВНИЗУ */
         .bottom-image {
             text-align: center;
             margin-top: 40px;
@@ -396,7 +381,6 @@
         </section>
 
         <section>
-            <!-- ИЗМЕНЕНО: Текст с новой строки -->
             <p class="intro-text" style="text-align: center;">
                 Это официальное приглашение на нашу свадьбу!<br>
                 А получил ты его потому, что мы очень хотим видеть тебя в этот день рядом с нами!
@@ -467,7 +451,10 @@
         <!-- БЛОК ДРЕСС-КОДА -->
         <section>
             <h2 class="handwritten">Дресс-код</h2>
-            <p class="intro-text">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.</p>
+            <p class="intro-text" style="text-align: center; margin-bottom: 20px;">
+                Мы очень ждем и готовимся к нашему незабываемому дню!<br>
+                Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.
+            </p>
             <div class="color-palette">
                 <div class="color-circle" style="background-color: #4a3728;"></div>
                 <div class="color-circle" style="background-color: #b09b82;"></div>
@@ -556,9 +543,15 @@
             </div>
         </section>
 
-        <!-- КАРТИНКА ВНИЗУ -->
+        <!-- КАРТИНКА ВНИЗУ (ВОЗВРАЩЕНО .WEBP) -->
         <div class="bottom-image">
             <img src="img/politra.webp" alt="С любовью">
+        </div>
+
+        <!-- НОВОЕ ФОТО ПРЯМО ПОД ПОЛИТРОЙ -->
+        <div class="polaroid final-polaroid tilt-left" style="margin-top: 20px;">
+            <img src="img/fon.jpg" alt="Под политрой">
+            <p class="handwritten" style="font-size: 1.5rem; margin-top: 10px; word-wrap: break-word; padding: 0 5px;">С любовью</p>
         </div>
 
     </div>
