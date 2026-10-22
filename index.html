@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&family=Neucha&display=swap" rel="stylesheet">
     
     <style>
         /* --- БАЗОВЫЕ СТИЛИ --- */
@@ -52,18 +52,16 @@
             background-color: #f7f4ec; 
         }
 
-        /* --- АДАПТИВНЫЙ КОНТЕЙНЕР --- */
         .container {
-            /* ⚠️ ИЗМЕНЕНО: вместо фиксированных 800px теперь 90% ширины экрана */
             width: 90%; 
-            max-width: 1200px; /* Ограничение, чтобы на очень широких экранах не растягивалось слишком сильно */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
             background: transparent; 
             border-radius: 0;
             box-shadow: none;
-            box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+            box-sizing: border-box;
         }
 
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
@@ -84,29 +82,166 @@
             flex-direction: column;
             justify-content: flex-start; 
             align-items: center;
-            padding: 40px 20px 20px 20px; 
+            padding: 20px 20px 20px 20px; 
             text-align: center;
             position: relative;
         }
 
-        .banner-text {
-            font-size: 2.5rem;
-            letter-spacing: 5px;
-            color: #444;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-            line-height: 1.1; 
+        /* ГИРЛЯНДА */
+        .garland {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+        }
+        .garland::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #888;
+            z-index: 0;
+            transform: rotate(-2deg);
         }
         
-        .names-title { font-size: 4.5rem; margin: 15px 0; }
-        .hero-date {
-            font-family: 'Caveat', cursive;
-            font-size: 2.5rem;
-            color: var(--green);
-            margin-bottom: 20px; 
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        .banner-letters {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            position: relative;
+            z-index: 1;
         }
+
+        .letter {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #ccc;
+            font-family: 'Neucha', cursive;
+            font-size: 1.8rem;
+            color: #333;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+            margin-top: 15px;
+        }
+
+        .letter::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            width: 1px;
+            height: 15px;
+            background: #888;
+        }
+
+        .letter:nth-child(1) { color: #5da9e9; transform: rotate(-5deg); }
+        .letter:nth-child(2) { color: #f4a261; transform: rotate(2deg); margin-top: 10px;}
+        .letter:nth-child(3) { color: #e9c46a; transform: rotate(-3deg); }
+        .letter:nth-child(4) { color: #2a9d8f; transform: rotate(4deg); }
+        .letter:nth-child(5) { color: #e63946; transform: rotate(-2deg); }
+        .letter:nth-child(6) { color: #8e44ad; transform: rotate(3deg); }
+        .letter:nth-child(7) { color: #e67e22; transform: rotate(-4deg); }
+        .letter:nth-child(8) { color: #2980b9; transform: rotate(1deg); }
+        .letter:nth-child(9) { color: #c0392b; transform: rotate(-3deg); }
+        .letter:nth-child(10) { color: #27ae60; transform: rotate(5deg); }
+        .letter:nth-child(11) { color: #d35400; transform: rotate(-1deg); }
+
+        /* КОЛЛАЖ ФОТО */
+        .photo-collage {
+            position: relative;
+            width: 100%;
+            max-width: 700px; /* Немного расширил, чтобы влезли новые фото */
+            height: 400px; 
+            margin: 0 auto;
+        }
+
+        .collage-photo {
+            position: absolute;
+            background: #fff;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+        
+        .collage-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ПОЗИЦИИ ФОТО */
+        /* Крайнее левое */
+        .photo-4 { 
+            width: 120px; 
+            height: 140px; 
+            top: 120px; 
+            left: -2%; 
+            transform: rotate(-15deg); 
+            z-index: 1;
+        }
+        /* Левое (Юля) */
+        .photo-1 { 
+            width: 140px; 
+            height: 160px; 
+            top: 50px; 
+            left: 18%; 
+            transform: rotate(-8deg); 
+            z-index: 2;
+        }
+        /* Центр (Вместе) */
+        .photo-3 { 
+            width: 180px; 
+            height: 200px; 
+            top: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) rotate(2deg); 
+            z-index: 3;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        /* Правое (Саша) */
+        .photo-2 { 
+            width: 140px; 
+            height: 160px; 
+            top: 50px; 
+            right: 18%; 
+            transform: rotate(8deg); 
+            z-index: 2;
+        }
+        /* Крайнее правое */
+        .photo-5 { 
+            width: 120px; 
+            height: 140px; 
+            top: 120px; 
+            right: -2%; 
+            transform: rotate(15deg); 
+            z-index: 1;
+        }
+
+        /* Подписи и декор */
+        .photo-label { position: absolute; font-family: 'Caveat', cursive; font-size: 1.8rem; z-index: 10; text-shadow: 1px 1px 2px #fff; }
+        .label-alex { top: 40px; left: 50%; transform: translateX(-130%); color: #5da9e9; }
+        .label-julia { bottom: 40px; left: 50%; transform: translateX(20%); color: #e76f51; }
+
+        .decor-heart { position: absolute; color: var(--red); font-size: 1.2rem; z-index: 10; }
+        .h1 { top: 30px; left: 30%; }
+        .h2 { top: 30px; right: 30%; }
+        .h3 { bottom: 60px; left: 25%; }
+        .h4 { bottom: 60px; right: 25%; }
+        
+        .decor-arrow { position: absolute; font-family: 'Caveat', cursive; font-size: 1.5rem; color: #555; z-index: 10; }
+        .arr-alex { top: 20px; left: 45%; transform: rotate(20deg); }
+        .arr-julia { bottom: 80px; right: 40%; transform: rotate(-30deg); }
+
+        /* ТЕКСТ ИМЕН */
+        .names-title { font-family: 'Caveat', cursive; font-size: 3.5rem; color: var(--red); margin: 10px 0; text-transform: uppercase; }
+        .hero-date { font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--green); margin-bottom: 20px; }
 
         .btn-open {
             display: inline-block;
@@ -123,163 +258,93 @@
             margin-top: 10px;
             text-decoration: none; 
         }
-        .btn-open:hover {
-            background-color: var(--red);
-            color: white;
-            transform: scale(1.05);
-        }
+        .btn-open:hover { background-color: var(--red); color: white; transform: scale(1.05); }
 
-        /* --- ФОТОКАРТОЧКИ --- */
-        .polaroid {
-            background: #fff;
-            padding: 15px 15px 45px 15px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            display: inline-block;
-            transition: transform 0.3s ease;
-            margin: 15px;
-            max-width: 100%; 
-            box-sizing: border-box;
-        }
+        /* --- ОСТАЛЬНЫЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) --- */
+        .polaroid { background: #fff; padding: 15px 15px 45px 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); display: inline-block; transition: transform 0.3s ease; margin: 15px; max-width: 100%; box-sizing: border-box; }
         .polaroid img { display: block; object-fit: cover; width: 100%; }
         
-        .hero-polaroid { width: 200px; }
-        .hero-polaroid img { 
-            aspect-ratio: 1 / 1; 
-            height: auto; 
-            object-fit: cover; 
-        }
-
         .place-polaroid { width: 100%; max-width: 500px; margin: 0 auto; }
-        .place-polaroid img { 
-            width: 100%;
-            height: auto; 
-            aspect-ratio: 16 / 9; 
-            border-radius: 5px;
-        }
+        .place-polaroid img { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 5px; }
 
-        .final-polaroid { 
-            width: 100%; 
-            max-width: 400px; 
-            margin: 30px auto 0; 
-        }
-        .final-polaroid img { 
-            width: 100%;
-            height: auto; 
-            aspect-ratio: 4 / 3; 
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
+        .final-polaroid { width: 100%; max-width: 400px; margin: 30px auto 0; }
+        .final-polaroid img { width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 5px; margin-bottom: 10px; }
 
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(5deg); }
         .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; position: relative; }
+        .ampersand { font-size: 3rem; color: var(--red); margin: 0 5px; }
 
-        .ampersand { font-size: 3rem; color: var(--red); margin: 0 5px; text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
-
-        /* --- СЕКЦИИ --- */
         section { margin-bottom: 60px; }
         h2 { font-size: 2.8rem; margin-bottom: 20px; }
         h3 { font-size: 2rem; margin-bottom: 15px; }
         
         .intro-text { font-size: 1.1rem; max-width: 800px; margin: 0 auto 30px auto; text-align: justify; text-align-last: center; font-weight: 600; }
-        
-        .place-address { 
-            font-size: 1.2rem; 
-            margin-bottom: 20px; 
-            font-weight: 600; 
-            word-wrap: break-word;
-            padding: 0 10px;
-        }
+        .place-address { font-size: 1.2rem; margin-bottom: 20px; font-weight: 600; word-wrap: break-word; padding: 0 10px; }
 
-        /* --- КАЛЕНДАРЬ --- */
-        .calendar {
-            display: inline-grid;
-            grid-template-columns: repeat(7, 40px);
-            gap: 10px;
-            margin-top: 20px;
-            font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.85); 
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+        .calendar { display: inline-grid; grid-template-columns: repeat(7, 40px); gap: 10px; margin-top: 20px; font-size: 1.1rem; background: rgba(255, 255, 255, 0.85); padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .calendar .day { display: flex; justify-content: center; align-items: center; height: 40px; width: 40px; }
         .calendar .day-name { font-weight: 600; color: #777; }
         .calendar .wedding-day { border: 2px solid var(--red); border-radius: 50%; color: var(--red); font-weight: bold; }
 
-        /* --- ТАЙМИНГ --- */
-        .timeline-item { 
-            margin: 30px 0; 
-            font-size: 1.2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            font-weight: 600; 
-        }
-        
-        .timeline-time { 
-            font-family: 'Caveat', cursive; 
-            font-size: 3rem; 
-            color: var(--red); 
-            line-height: 1; 
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; 
-            margin-bottom: 5px; 
-        }
-        
-        .timeline-desc {
-            padding: 0 15px; 
-        }
+        .timeline-item { margin: 30px 0; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
+        .timeline-time { font-family: 'Caveat', cursive; font-size: 3rem; color: var(--red); line-height: 1; margin-bottom: 5px; }
+        .timeline-desc { padding: 0 15px; }
+        .timeline-icon { font-size: 1.5rem; color: #777; margin: -15px 0; text-align: center; }
 
-        .timeline-icon {
-            font-size: 1.5rem; 
-            color: #777; 
-            margin: -15px 0; 
-            text-align: center;
-        }
-
-        /* --- ДРЕСС-КОД --- */
         .color-palette { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .color-circle { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
 
-        /* --- ПОЖЕЛАНИЯ / ДЕТАЛИ --- */
         .wishes-text { background: rgba(255,255,255,0.85); padding: 30px; border-radius: 15px; border: 1px dashed #aaa; margin: 20px 0; font-size: 1.1rem; font-weight: 500; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: justify; text-align-last: center; }
 
-        /* --- АНКЕТА / RSVP --- */
         .rsvp-box { background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 600px; margin: 30px auto; text-align: center; }
-        .rsvp-box p { margin-bottom: 20px; color: #555; text-shadow: none; }
-        .rsvp-box .date-highlight { font-size: 2.5rem; font-family: 'Caveat', cursive; color: var(--red); margin: 10px 0; text-shadow: none; }
+        .rsvp-box p { margin-bottom: 20px; color: #555; }
+        .rsvp-box .date-highlight { font-size: 2.5rem; font-family: 'Caveat', cursive; color: var(--red); margin: 10px 0; }
         
         .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; font-weight: 600; text-shadow: none; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; font-weight: 600; }
         .form-control { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Montserrat', sans-serif; box-sizing: border-box; }
-        .btn-submit { background-color: transparent; color: var(--red); border: 2px solid var(--red); padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; font-weight: 600; width: 100%; margin-top: 10px; text-shadow: none; }
+        .btn-submit { background-color: transparent; color: var(--red); border: 2px solid var(--red); padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; font-weight: 600; width: 100%; margin-top: 10px; }
         .btn-submit:hover { background-color: var(--red); color: white; }
 
-        /* --- КОНТАКТЫ --- */
         .contact-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; margin: 0 auto; }
         .contact-card img.avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
-        .contact-phone { font-size: 1.5rem; font-weight: 600; margin: 15px 0; text-shadow: none; }
-        .btn-outline { display: inline-block; padding: 10px 40px; border: 1px solid var(--text-dark); color: var(--text-dark); text-decoration: none; transition: 0.3s; font-weight: 600; text-shadow: none; }
+        .contact-phone { font-size: 1.5rem; font-weight: 600; margin: 15px 0; }
+        .btn-outline { display: inline-block; padding: 10px 40px; border: 1px solid var(--text-dark); color: var(--text-dark); text-decoration: none; transition: 0.3s; font-weight: 600; }
         .btn-outline:hover { background: var(--text-dark); color: white; }
 
-        /* --- ТАЙМЕР --- */
         .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
         .countdown div { background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 70px; text-align: center; }
         .countdown span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--red); }
-        .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; text-shadow: none; }
+        .countdown small { font-size: 0.8rem; color: #555; font-weight: 600; }
 
-        /* --- АДАПТИВ ДЛЯ ВСЕХ ЭКРАНОВ --- */
+        /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
-            .container { width: 100%; padding: 20px 15px; } /* На телефонах занимает всю ширину */
-            
+            .container { width: 100%; padding: 20px 15px; }
             .hero-section { padding: 20px 10px 10px 10px; } 
-            .banner-text { font-size: 1.5rem; margin-bottom: 10px; line-height: 1.2; }
-            .names-title { font-size: 2.8rem; margin: 10px 0; }
-            .hero-date { font-size: 2rem; margin-bottom: 10px; }
-            .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
+            .banner-text { font-size: 1.5rem; margin-bottom: 10px; }
             
-            .hero-polaroid { width: 38%; margin: 5px; padding: 8px 8px 25px 8px; }
-            .ampersand { font-size: 2rem; margin: 0 2px; }
+            /* Уменьшаем гирлянду и коллаж на телефонах */
+            .letter { width: 25px; height: 35px; font-size: 1.2rem; }
+            .garland::before { height: 1px; }
+            
+            .photo-collage { height: 300px; }
+            
+            /* Новые фото на телефонах */
+            .photo-4 { width: 80px; height: 100px; top: 130px; left: -5%; }
+            .photo-5 { width: 80px; height: 100px; top: 130px; right: -5%; }
+
+            .photo-1 { width: 100px; height: 120px; left: 10%; top: 40px; }
+            .photo-2 { width: 100px; height: 120px; right: 10%; top: 40px; }
+            .photo-3 { width: 130px; height: 150px; top: 10px; }
+            
+            .photo-label { font-size: 1.4rem; }
+            .label-alex { top: 20px; left: 45%; transform: translateX(-100%); }
+            .label-julia { bottom: 20px; left: 55%; transform: translateX(0); }
+
+            .names-title { font-size: 2.5rem; }
+            .hero-date { font-size: 2rem; }
+            .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
             
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
@@ -293,37 +358,11 @@
             .contact-card { padding: 20px; }
             .contact-card img.avatar { width: 80px; height: 80px; }
             .contact-phone { font-size: 1.2rem; }
-
-            .place-address {
-                font-size: 1rem;
-                line-height: 1.4;
-            }
-
-            .timeline-time {
-                font-size: 2.8rem;
-            }
-            
-            .timeline-icon {
-                font-size: 1.2rem;
-            }
-
-            .place-polaroid, .final-polaroid {
-                max-width: 90%; 
-            }
-            
-            .rsvp-box {
-                padding: 20px 15px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .names-title { font-size: 2.2rem; }
-            .banner-text { font-size: 1.2rem; }
-            .hero-polaroid { width: 42%; }
-            .countdown div { min-width: 45px; padding: 8px; }
-            .countdown span { font-size: 1.1rem; }
-            .place-address { font-size: 0.9rem; }
-            .timeline-time { font-size: 2.4rem; }
+            .place-address { font-size: 1rem; line-height: 1.4; }
+            .timeline-time { font-size: 2.8rem; }
+            .timeline-icon { font-size: 1.2rem; }
+            .place-polaroid, .final-polaroid { max-width: 90%; }
+            .rsvp-box { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -332,30 +371,65 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
 
     <section class="hero-section" id="hero">
-        <div class="banner-text">
-            <div>
-                <span style="color:#e76f51">У</span> 
-                <span style="color:#f4a261">Н</span><span style="color:#e9c46a">А</span><span style="color:#2a9d8f">С</span>
+        
+        <!-- Гирлянда -->
+        <div class="garland">
+            <div class="banner-letters">
+                <span class="letter">У</span>
+                <span class="letter">Н</span>
+                <span class="letter">А</span>
+                <span class="letter">С</span>
+                <span class="letter" style="margin-left: 15px;">С</span>
+                <span class="letter">В</span>
+                <span class="letter">А</span>
+                <span class="letter">Д</span>
+                <span class="letter">Ь</span>
+                <span class="letter">Б</span>
+                <span class="letter">А</span>
             </div>
-            <div>СВАДЬБА</div>
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 5px;">
-            <div class="polaroid hero-polaroid tilt-right">
-                <img src="img/alex.jpg" alt="Александр">
+        <!-- Коллаж из 5 фото -->
+        <div class="photo-collage">
+            
+            <div class="decor-heart h1">❤️</div>
+            <div class="decor-heart h2">❤️</div>
+            <div class="decor-heart h3">❤️</div>
+            <div class="decor-heart h4">❤️</div>
+            <div class="decor-arrow arr-alex">↘</div>
+            <div class="decor-arrow arr-julia">↖</div>
+
+            <div class="photo-label label-alex">Александр</div>
+            <div class="photo-label label-julia">Юлия</div>
+
+            <!-- НОВЫЕ ФОТО: Крайнее левое и Крайнее правое -->
+            <!-- ⚠️ ЗАМЕНИТЕ img/dop1.jpg и img/dop2.jpg на названия ваших новых фото -->
+            <div class="collage-photo photo-4">
+                <img src="img/dop1.jpg" alt="Фото 4">
             </div>
-            <div class="ampersand">&</div>
-            <div class="polaroid hero-polaroid tilt-left">
+            <div class="collage-photo photo-5">
+                <img src="img/dop2.jpg" alt="Фото 5">
+            </div>
+
+            <!-- Старые фото -->
+            <div class="collage-photo photo-1">
                 <img src="img/julia.jpg" alt="Юлия">
             </div>
+            <div class="collage-photo photo-3">
+                <img src="img/fon.jpg" alt="Вместе">
+            </div>
+            <div class="collage-photo photo-2">
+                <img src="img/alex.jpg" alt="Александр">
+            </div>
         </div>
 
-        <h1 class="handwritten names-title">Александр & Юлия</h1>
+        <h1 class="names-title">ЮЛИЯ + АЛЕКСАНДР</h1>
         <div class="hero-date">13 Июня 2027</div>
 
         <button class="btn-open" onclick="openInvitation()">Открыть приглашение</button>
     </section>
 
+    <!-- ОСТАЛЬНОЙ КОНТЕНТ -->
     <div class="container" id="main-content">
         
         <section>
