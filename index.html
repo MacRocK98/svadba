@@ -52,14 +52,18 @@
             background-color: #f7f4ec; 
         }
 
+        /* --- АДАПТИВНЫЙ КОНТЕЙНЕР --- */
         .container {
-            max-width: 800px;
+            /* ⚠️ ИЗМЕНЕНО: вместо фиксированных 800px теперь 90% ширины экрана */
+            width: 90%; 
+            max-width: 1200px; /* Ограничение, чтобы на очень широких экранах не растягивалось слишком сильно */
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
             background: transparent; 
             border-radius: 0;
             box-shadow: none;
+            box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
         }
 
         p, h1, h2, h3, .intro-text, .place-address, .timeline-desc, .wishes-text p {
@@ -177,7 +181,7 @@
         h2 { font-size: 2.8rem; margin-bottom: 20px; }
         h3 { font-size: 2rem; margin-bottom: 15px; }
         
-        .intro-text { font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto; text-align: justify; text-align-last: center; font-weight: 600; }
+        .intro-text { font-size: 1.1rem; max-width: 800px; margin: 0 auto 30px auto; text-align: justify; text-align-last: center; font-weight: 600; }
         
         .place-address { 
             font-size: 1.2rem; 
@@ -241,7 +245,7 @@
         .wishes-text { background: rgba(255,255,255,0.85); padding: 30px; border-radius: 15px; border: 1px dashed #aaa; margin: 20px 0; font-size: 1.1rem; font-weight: 500; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: justify; text-align-last: center; }
 
         /* --- АНКЕТА / RSVP --- */
-        .rsvp-box { background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; margin: 30px auto; text-align: center; }
+        .rsvp-box { background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 600px; margin: 30px auto; text-align: center; }
         .rsvp-box p { margin-bottom: 20px; color: #555; text-shadow: none; }
         .rsvp-box .date-highlight { font-size: 2.5rem; font-family: 'Caveat', cursive; color: var(--red); margin: 10px 0; text-shadow: none; }
         
@@ -252,7 +256,7 @@
         .btn-submit:hover { background-color: var(--red); color: white; }
 
         /* --- КОНТАКТЫ --- */
-        .contact-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 400px; margin: 0 auto; }
+        .contact-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; margin: 0 auto; }
         .contact-card img.avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
         .contact-phone { font-size: 1.5rem; font-weight: 600; margin: 15px 0; text-shadow: none; }
         .btn-outline { display: inline-block; padding: 10px 40px; border: 1px solid var(--text-dark); color: var(--text-dark); text-decoration: none; transition: 0.3s; font-weight: 600; text-shadow: none; }
@@ -266,6 +270,8 @@
 
         /* --- АДАПТИВ ДЛЯ ВСЕХ ЭКРАНОВ --- */
         @media (max-width: 768px) {
+            .container { width: 100%; padding: 20px 15px; } /* На телефонах занимает всю ширину */
+            
             .hero-section { padding: 20px 10px 10px 10px; } 
             .banner-text { font-size: 1.5rem; margin-bottom: 10px; line-height: 1.2; }
             .names-title { font-size: 2.8rem; margin: 10px 0; }
@@ -304,6 +310,10 @@
             .place-polaroid, .final-polaroid {
                 max-width: 90%; 
             }
+            
+            .rsvp-box {
+                padding: 20px 15px;
+            }
         }
 
         @media (max-width: 380px) {
@@ -318,6 +328,8 @@
     </style>
 </head>
 <body class="locked">
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
 
     <section class="hero-section" id="hero">
         <div class="banner-text">
@@ -466,8 +478,7 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
-                <!-- ССЫЛКА НА СКРИПТ -->
-                <form action="https://script.google.com/macros/s/AKfycby9sAQrZWAEDLdixzv4JgeJw1QvqxSFLDAsnZEtB49vG64hHquYigMlggE2ytRodX3n/exec" method="POST" id="my-form">
+                <form action="https://script.google.com/macros/s/AKfycbxMP44OB7m97KwQ-SplV3lX_8_b5IKq7wQ5j9apdO7MHXtjaRoPQ104j7Zm3L9595YwRQ/exec" method="POST" id="my-form" target="hidden_iframe">
                     <div class="form-group"><label for="nama">Ваше Имя</label><input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required></div>
                     <div class="form-group"><label for="status">Придете ли вы?</label>
                         <select class="form-control" name="status" id="status" required>
@@ -561,25 +572,11 @@
             }
         }
 
+        let submitted = false;
         window.addEventListener("load", function() {
             const form = document.getElementById('my-form');
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
-                const data = new FormData(form);
-                const action = e.target.action;
-                
-                // ⚠️ ВОТ ЗДЕСЬ ДОБАВЛЕН mode: 'no-cors'
-                fetch(action, { 
-                    method: 'POST', 
-                    body: data,
-                    mode: 'no-cors' 
-                }).then(() => { 
-                    alert("Спасибо! Ваш ответ отправлен."); 
-                    form.reset(); 
-                }).catch((err) => {
-                    alert("Произошла ошибка при отправке. Попробуйте еще раз.");
-                    console.log(err);
-                });
+            form.addEventListener("submit", function() {
+                submitted = true;
             });
         });
 
