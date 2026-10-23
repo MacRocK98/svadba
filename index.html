@@ -80,19 +80,68 @@
             flex-direction: column;
             justify-content: flex-start; 
             align-items: center;
-            padding: 40px 20px 20px 20px; 
+            padding: 20px 20px 20px 20px; 
             text-align: center;
             position: relative;
         }
 
-        .banner-text {
+        /* --- ГИРЛЯНДА ИЗ ФЛАЖКОВ --- */
+        .garland-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        /* Веревка гирлянды */
+        .garland-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top: 2px solid #aaa;
+            border-radius: 50% / 10px;
+            z-index: 0;
+        }
+
+        .flag {
+            position: relative;
+            width: 40px;
+            height: 50px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Цвета флажков */
+        .flag:nth-child(1) { background-color: #e76f51; transform: rotate(-10deg) translateY(5px); }
+        .flag:nth-child(2) { background-color: #f4a261; transform: rotate(-5deg) translateY(2px); }
+        .flag:nth-child(3) { background-color: #e9c46a; transform: rotate(0deg) translateY(0); }
+        .flag:nth-child(4) { background-color: #2a9d8f; transform: rotate(5deg) translateY(2px); }
+        .flag:nth-child(5) { background-color: #457b9d; transform: rotate(10deg) translateY(5px); }
+
+        /* Текст "СВАДЬБА" под флажками */
+        .wedding-text {
             font-size: 2.5rem;
             letter-spacing: 5px;
             color: #444;
             margin-bottom: 20px;
             text-transform: uppercase;
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-            line-height: 1.1; 
         }
         
         .names-title { font-size: 4.5rem; margin: 15px 0; }
@@ -226,7 +275,6 @@
             padding: 0 15px; 
         }
 
-        /* --- ИКОНКИ В ТАЙМИНГЕ (КАРТИНКИ) --- */
         .timeline-icon {
             display: flex;
             justify-content: center;
@@ -235,7 +283,7 @@
             text-align: center;
         }
         .timeline-icon img {
-            width: 45px; /* Размер иконок */
+            width: 45px; 
             height: auto;
             object-fit: contain;
         }
@@ -243,6 +291,18 @@
         /* --- ДРЕСС-КОД --- */
         .color-palette { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .color-circle { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+
+        /* ФОТО ДРЕСС-КОДА */
+        .dress-code-photos {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .dress-code-photos .polaroid {
+            width: 80%;
+            max-width: 400px;
+            margin: 0;
+        }
 
         /* --- ПОЖЕЛАНИЯ / ДЕТАЛИ --- */
         .wishes-text { background: rgba(255,255,255,0.85); padding: 30px; border-radius: 15px; border: 1px dashed #aaa; margin: 20px 0; font-size: 1.1rem; font-weight: 500; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: justify; text-align-last: center; }
@@ -256,7 +316,6 @@
         .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; font-weight: 600; text-shadow: none; }
         .form-control { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Montserrat', sans-serif; box-sizing: border-box; }
         
-        /* --- СТИЛИ ДЛЯ РАДИОКНОПОК (ГАЛОЧЕК) --- */
         .radio-group {
             display: flex;
             flex-direction: column;
@@ -306,7 +365,7 @@
         /* --- АДАПТИВ ДЛЯ ВСЕХ ЭКРАНОВ --- */
         @media (max-width: 768px) {
             .hero-section { padding: 20px 10px 10px 10px; } 
-            .banner-text { font-size: 1.5rem; margin-bottom: 10px; line-height: 1.2; }
+            .wedding-text { font-size: 1.5rem; margin-bottom: 10px; }
             .names-title { font-size: 2.8rem; margin: 10px 0; }
             .hero-date { font-size: 2rem; margin-bottom: 10px; }
             .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
@@ -343,16 +402,24 @@
             .place-polaroid, .final-polaroid {
                 max-width: 90%; 
             }
+
+            .flag {
+                width: 30px;
+                height: 40px;
+                font-size: 1rem;
+                padding-top: 3px;
+            }
         }
 
         @media (max-width: 380px) {
             .names-title { font-size: 2.2rem; }
-            .banner-text { font-size: 1.2rem; }
+            .wedding-text { font-size: 1.2rem; }
             .hero-polaroid { width: 42%; }
             .countdown div { min-width: 45px; padding: 8px; }
             .countdown span { font-size: 1.1rem; }
             .place-address { font-size: 0.9rem; }
             .timeline-time { font-size: 2.4rem; }
+            .flag { width: 25px; height: 35px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -361,13 +428,17 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
 
     <section class="hero-section" id="hero">
-        <div class="banner-text">
-            <div>
-                <span style="color:#e76f51">У</span> 
-                <span style="color:#f4a261">Н</span><span style="color:#e9c46a">А</span><span style="color:#2a9d8f">С</span>
-            </div>
-            <div>СВАДЬБА</div>
+        <!-- ГИРЛЯНДА ИЗ ФЛАЖКОВ -->
+        <div class="garland-container">
+            <div class="flag">У</div>
+            <div class="flag">Н</div>
+            <div class="flag">А</div>
+            <div class="flag">С</div>
+            <div class="flag">!</div>
         </div>
+
+        <!-- ТЕКСТ СВАДЬБА -->
+        <div class="wedding-text">СВАДЬБА</div>
 
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; margin-top: 5px;">
             <div class="polaroid hero-polaroid tilt-right">
@@ -443,7 +514,6 @@
                 <div class="timeline-time">14:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            <!-- 1. furshet.png -->
             <div class="timeline-icon">
                 <img src="img/furshet.png" alt="Фуршет">
             </div>
@@ -452,7 +522,6 @@
                 <div class="timeline-time">14:30</div>
                 <div class="timeline-desc">Фуршет</div>
             </div>
-            <!-- 2. kolco.webp -->
             <div class="timeline-icon">
                 <img src="img/kolco.webp" alt="Кольцо">
             </div>
@@ -461,7 +530,6 @@
                 <div class="timeline-time">15:00</div>
                 <div class="timeline-desc">Выездная церемония</div>
             </div>
-            <!-- 3. camera.webp -->
             <div class="timeline-icon">
                 <img src="img/camera.webp" alt="Фотоаппарат">
             </div>
@@ -470,7 +538,6 @@
                 <div class="timeline-time">15:30</div>
                 <div class="timeline-desc">Памятная фотосессия с молодоженами</div>
             </div>
-            <!-- 4. bokal.png -->
             <div class="timeline-icon">
                 <img src="img/bokal.png" alt="Бокал">
             </div>
@@ -479,7 +546,6 @@
                 <div class="timeline-time">16:00</div>
                 <div class="timeline-desc">Банкет</div>
             </div>
-            <!-- 5. tort.webp -->
             <div class="timeline-icon">
                 <img src="img/tort.webp" alt="Торт">
             </div>
@@ -488,7 +554,6 @@
                 <div class="timeline-time">20:00</div>
                 <div class="timeline-desc">Вынос свадебного торта</div>
             </div>
-            <!-- 6. fireworks.webp -->
             <div class="timeline-icon">
                 <img src="img/fireworks.webp" alt="Фейерверк">
             </div>
@@ -508,6 +573,13 @@
                 <div class="color-circle" style="background-color: #d9a0a0;"></div>
                 <div class="color-circle" style="background-color: #a3b18a;"></div>
                 <div class="color-circle" style="background-color: #b3cde0;"></div>
+            </div>
+
+            <!-- ФОТО ДРЕСС-КОДА (ОДНА КАРТИНКА) -->
+            <div class="dress-code-photos">
+                <div class="polaroid tilt-left">
+                    <img src="img/politra.webp" alt="Дресс-код">
+                </div>
             </div>
         </section>
 
