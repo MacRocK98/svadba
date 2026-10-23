@@ -248,38 +248,6 @@
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; font-weight: 600; text-shadow: none; }
         .form-control { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Montserrat', sans-serif; box-sizing: border-box; }
-        
-        /* --- СТИЛИ ДЛЯ РАДИОКНОПОК (ГАЛОЧЕК) --- */
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-            padding: 5px 0;
-        }
-        .radio-item {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #333;
-            background: rgba(255,255,255,0.8);
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            transition: 0.2s;
-        }
-        .radio-item:hover {
-            background: #f0f0f0;
-        }
-        .radio-item input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-            accent-color: var(--red);
-            cursor: pointer;
-        }
-
         .btn-submit { background-color: transparent; color: var(--red); border: 2px solid var(--red); padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; font-weight: 600; width: 100%; margin-top: 10px; text-shadow: none; }
         .btn-submit:hover { background-color: var(--red); color: white; }
 
@@ -351,6 +319,7 @@
 </head>
 <body class="locked">
 
+    <!-- СКРЫТЫЙ IFRAME ДЛЯ ОТПРАВКИ ФОРМЫ БЕЗ ОШИБОК CORS -->
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
 
     <section class="hero-section" id="hero">
@@ -500,28 +469,17 @@
                 <p>Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="date-highlight">13.06.2027</div>
                 
+                <!-- ДОБАВЛЕН target="hidden_iframe" -->
                 <form action="https://script.google.com/macros/s/AKfycbwMOcZwUP3_rWBqjiYz1R0yfAhrHVdHWs32XAON-KZwyjliPSj0EPgtIXvsT87iUfi0AQ/exec" method="POST" id="my-form" target="hidden_iframe">
                     <div class="form-group"><label for="nama">Ваше Имя</label><input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required></div>
-                    
-                    <!-- ЗАМЕНА ВЫПАДАЮЩЕГО СПИСКА НА ГАЛОЧКИ -->
-                    <div class="form-group">
-                        <label>Придете ли вы?</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="status" value="Приду" required>
-                                Обязательно буду!
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="status" value="Не приду">
-                                К сожалению, не смогу
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="status" value="Позже">
-                                Дам ответ позже
-                            </label>
-                        </div>
+                    <div class="form-group"><label for="status">Придете ли вы?</label>
+                        <select class="form-control" name="status" id="status" required>
+                            <option value="" disabled selected>Выберите вариант</option>
+                            <option value="Приду">Обязательно буду!</option>
+                            <option value="Не приду">К сожалению, не смогу</option>
+                            <option value="Позже">Дам ответ позже</option>
+                        </select>
                     </div>
-
                     <div class="form-group"><label for="jumlah">Количество гостей (включая вас)</label><input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required></div>
                     <button type="submit" class="btn-submit">Подтвердить</button>
                 </form>
@@ -592,31 +550,4 @@
             document.getElementById("seconds").innerText = seconds;
             if (distance < 0) {
                 clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<h3>Свадьба состоялась!</h3>";
-            }
-        }, 1000);
-
-        let submitted = false;
-        window.addEventListener("load", function() {
-            const form = document.getElementById('my-form');
-            form.addEventListener("submit", function() {
-                submitted = true;
-            });
-        });
-
-        function openInvitation() {
-            document.body.classList.remove('locked'); 
-            const content = document.getElementById('main-content');
-            if (content) {
-                setTimeout(() => {
-                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            }
-        }
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('n') || '';
-        if(nama) { document.getElementById('nama').value = nama; }
-    </script>
-</body>
-</html>
+               
