@@ -226,11 +226,18 @@
             padding: 0 15px; 
         }
 
+        /* --- ИКОНКИ В ТАЙМИНГЕ (КАРТИНКИ) --- */
         .timeline-icon {
-            font-size: 1.5rem; 
-            color: #777; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin: -15px 0; 
             text-align: center;
+        }
+        .timeline-icon img {
+            width: 45px; /* Размер иконок */
+            height: auto;
+            object-fit: contain;
         }
 
         /* --- ДРЕСС-КОД --- */
@@ -329,8 +336,8 @@
                 font-size: 2.8rem;
             }
             
-            .timeline-icon {
-                font-size: 1.2rem;
+            .timeline-icon img {
+                width: 35px;
             }
 
             .place-polaroid, .final-polaroid {
@@ -436,37 +443,55 @@
                 <div class="timeline-time">14:00</div>
                 <div class="timeline-desc">Сбор гостей</div>
             </div>
-            <div class="timeline-icon">🥂</div>
+            <!-- 1. furshet.png -->
+            <div class="timeline-icon">
+                <img src="img/furshet.png" alt="Фуршет">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">14:30</div>
                 <div class="timeline-desc">Фуршет</div>
             </div>
-            <div class="timeline-icon">💍</div>
+            <!-- 2. kolco.webp -->
+            <div class="timeline-icon">
+                <img src="img/kolco.webp" alt="Кольцо">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:00</div>
                 <div class="timeline-desc">Выездная церемония</div>
             </div>
-            <div class="timeline-icon">📸</div>
+            <!-- 3. camera.webp -->
+            <div class="timeline-icon">
+                <img src="img/camera.webp" alt="Фотоаппарат">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">15:30</div>
                 <div class="timeline-desc">Памятная фотосессия с молодоженами</div>
             </div>
-            <div class="timeline-icon">🎉</div>
+            <!-- 4. bokal.png -->
+            <div class="timeline-icon">
+                <img src="img/bokal.png" alt="Бокал">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">16:00</div>
                 <div class="timeline-desc">Банкет</div>
             </div>
-            <div class="timeline-icon">🍰</div>
+            <!-- 5. tort.webp -->
+            <div class="timeline-icon">
+                <img src="img/tort.webp" alt="Торт">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">20:00</div>
                 <div class="timeline-desc">Вынос свадебного торта</div>
             </div>
-            <div class="timeline-icon">✨</div>
+            <!-- 6. fireworks.webp -->
+            <div class="timeline-icon">
+                <img src="img/fireworks.webp" alt="Фейерверк">
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-time">21:00</div>
@@ -503,7 +528,6 @@
                 <form action="https://script.google.com/macros/s/AKfycbwMOcZwUP3_rWBqjiYz1R0yfAhrHVdHWs32XAON-KZwyjliPSj0EPgtIXvsT87iUfi0AQ/exec" method="POST" id="my-form" target="hidden_iframe">
                     <div class="form-group"><label for="nama">Ваше Имя</label><input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required></div>
                     
-                    <!-- ЗАМЕНА ВЫПАДАЮЩЕГО СПИСКА НА ГАЛОЧКИ -->
                     <div class="form-group">
                         <label>Придете ли вы?</label>
                         <div class="radio-group">
