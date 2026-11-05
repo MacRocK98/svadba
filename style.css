@@ -34,12 +34,17 @@ body {
     background-color: var(--bg-paper);
 }
 
+/* ЗАКРЕПЛЕННЫЙ ФОН */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('img/fon.jpg') center/cover fixed;
+    background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('img/fon.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    pointer-events: none;
     opacity: 0.9;
 }
 
@@ -333,19 +338,14 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 .timeline-time { font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--red); line-height: 1; margin-bottom: 5px; }
 .timeline-desc { font-weight: 500; font-size: 1.1rem; }
 
-/* Последний пункт без иконки */
-.timeline-item.no-icon { padding-left: 0; }
-.timeline-item.no-icon::before { display: none; }
-.timeline-item.no-icon .timeline-time { margin-top: 0; }
-
-/* --- ДРЕСС-КОД (ПО ЦЕНТРУ, БЕЗ ФОНА) --- */
+/* --- ДРЕСС-КОД --- */
 .color-palette {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     gap: clamp(6px, 2vw, 15px);
-    margin: 30px auto;
+    margin: 30px auto 0;
     max-width: 100%;
     overflow-x: auto;
     padding: 4px 0;
@@ -363,10 +363,11 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     width: 100%;
     max-width: 512px;
     height: auto;
-    margin: 30px auto 0;
+    margin: 0 auto;
     border: none;
     box-shadow: none;
     background: transparent;
+    mix-blend-mode: multiply;
 }
 
 /* --- АНКЕТА --- */
