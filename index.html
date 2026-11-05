@@ -38,6 +38,12 @@
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="Отправка формы"></iframe>
 
+    <!-- ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ (ДОБАВЛЕНО) -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="Увеличенное фото" id="lightbox-img">
+    </div>
+
     <!-- ШАПКА -->
     <section class="hero-section" id="hero">
         <div class="garland-wrapper">
@@ -65,7 +71,8 @@
         <div class="hero-date" style="margin-top: 20px;">13 Июня 2027</div>
 
         <div class="hero-timer-title">До нашей свадьбы осталось:</div>
-        <div class="hero-timer">
+        <!-- Таймер (цифры будут менять цвет через JS) -->
+        <div class="hero-timer" id="hero-timer">
             <div><span id="days">0</span><small>дней</small></div>
             <div><span id="hours">0</span><small>часов</small></div>
             <div><span id="minutes">0</span><small>минут</small></div>
@@ -88,21 +95,21 @@
             </p>
         </section>
 
-        <!-- БЛОК 2: ГАЛЕРЕЯ -->
+        <!-- БЛОК 2: ГАЛЕРЕЯ (добавлены классы для лайтбокса) -->
         <section class="section fade-in" aria-labelledby="gallery-title">
             <h2 class="handwritten section-title" id="gallery-title">Наши моменты</h2>
             <p class="intro-text">Несколько теплых воспоминаний из нашей жизни.</p>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="img/photo1.jpg" alt="Фото 1" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo2.jpg" alt="Фото 2" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo3.jpg" alt="Фото 3" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo4.jpg" alt="Фото 4" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo5.jpg" alt="Фото 5" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo6.jpg" alt="Фото 6" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo1.jpg" alt="Фото 1" class="gallery-img" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo2.jpg" alt="Фото 2" class="gallery-img" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo3.jpg" alt="Фото 3" class="gallery-img" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo4.jpg" alt="Фото 4" class="gallery-img" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo5.jpg" alt="Фото 5" class="gallery-img" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="img/photo6.jpg" alt="Фото 6" class="gallery-img" loading="lazy" decoding="async"></div>
             </div>
         </section>
 
-        <!-- БЛОК 3: МЕСТО -->
+        <!-- БЛОК 3: МЕСТО (добавлена карта) -->
         <section class="section fade-in" aria-labelledby="place-title">
             <h2 class="handwritten section-title" id="place-title">Место</h2>
             <div class="place-widget">
@@ -113,8 +120,12 @@
                         Речной проезд, 17,<br>
                         Жуковский
                     </p>
-                    <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" rel="noopener" class="btn-outline">Посмотреть на карте</a>
+                    <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" rel="noopener" class="btn-outline" style="margin-bottom: 20px;">Посмотреть на карте</a>
                 </div>
+            </div>
+            <!-- ВСТРОЕННАЯ КАРТА -->
+            <div class="map-container">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1234567890abcdef&source=constructor" width="100%" height="400" frameborder="0" allowfullscreen="true" style="border-radius: 15px;"></iframe>
             </div>
         </section>
 
@@ -182,7 +193,7 @@
             </div>
         </section>
 
-        <!-- БЛОК 8: АНКЕТА -->
+        <!-- БЛОК 8: АНКЕТА (добавлены новые вопросы) -->
         <section class="section fade-in" aria-labelledby="rsvp-title">
             <div class="rsvp-box">
                 <h2 class="handwritten rsvp-title" id="rsvp-title">Анкета</h2>
@@ -222,6 +233,27 @@
                         </div>
                     </div>
 
+                    <!-- НОВЫЕ ВОПРОСЫ (5) -->
+                    <div class="form-group">
+                        <label>Предпочтения по напиткам</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="drink" value="Шампанское"> Шампанское</label>
+                            <label class="radio-item"><input type="radio" name="drink" value="Вино"> Вино</label>
+                            <label class="radio-item"><input type="radio" name="drink" value="Виски"> Виски</label>
+                            <label class="radio-item"><input type="radio" name="drink" value="Безалкогольное"> Безалкогольное</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="allergy">Аллергии или диетические ограничения</label>
+                        <input type="text" class="form-control" name="allergy" id="allergy" placeholder="Например: орехи, лактоза...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="song">Какую песню вы хотите услышать?</label>
+                        <input type="text" class="form-control" name="song" id="song" placeholder="Название песни или исполнитель">
+                    </div>
+
                     <button type="submit" class="btn-submit" id="btn-submit">Подтвердить</button>
                 </form>
 
@@ -252,12 +284,22 @@
             </div>
         </section>
 
-        <!-- БЛОК 10: ФИНАЛ -->
+        <!-- БЛОК 10: ФИНАЛ (добавлен блок благодарности и место для ссылки) -->
         <section class="section fade-in" style="margin-bottom: 20px;" aria-labelledby="final-title">
             <div class="final-heart">❤</div>
             <h2 class="handwritten final-title" id="final-title">До скорой встречи!</h2>
             <p class="final-text">С любовью,<br>Александр и Юлия</p>
-            <div class="final-polaroid">
+            
+            <!-- НОВЫЙ БЛОК: Спасибо, что были с нами! -->
+            <div class="post-wedding-thanks" style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.5); border-radius: 15px;">
+                <h3 class="handwritten" style="color: var(--green); font-size: 2rem;">Спасибо, что разделили с нами этот день!</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px;">Мы очень ценим ваше присутствие и поддержку.</p>
+                
+                <!-- Место для ссылки на фото (замени # на свою ссылку) -->
+                <a href="#" target="_blank" rel="noopener" class="btn-outline" style="border-color: var(--green); color: var(--green);">Скачать наши свадебные фото</a>
+            </div>
+
+            <div class="final-polaroid" style="margin-top: 40px;">
                 <img src="img/kon.jpg" alt="Разделите с нами этот момент" loading="lazy" decoding="async">
                 <p class="handwritten">Раздели с нами этот момент</p>
             </div>
