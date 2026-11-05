@@ -1,3 +1,33 @@
+// --- РАЗБЛОКИРОВКА АУДИО ДЛЯ МОБИЛЬНЫХ ---
+// Этот код "будит" аудио при первом же касании экрана
+let audioUnlocked = false;
+const audioElement = document.getElementById('bg-music');
+
+function unlockAudio() {
+    if (audioUnlocked || !audioElement) return;
+    
+    // Пытаемся проиграть кусочек без звука (или с нулевой громкостью)
+    // Это дает браузеру сигнал, что пользователь разрешил воспроизведение
+    audioElement.play().then(() => {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        audioUnlocked = true;
+        console.log('Аудио разблокировано');
+    }).catch((e) => {
+        // Если не получилось, просто игнорируем (значит, браузер все равно не даст)
+        console.log('Не удалось разблокировать аудио:', e);
+    });
+    
+    // Убираем слушатели после первой попытки
+    document.removeEventListener('touchstart', unlockAudio);
+    document.removeEventListener('click', unlockAudio);
+}
+
+// Слушаем первое касание или клик по документу
+document.addEventListener('touchstart', unlockAudio, { once: true });
+document.addEventListener('click', unlockAudio, { once: true });
+
+
 // --- ЗАЩИТА ОТ СКРОЛЛА ВНИЗ ---
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
@@ -8,7 +38,6 @@ if (galleryGrid) {
     for (let i = 1; i <= 6; i++) {
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        // ВАЖНО: Добавляем класс lightbox-trigger и курсор для сгенерированных фото
         item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="lightbox-trigger" style="cursor: zoom-in;" loading="lazy" decoding="async">`;
         galleryGrid.appendChild(item);
     }
@@ -37,44 +66,36 @@ if (calendarGrid) {
     }
 }
 
-// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС (УВЕЛИЧЕНИЕ ФОТО) ---
+// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 
 if (lightbox) {
-    // Делегирование событий: ловим клик по всему body
     document.body.addEventListener('click', (e) => {
-        // Если кликнули на элемент с классом lightbox-trigger
         if (e.target.classList.contains('lightbox-trigger')) {
-            lightboxImg.src = e.target.src; // Берем src у кликнутой картинки
+            lightboxImg.src = e.target.src;
             lightboxImg.alt = e.target.alt;
-            lightbox.classList.add('active'); // Показываем лайтбокс
-            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
     });
 
-    // Функция закрытия
     const closeLightbox = () => {
         lightbox.classList.remove('active');
-        document.body.style.overflow = ''; // Возвращаем скролл
+        document.body.style.overflow = '';
     };
 
-    // Закрытие по крестику
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    
-    // Закрытие по клику на затемненный фон
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
     });
-    
-    // Закрытие по клавише Esc
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
     });
 }
 
-// --- ТАЙМЕР (с анимацией при < 24 часов) ---
+// --- ТАЙМЕР ---
 const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
 const timerContainer = document.getElementById('hero-timer');
 const timer = setInterval(() => {
@@ -145,10 +166,11 @@ if (btnOpen) {
     btnOpen.addEventListener('click', () => {
         document.body.classList.remove('locked');
 
+        // Пытаемся включить музыку еще раз, если она не играет
         if (audio && audio.paused) {
             audio.play()
                 .then(() => updateMusicBtn(true))
-                .catch(() => console.log('Музыка заблокирована'));
+                .catch(() => console.log('Музыка заблокирована при открытии'));
         }
 
         const content = document.getElementById('main-content');
@@ -158,7 +180,7 @@ if (btnOpen) {
     });
 }
 
-// --- ИМЯ ГОСТЯ ИЗ URL + ПЕРСОНАЛЬНОЕ ПРИВЕТСТВИЕ ---
+// --- ИМЯ ГОСТЯ ИЗ URL ---
 const urlParams = new URLSearchParams(window.location.search);
 const nama = (urlParams.get('n') || '').trim();
 if (nama) {
@@ -201,7 +223,7 @@ if (form) {
     });
 }
 
-// --- ОБРАБОТЧИК iframe (успех) ---
+// --- ОБРАБОТЧИК iframe ---
 const hiddenIframe = document.getElementById('hidden_iframe');
 if (hiddenIframe) {
     hiddenIframe.addEventListener('load', () => {
