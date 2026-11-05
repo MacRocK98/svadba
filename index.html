@@ -94,34 +94,24 @@
             </p>
         </section>
 
-        <!-- БЛОК 2: ГАЛЕРЕЯ (сокращено) -->
+        <!-- БЛОК 2: ГАЛЕРЕЯ -->
         <section class="section fade-in" aria-labelledby="gallery-title">
             <h2 class="handwritten section-title" id="gallery-title">Наши моменты</h2>
             <p class="intro-text">Несколько теплых воспоминаний из нашей жизни.</p>
-            <!-- Галерея генерируется в script.js -->
             <div class="gallery-grid" id="gallery-grid"></div>
         </section>
 
         <!-- БЛОК 3: МЕСТО -->
         <section class="section fade-in" aria-labelledby="place-title">
             <h2 class="handwritten section-title" id="place-title">Место</h2>
-            <div class="place-widget">
-                <img src="img/banket.JPG" alt="Место проведения" class="place-widget-img" loading="lazy" decoding="async">
-                <div class="place-widget-content">
-                    <p class="place-widget-address">
-                        <strong>Капитан club</strong><br>
-                        Речной проезд, 17,<br>
-                        Жуковский
-                    </p>
-                </div>
-            </div>
+            
             <!-- ВСТРОЕННАЯ КАРТА -->
-            <div class="map-container">
+            <div class="map-container" style="margin-top: 0;">
                 <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1f4b5384142685655bd9fdc0b911eec2bb5530228941aa56e280d2576e7d8580&source=constructor" width="100%" height="419" frameborder="0" style="border-radius: 15px;"></iframe>
             </div>
         </section>
 
-        <!-- БЛОК 4: ИСТОРИЯ (календарь сокращён) -->
+        <!-- БЛОК 4: ИСТОРИЯ -->
         <section class="section fade-in" aria-labelledby="story-title">
             <h2 class="handwritten section-title" id="story-title">Наша история</h2>
             <p class="intro-text" style="text-align: center;">
@@ -134,7 +124,6 @@
             </div>
 
             <div class="calendar-wrapper">
-                <!-- Календарь генерируется в script.js -->
                 <div class="calendar" id="calendar-grid"></div>
             </div>
         </section>
@@ -219,26 +208,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Предпочтения по напиткам</label>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="drink" value="Шампанское"> Шампанское</label>
-                            <label class="radio-item"><input type="radio" name="drink" value="Вино"> Вино</label>
-                            <label class="radio-item"><input type="radio" name="drink" value="Виски"> Виски</label>
-                            <label class="radio-item"><input type="radio" name="drink" value="Безалкогольное"> Безалкогольное</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="allergy">Аллергии или диетические ограничения</label>
-                        <input type="text" class="form-control" name="allergy" id="allergy" placeholder="Например: орехи, лактоза...">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="song">Какую песню вы хотите услышать?</label>
-                        <input type="text" class="form-control" name="song" id="song" placeholder="Название песни или исполнитель">
-                    </div>
-
                     <button type="submit" class="btn-submit" id="btn-submit">Подтвердить</button>
                 </form>
 
@@ -274,12 +243,6 @@
             <div class="final-heart">❤</div>
             <h2 class="handwritten final-title" id="final-title">До скорой встречи!</h2>
             <p class="final-text">С любовью,<br>Александр и Юлия</p>
-            
-            <div class="post-wedding-thanks" style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.5); border-radius: 15px;">
-                <h3 class="handwritten" style="color: var(--green); font-size: 2rem;">Спасибо, что разделили с нами этот день!</h3>
-                <p style="color: var(--text-light); margin-bottom: 20px;">Мы очень ценим ваше присутствие и поддержку.</p>
-                <a href="#" target="_blank" rel="noopener" class="btn-outline" style="border-color: var(--green); color: var(--green);">Скачать наши свадебные фото</a>
-            </div>
 
             <div class="final-polaroid" style="margin-top: 40px;">
                 <img src="img/kon.jpg" alt="Разделите с нами этот момент" loading="lazy" decoding="async">
