@@ -1,13 +1,9 @@
 // --- ЗАЩИТА ОТ СКРОЛЛА ВНИЗ ---
-// 1. Запрещаем браузеру восстанавливать позицию скролла
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-// 2. Принудительно ставим скролл в самый верх при загрузке
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
-// --- ТАЙМЕР ---
-const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
+// --- ТАЙМЕР (синхронизирован с таймингом: 14:00) ---
+const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
 const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
@@ -34,14 +30,32 @@ const timer = setInterval(() => {
 const audio = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
+function updateMusicBtn(playing) {
+    if (!musicBtn) return;
+    musicBtn.classList.toggle('playing', playing);
+    musicBtn.setAttribute('aria-pressed', String(playing));
+    musicBtn.setAttribute('aria-label', playing ? 'Выключить музыку' : 'Включить музыку');
+}
+
 if (musicBtn && audio) {
-    musicBtn.addEventListener('click', () => {
+    audio.volume = 0.3;
+
+    const toggleMusic = () => {
         if (audio.paused) {
-            audio.play();
-            musicBtn.classList.add('playing');
+            audio.play()
+                .then(() => updateMusicBtn(true))
+                .catch(() => console.log('Музыка заблокирована'));
         } else {
             audio.pause();
-            musicBtn.classList.remove('playing');
+            updateMusicBtn(false);
+        }
+    };
+
+    musicBtn.addEventListener('click', toggleMusic);
+    musicBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMusic();
         }
     });
 }
@@ -54,8 +68,8 @@ if (btnOpen) {
 
         if (audio && audio.paused) {
             audio.play()
-                .then(() => musicBtn.classList.add('playing'))
-                .catch(e => console.log('Музыка заблокирована'));
+                .then(() => updateMusicBtn(true))
+                .catch(() => console.log('Музыка заблокирована'));
         }
 
         const content = document.getElementById('main-content');
@@ -65,21 +79,71 @@ if (btnOpen) {
     });
 }
 
-// --- ОТПРАВКА ФОРМЫ ---
-let submitted = false;
-window.addEventListener("load", () => {
-    const form = document.getElementById('my-form');
-    if (form) {
-        form.addEventListener("submit", () => { submitted = true; });
-    }
-});
-
-// --- ИМЯ ГОСТЯ ИЗ URL ---
+// --- ИМЯ ГОСТЯ ИЗ URL + ПЕРСОНАЛЬНОЕ ПРИВЕТСТВИЕ ---
 const urlParams = new URLSearchParams(window.location.search);
-const nama = urlParams.get('n') || '';
+const nama = (urlParams.get('n') || '').trim();
 if (nama) {
     const input = document.getElementById('nama');
     if (input) input.value = nama;
+
+    const greeting = document.getElementById('personal-greeting');
+    if (greeting) greeting.textContent = `${nama}, мы женимся!`;
+}
+
+// --- ОТПРАВКА ФОРМЫ ---
+let submitted = false;
+const form = document.getElementById('my-form');
+const submitBtn = document.getElementById('btn-submit');
+const thanksBlock = document.getElementById('rsvp-thanks');
+const thanksText = document.getElementById('rsvp-thanks-text');
+
+if (form) {
+    form.addEventListener("submit", (e) => {
+        // honeypot
+        const honey = form.querySelector('input[name="website"]');
+        if (honey && honey.value) {
+            e.preventDefault();
+            return;
+        }
+
+        // простая валидация имени
+        const nameInput = document.getElementById('nama');
+        if (nameInput && !nameInput.value.trim()) {
+            e.preventDefault();
+            nameInput.classList.add('is-invalid');
+            nameInput.focus();
+            return;
+        }
+        if (nameInput) nameInput.classList.remove('is-invalid');
+
+        submitted = true;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправляем…';
+        }
+    });
+}
+
+// --- ОБРАБОТЧИК iframe (успех) ---
+const hiddenIframe = document.getElementById('hidden_iframe');
+if (hiddenIframe) {
+    hiddenIframe.addEventListener('load', () => {
+        if (!submitted) return;
+        submitted = false;
+
+        if (form) form.hidden = true;
+        if (thanksBlock) {
+            thanksBlock.hidden = false;
+            if (thanksText && nama) {
+                thanksText.textContent = `Спасибо, ${nama}! Мы очень рады, что ты будешь с нами.`;
+            }
+            thanksBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Подтвердить';
+        }
+    });
 }
 
 // --- АНИМАЦИЯ ПОЯВЛЕНИЯ ---
@@ -92,15 +156,4 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 } else {
     document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-}
-
-// --- ОБРАБОТЧИК iframe ---
-const hiddenIframe = document.getElementById('hidden_iframe');
-if (hiddenIframe) {
-    hiddenIframe.addEventListener('load', () => {
-        if (submitted) {
-            alert('Спасибо! Ваш ответ отправлен.');
-            submitted = false;
-        }
-    });
 }
