@@ -33,15 +33,31 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     background-color: var(--bg-paper);
+    position: relative;
 }
 
+/* ЗАКРЕПЛЁННЫЙ ФОН — НИКОГДА НЕ ДВИГАЕТСЯ */
 body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: -1;
-    background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('img/fon.jpg') center/cover fixed;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+        url('img/fon.jpg');
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     opacity: 0.9;
+    overflow: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    pointer-events: none;
 }
 
 body.locked {
