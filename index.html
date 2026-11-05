@@ -41,8 +41,8 @@
             </div>
         </div>
 
-        <h1 class="handwritten names-title">Александр & Юлия</h1>
-        <div class="hero-date">13 Июня 2027</div>
+        <!-- Убрал дублирующую надпись, оставил только дату -->
+        <div class="hero-date" style="margin-top: 20px;">13 Июня 2027</div>
 
         <div class="hero-timer-title">До нашей свадьбы осталось:</div>
         <div class="hero-timer">
@@ -154,6 +154,7 @@
             </div>
         </section>
 
+        <!-- АНКЕТА -->
         <section class="section fade-in">
             <div class="rsvp-box">
                 <h2 class="handwritten rsvp-title">Анкета</h2>
@@ -178,6 +179,16 @@
                     <div class="form-group">
                         <label for="jumlah">Количество гостей (включая вас)</label>
                         <input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required>
+                    </div>
+
+                    <!-- ВОПРОС ПРО НОЧЛЕГ -->
+                    <div class="form-group">
+                        <label>Нужен ли вам ночлег?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Да, нужен" required> Да, нужен</label>
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Нет, не нужен"> Нет, не нужен</label>
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Пока не знаю"> Пока не знаю</label>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn-submit">Подтвердить</button>
