@@ -1,21 +1,16 @@
-// --- РАЗБЛОКИРОВКА И ПРОГРЕВ АУДИО ДЛЯ МОБИЛЬНЫХ ---
+// --- РАЗБЛОКИРОВКА И ПРОГРЕВ АУДИО ---
 const audio = document.getElementById('bg-music');
 let audioUnlocked = false;
 
 function unlockAudio() {
     if (audioUnlocked || !audio) return;
-    // Пытаемся запустить и сразу остановить, чтобы "разбудить" движок
     audio.play().then(() => {
         audio.pause();
         audio.currentTime = 0;
         audioUnlocked = true;
-        console.log('Аудио разблокировано');
-    }).catch((e) => {
-        console.log('Не удалось разблокировать аудио:', e);
-    });
+    }).catch(() => {});
 }
 
-// Слушаем первое касание или клик на странице
 document.addEventListener('touchstart', unlockAudio, { once: true });
 document.addEventListener('click', unlockAudio, { once: true });
 
@@ -58,7 +53,7 @@ if (calendarGrid) {
     }
 }
 
-// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС (УВЕЛИЧЕНИЕ ФОТО) ---
+// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
@@ -87,7 +82,7 @@ if (lightbox) {
     });
 }
 
-// --- ТАЙМЕР (с анимацией при < 24 часов) ---
+// --- ТАЙМЕР ---
 const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
 const timerContainer = document.getElementById('hero-timer');
 const timer = setInterval(() => {
@@ -151,18 +146,22 @@ if (musicBtn && audio) {
     });
 }
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (СИНХРОННЫЙ ЗАПУСК МУЗЫКИ) ---
+// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ФИКС МУЗЫКИ) ---
 const btnOpen = document.getElementById('btn-open');
 if (btnOpen) {
     btnOpen.addEventListener('click', () => {
-        document.body.classList.remove('locked');
-
-        // Синхронный запуск музыки прямо в обработчике клика
+        // 1. СНАЧАЛА ЗАПУСКАЕМ МУЗЫКУ (синхронно в начале клика)
         if (audio && audio.paused) {
-            audio.play().catch((e) => {
+            audio.load(); // Принудительно грузим файл
+            audio.play().then(() => {
+                updateMusicBtn(true);
+            }).catch((e) => {
                 console.log('Музыка при открытии заблокирована:', e);
             });
         }
+
+        // 2. ТОЛЬКО ПОТОМ ДЕЛАЕМ ВСЕ ОСТАЛЬНОЕ
+        document.body.classList.remove('locked');
 
         const content = document.getElementById('main-content');
         if (content) {
