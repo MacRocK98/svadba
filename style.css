@@ -254,7 +254,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     transition: transform var(--transition);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
 }
 .gallery-item img {
     width: 100%;
@@ -262,6 +261,11 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 2px;
+    cursor: zoom-in; /* Курсор-лупа */
+    transition: opacity 0.3s ease;
+}
+.gallery-item img:hover {
+    opacity: 0.9;
 }
 .gallery-item:nth-child(odd) { transform: rotate(-2deg); }
 .gallery-item:nth-child(even) { transform: rotate(2deg); }
@@ -306,28 +310,8 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 .lightbox-close:hover { color: var(--red); }
 
 /* --- МЕСТО --- */
-.place-widget {
-    background: var(--white);
-    max-width: 450px;
-    margin: 0 auto;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    text-align: center;
-}
-.place-widget-img {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-    display: block;
-}
-.place-widget-content { padding: 30px 20px; }
-.place-widget-address { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
-
-/* КАРТА */
 .map-container {
-    margin-top: 30px;
+    margin-top: 0; /* Убрали верхний отступ, так как убрали блок с адресом */
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -439,7 +423,12 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 
 /* --- БЛОК СПАСИБО --- */
 .rsvp-thanks { text-align: center; padding: 10px 0; }
-.rsvp-thanks-heart { font-size: 3rem; color: var(--red); margin-bottom: 10px; animation: pulse 1.2s ease-in-out infinite; }
+.rsvp-thanks-heart {
+    font-size: 3rem;
+    color: var(--red);
+    margin-bottom: 10px;
+    animation: pulse 1.2s ease-in-out infinite;
+}
 .rsvp-thanks h3 { font-size: 2.5rem; margin: 0 0 10px; }
 .rsvp-thanks p { color: var(--text-light); margin-bottom: 20px; }
 @keyframes pulse {
@@ -460,7 +449,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 
 /* --- ФИНАЛ --- */
 .final-heart { font-size: 3rem; color: var(--red); margin-bottom: 20px; }
-.pulsing-heart { display: inline-block; animation: pulse 1.2s ease-in-out infinite;}
 .final-title { font-size: 3rem; }
 .final-text { font-family: 'Caveat'; font-size: 2rem; font-weight: 600; color: var(--text-light); }
 .final-polaroid {
@@ -476,6 +464,12 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 .final-polaroid:hover { transform: rotate(0) scale(1.03); z-index: 10; }
 .final-polaroid img { width: 100%; max-width: 400px; height: auto; border-radius: 5px; }
 .final-polaroid p { font-size: 1.8rem; margin-top: 15px; color: var(--red); }
+
+/* Пульсация для финального сердца */
+.pulsing-heart {
+    display: inline-block;
+    animation: pulse 1.2s ease-in-out infinite;
+}
 
 /* --- КНОПКА МУЗЫКИ --- */
 .music-btn {
@@ -533,7 +527,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
     .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
     .story-date .handwritten { font-size: 2.5rem; }
-    .place-widget-img { max-height: 250px; }
     .map-container iframe { height: 250px; }
 }
 
