@@ -452,15 +452,14 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     background: var(--white);
     padding: 15px 15px 45px;
     box-shadow: var(--shadow-lg);
-    transform: rotate(3deg);
     max-width: 100%;
-    animation: float 3s ease-in-out infinite;
-    transition: transform var(--transition), box-shadow var(--transition);
+    rotate: 3deg;
+    will-change: transform;
+    animation: float 2.5s ease-in-out infinite;
+    transition: box-shadow var(--transition);
 }
 .final-polaroid:hover {
-    transform: rotate(0) scale(1.03);
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    animation-play-state: paused;
 }
 .final-polaroid img {
     width: 100%;
@@ -472,8 +471,9 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 
 /* Плавное покачивание */
 @keyframes float {
-    0%, 100% { transform: rotate(3deg) translateY(0); }
-    50% { transform: rotate(3deg) translateY(-8px); }
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
 }
 
 /* --- КНОПКА МУЗЫКИ --- */
