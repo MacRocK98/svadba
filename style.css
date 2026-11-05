@@ -424,6 +424,10 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 
 /* --- ФИНАЛ --- */
 .final-heart { font-size: 3rem; color: var(--red); margin-bottom: 20px; }
+.pulsing-heart {
+    display: inline-block;
+    animation: pulse 1.2s ease-in-out infinite;
+}
 .final-title { font-size: 3rem; }
 .final-text { font-family: 'Caveat'; font-size: 2rem; font-weight: 600; color: var(--text-light); }
 .final-polaroid {
