@@ -44,6 +44,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
+            
             background-image: url('img/fon.jpg'); 
             background-size: auto; 
             background-position: center top; 
@@ -79,150 +80,220 @@
             flex-direction: column;
             justify-content: flex-start; 
             align-items: center;
-            padding: 30px 15px; 
+            padding: 20px 10px 10px 10px; 
             text-align: center;
             position: relative;
         }
 
-        /* ГИРЛЯНДА */
-        .garland-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 120px;
-            margin-bottom: 20px;
+        /* --- ГИРЛЯНДЫ --- */
+        .garland-block {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
         }
 
-        /* Провисающая веревка */
-        .garland-wrapper::before {
+        .garland-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 5px;
+            width: 100%;
+        }
+
+        .garland-container::before {
             content: "";
             position: absolute;
-            top: 10px;
+            top: 5px;
             left: 5%;
             width: 90%;
-            height: 50px;
-            border-bottom: 2px solid #999;
+            height: 25px;
+            border-bottom: 2px solid #aaa;
             border-radius: 50%;
             z-index: 0;
         }
 
-        .flags-row {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            position: relative;
-            z-index: 1;
-            padding-top: 15px;
+        .garland-container.lower::before {
+            top: 10px;
+            height: 30px;
         }
 
-        /* Флажки */
-        .flag {
-            width: 45px;
-            height: 60px;
-            background: #fff;
+        .flags-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: nowrap;
+        }
+
+        .flag-item {
+            position: relative;
+            width: 40px;
+            height: 55px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Caveat', cursive;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: var(--text-dark);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+            color: #333;
+            background: #fff;
+            border: 1px solid #eee;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
             transition: transform 0.3s;
         }
 
-        /* ЦВЕТА ФЛАЖКОВ */
-        .flag:nth-child(1) { background-color: #ffe5e5; color: #e63946; transform: rotate(-5deg); } /* У - красный */
-        .flag:nth-child(3) { background-color: #e5f3ff; color: #457b9d; transform: rotate(-3deg); } /* Н - голубой */
-        .flag:nth-child(4) { background-color: #e8f5e9; color: #2a9d8f; transform: rotate(-1deg); } /* А - зеленый */
-        .flag:nth-child(5) { background-color: #fff9db; color: #f4a261; transform: rotate(1deg); }  /* С - желтый */
-        
-        .flag:nth-child(7) { background-color: #fce4ec; color: #c2185b; transform: rotate(3deg); }  /* С - розовый */
-        .flag:nth-child(8) { background-color: #e0f2f1; color: #00796b; transform: rotate(5deg); }  /* В - бирюзовый */
-        .flag:nth-child(9) { background-color: #f3e5f5; color: #7b1fa2; transform: rotate(7deg); }  /* А - фиолетовый */
-        .flag:nth-child(10) { background-color: #fff3e0; color: #ef6c00; transform: rotate(9deg); } /* Д - оранжевый */
-        .flag:nth-child(11) { background-color: #e3f2fd; color: #1976d2; transform: rotate(11deg); }/* Ь - синий */
-        .flag:nth-child(12) { background-color: #fbe9e7; color: #d84315; transform: rotate(13deg); }/* Б - кирпичный */
-        .flag:nth-child(13) { background-color: #e8eaf6; color: #303f9f; transform: rotate(15deg); }/* А - индиго */
+        /* Цвета флажков */
+        .flag-item:nth-child(1) { background-color: #ffe5e5; color: #e63946; transform: rotate(-3deg); }
+        .flag-item:nth-child(2) { background-color: #e5f3ff; color: #457b9d; transform: rotate(-2deg); }
+        .flag-item:nth-child(3) { background-color: #e8f5e9; color: #2a9d8f; transform: rotate(-1deg); }
+        .flag-item:nth-child(4) { background-color: #fff9db; color: #f4a261; transform: rotate(0deg); }
+        .flag-item:nth-child(5) { background-color: #fce4ec; color: #c2185b; transform: rotate(1deg); }
+        .flag-item:nth-child(6) { background-color: #e0f2f1; color: #00796b; transform: rotate(2deg); }
+        .flag-item:nth-child(7) { background-color: #f3e5f5; color: #7b1fa2; transform: rotate(3deg); }
+        .flag-item:nth-child(8) { background-color: #fff3e0; color: #ef6c00; transform: rotate(4deg); }
+        .flag-item:nth-child(9) { background-color: #e3f2fd; color: #1976d2; transform: rotate(5deg); }
+        .flag-item:nth-child(10) { background-color: #fbe9e7; color: #d84315; transform: rotate(6deg); }
+        .flag-item:nth-child(11) { background-color: #e8eaf6; color: #303f9f; transform: rotate(7deg); }
 
-        .word-gap { width: 15px; }
+        .word-gap { width: 10px; flex-shrink: 0; }
 
-        /* КОЛЛАЖ ИЗ ФОТО */
-        .photo-collage {
+        /* --- БЛОК С ФОТО, ИМЕНАМИ И СТРЕЛОЧКАМИ --- */
+        .hero-photos {
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            max-width: 500px;
-            height: 350px;
-            margin: 10px auto 30px auto;
+            max-width: 600px;
+            margin: 40px auto 20px auto;
+            padding: 0 40px; /* Отступы по бокам, чтобы имена не обрезались */
         }
 
-        /* Настройки полароида */
-        .collage-item {
-            position: absolute;
-            width: 220px;
-            background: #fff;
-            padding: 10px 10px 45px 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, z-index 0.3s;
-        }
-
-        .collage-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            border: 1px solid #eee;
-        }
-
-        /* Подпись на полароиде (ЕДИНСТВЕННАЯ) */
-        .collage-item .name {
-            font-family: 'Caveat', cursive;
-            font-size: 2rem;
-            color: var(--red);
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Левое фото (Саша) */
-        .collage-item.left {
-            top: 0;
-            left: 10px;
-            transform: rotate(-6deg);
-            z-index: 1;
-        }
-
-        /* Правое фото (Юля) */
-        .collage-item.right {
-            top: 40px;
-            right: 10px;
-            transform: rotate(6deg);
+        /* Контейнер теперь точно совпадает с размерами рамки */
+        .photo-wrapper {
+            position: relative;
+            width: 45%; 
+            max-width: 220px;
             z-index: 2;
         }
 
-        /* Эффект при наведении */
-        .collage-item:hover {
-            transform: rotate(0deg) scale(1.05);
-            z-index: 10;
-        }
-
-        /* ТЕКСТ НИЖЕ */
-        .names-title { 
-            font-size: 4.5rem; 
-            margin: 10px 0; 
-            line-height: 1.1;
+        .hero-polaroid { 
+            margin: 0; /* Убираем внешние отступы рамки */
+            width: 100%;
         }
         
+        .hero-polaroid img { 
+            aspect-ratio: 1 / 1; 
+            height: auto; 
+            object-fit: cover; 
+            width: 100%;
+        }
+
+        /* Имена (позиционируем относительно wrapper) */
+        .name-label {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--red);
+            white-space: nowrap;
+            z-index: 5;
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        }
+        
+        /* Имя Саши (слева от фото) */
+        .name-left {
+            top: 50%;
+            left: -90px; /* Сдвиг влево */
+            transform: translateY(-50%) rotate(-10deg);
+        }
+
+        /* Имя Юли (справа от фото) */
+        .name-right {
+            top: 50%;
+            right: -90px; /* Сдвиг вправо */
+            transform: translateY(-50%) rotate(10deg);
+        }
+
+        /* Стрелочки */
+        .arrow-left {
+            position: absolute;
+            top: 50%;
+            left: -30px; /* Прямо у края фото */
+            width: 30px;
+            height: 20px;
+            transform: translateY(-50%) rotate(20deg);
+            z-index: 4;
+        }
+        .arrow-left::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-bottom: 2px solid var(--red);
+            border-left: 2px solid var(--red);
+            border-radius: 0 0 0 50%;
+        }
+        .arrow-left::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid var(--red);
+            border-right: 2px solid var(--red);
+            transform: rotate(45deg);
+        }
+
+        .arrow-right {
+            position: absolute;
+            top: 50%;
+            right: -30px; /* Прямо у края фото */
+            width: 30px;
+            height: 20px;
+            transform: translateY(-50%) rotate(-20deg);
+            z-index: 4;
+        }
+        .arrow-right::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-top: 2px solid var(--red);
+            border-right: 2px solid var(--red);
+            border-radius: 50% 50% 0 0;
+        }
+        .arrow-right::after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid var(--red);
+            border-left: 2px solid var(--red);
+            transform: rotate(-45deg);
+        }
+
+        .ampersand { 
+            font-size: 2.5rem; 
+            color: var(--red); 
+            margin: 0 10px; 
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+            z-index: 5;
+        }
+
+        .names-title { font-size: 4.5rem; margin: 25px 0 15px 0; }
         .hero-date {
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--green);
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
 
@@ -231,20 +302,20 @@
             background-color: rgba(255, 255, 255, 0.9);
             color: var(--red);
             border: 2px dashed var(--red);
-            padding: 12px 35px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-family: 'Caveat', cursive;
             font-size: 1.8rem;
             cursor: pointer;
             transition: 0.3s;
             font-weight: 600;
+            margin-top: 10px;
             text-decoration: none; 
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
         }
         .btn-open:hover {
             background-color: var(--red);
             color: white;
-            transform: translateY(-2px);
+            transform: scale(1.05);
         }
 
         /* --- ОСТАЛЬНЫЕ СТИЛИ --- */
@@ -326,37 +397,10 @@
 
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
-            .hero-section { padding: 20px 10px; } 
-            
-            /* Уменьшаем гирлянду на телефоне */
-            .garland-wrapper { height: 90px; margin-bottom: 10px; }
-            .flags-row { gap: 3px; padding-top: 10px; }
-            .flag { width: 30px; height: 40px; font-size: 1.5rem; }
-            .word-gap { width: 8px; }
-            .garland-wrapper::before { height: 35px; }
-
-            /* Перестраиваем коллаж на телефоне (чтобы не было наложений) */
-            .photo-collage {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                height: auto;
-                gap: 15px;
-                margin-bottom: 30px;
-            }
-            .collage-item {
-                position: relative;
-                width: 45%;
-                padding: 8px 8px 35px 8px;
-            }
-            .collage-item img { height: 150px; }
-            .collage-item.left { top: 0; left: 0; transform: rotate(-3deg); }
-            .collage-item.right { top: 0; right: 0; transform: rotate(3deg); }
-            .collage-item .name { font-size: 1.5rem; bottom: 2px; }
-
-            .names-title { font-size: 2.8rem; }
-            .hero-date { font-size: 2rem; margin-bottom: 15px; }
-            .btn-open { padding: 10px 25px; font-size: 1.5rem; }
+            .hero-section { padding: 20px 5px 10px 5px; } 
+            .names-title { font-size: 2.8rem; margin: 10px 0; }
+            .hero-date { font-size: 2rem; margin-bottom: 10px; }
+            .btn-open { padding: 10px 25px; font-size: 1.5rem; margin-top: 5px; }
             
             .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; padding: 10px; }
             .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
@@ -376,7 +420,32 @@
             .timeline-icon img { width: 35px; }
 
             .place-polaroid, .final-polaroid { max-width: 90%; }
+
+            /* Флажки меньше на телефоне */
+            .flag-item { width: 30px; height: 40px; font-size: 1.5rem; }
+            .word-gap { width: 5px; }
+            .garland-container::before { top: 5px; height: 20px; }
+            .garland-container.lower::before { top: 10px; height: 25px; }
+            
             .dress-code-photos .polaroid { width: 95%; }
+
+            /* Уменьшаем имена и стрелки на телефоне */
+            .hero-photos { padding: 0 20px; margin-top: 20px; }
+            .name-label { font-size: 1.5rem; }
+            .name-left { left: -60px; }
+            .name-right { right: -60px; }
+            .arrow-left { left: -15px; }
+            .arrow-right { right: -15px; }
+            .ampersand { font-size: 2rem; margin: 0 5px; }
+        }
+
+        @media (max-width: 480px) {
+            /* На очень маленьких экранах имена уходят вниз под фото */
+            .hero-photos { padding: 0 10px; margin-bottom: 50px; }
+            .name-left { top: auto; bottom: -35px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+            .name-right { top: auto; bottom: -35px; right: 50%; transform: translateX(50%) rotate(0deg); }
+            .arrow-left, .arrow-right { display: none; }
+            .ampersand { font-size: 2rem; margin: 0 5px; }
         }
 
         @media (max-width: 380px) {
@@ -385,9 +454,7 @@
             .countdown span { font-size: 1.1rem; }
             .place-address { font-size: 0.9rem; }
             .timeline-time { font-size: 2.4rem; }
-            
-            .flag { width: 25px; height: 35px; font-size: 1.2rem; }
-            .collage-item img { height: 120px; }
+            .flag-item { width: 25px; height: 35px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -396,41 +463,59 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Спасибо! Ваш ответ отправлен.'); submitted = false; }"></iframe>
 
     <section class="hero-section" id="hero">
-        <!-- ГИРЛЯНДА -->
-        <div class="garland-wrapper">
-            <div class="flags-row">
-                <div class="flag">У</div>
-                <div class="word-gap"></div>
-                <div class="flag">Н</div>
-                <div class="flag">А</div>
-                <div class="flag">С</div>
-                <div class="word-gap"></div>
-                <div class="flag">С</div>
-                <div class="flag">В</div>
-                <div class="flag">А</div>
-                <div class="flag">Д</div>
-                <div class="flag">Ь</div>
-                <div class="flag">Б</div>
-                <div class="flag">А</div>
+        <!-- ГИРЛЯНДА 1: У НАС -->
+        <div class="garland-block">
+            <div class="garland-container">
+                <div class="flags-wrapper">
+                    <div class="flag-item">У</div>
+                    <div class="word-gap"></div>
+                    <div class="flag-item">Н</div>
+                    <div class="flag-item">А</div>
+                    <div class="flag-item">С</div>
+                </div>
             </div>
         </div>
 
-        <!-- КОЛЛАЖ ИЗ ФОТОГРАФИЙ -->
-        <div class="photo-collage">
-            <!-- Фото Саши -->
-            <div class="collage-item left">
-                <img src="img/alex.jpg" alt="Александр">
-                <div class="name">Александр</div>
+        <!-- ГИРЛЯНДА 2: СВАДЬБА -->
+        <div class="garland-block">
+            <div class="garland-container lower">
+                <div class="flags-wrapper">
+                    <div class="flag-item">С</div>
+                    <div class="flag-item">В</div>
+                    <div class="flag-item">А</div>
+                    <div class="flag-item">Д</div>
+                    <div class="flag-item">Ь</div>
+                    <div class="flag-item">Б</div>
+                    <div class="flag-item">А</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК С ФОТО, ИМЕНАМИ И СТРЕЛОЧКАМИ -->
+        <div class="hero-photos">
+            <!-- Левое фото (Саша) -->
+            <div class="photo-wrapper">
+                <div class="polaroid hero-polaroid tilt-left">
+                    <img src="img/alex.jpg" alt="Александр">
+                </div>
+                <!-- Имя и стрелка для Саши -->
+                <div class="name-label name-left">Александр</div>
+                <div class="arrow-left"></div>
             </div>
             
-            <!-- Фото Юли -->
-            <div class="collage-item right">
-                <img src="img/julia.jpg" alt="Юлия">
-                <div class="name">Юлия</div>
+            <div class="ampersand">&</div>
+            
+            <!-- Правое фото (Юля) -->
+            <div class="photo-wrapper">
+                <div class="polaroid hero-polaroid tilt-right">
+                    <img src="img/julia.jpg" alt="Юлия">
+                </div>
+                <!-- Имя и стрелка для Юли -->
+                <div class="name-label name-right">Юлия</div>
+                <div class="arrow-right"></div>
             </div>
         </div>
 
-        <!-- ГЛАВНЫЙ ТЕКСТ -->
         <h1 class="handwritten names-title">Александр & Юлия</h1>
         <div class="hero-date">13 Июня 2027</div>
 
