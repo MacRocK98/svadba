@@ -2,20 +2,55 @@
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
+// --- ГЕНЕРАЦИЯ ГАЛЕРЕИ ---
+const galleryGrid = document.getElementById('gallery-grid');
+if (galleryGrid) {
+    for (let i = 1; i <= 6; i++) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="gallery-img" loading="lazy" decoding="async">`;
+        galleryGrid.appendChild(item);
+    }
+}
+
+// --- ГЕНЕРАЦИЯ КАЛЕНДАРЯ ---
+const calendarGrid = document.getElementById('calendar-grid');
+if (calendarGrid) {
+    const dayNames = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+    dayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'day day-name';
+        el.textContent = name;
+        calendarGrid.appendChild(el);
+    });
+
+    // Пустая ячейка (если 1 число попадает не на понедельник, тут 1 число - вторник)
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'day';
+    calendarGrid.appendChild(emptyCell);
+
+    for (let i = 1; i <= 30; i++) {
+        const el = document.createElement('div');
+        el.className = i === 13 ? 'day wedding-day' : 'day';
+        el.textContent = i;
+        calendarGrid.appendChild(el);
+    }
+}
+
 // --- ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
-const galleryImages = document.querySelectorAll('.gallery-img');
 
-if (lightbox && galleryImages.length > 0) {
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
+if (lightbox && galleryGrid) {
+    // Используем делегирование событий, так как галерея создается динамически
+    galleryGrid.addEventListener('click', (e) => {
+        if (e.target.classList.contains('gallery-img')) {
+            lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
-        });
+        }
     });
 
     const closeLightbox = () => {
