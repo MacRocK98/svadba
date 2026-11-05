@@ -344,15 +344,24 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 .timeline-desc { font-weight: 500; font-size: 1.1rem; }
 
 /* --- ДРЕСС-КОД (ПО ЦЕНТРУ, БЕЗ ФОНА) --- */
-.color-palette { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
-.color-circle { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.15); border: 3px solid var(--white); }
-.dress-img {
-    display: block;
-    width: 100%;
-    max-width: 512px;
-    height: auto;
-    margin: 30px auto 0;
-    border-radius: 10px;
+.color-palette {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(6px, 2vw, 15px);
+    margin: 30px auto;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 4px 0;
+}
+.color-circle {
+    flex: 0 1 auto;
+    width: clamp(32px, 7vw, 60px);
+    height: clamp(32px, 7vw, 60px);
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border: 3px solid var(--white);
 }
 
 /* --- АНКЕТА --- */
@@ -478,7 +487,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .timeline-icon-box img { width: 30px; height: 30px; }
     .timeline-time { font-size: 2rem; }
     .timeline-desc { font-size: 1rem; }
-    .color-circle { width: 45px; height: 45px; }
     .contact-card { padding: 25px; }
     .contact-card img.avatar { width: 100px; height: 100px; }
     .contact-phone { font-size: 1.3rem; }
@@ -492,7 +500,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .names-title { font-size: 2.4rem; }
     .hero-date { font-size: 1.8rem; }
     .flag { width: 22px; height: 30px; font-size: 1.1rem; }
-    .color-circle { width: 35px; height: 35px; }
     .timeline::before { left: 20px; }
     .timeline-item { padding-left: 60px; }
     .timeline-icon-box { width: 45px; height: 45px; }
