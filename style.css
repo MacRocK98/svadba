@@ -111,17 +111,18 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
     box-shadow: var(--shadow-sm);
 }
-.flag:nth-child(1) { background-color: #ffe5e5; color: #e63946; transform: rotate(-5deg); }
-.flag:nth-child(3) { background-color: #e5f3ff; color: #457b9d; transform: rotate(-3deg); }
-.flag:nth-child(4) { background-color: #e8f5e9; color: #2a9d8f; transform: rotate(-1deg); }
-.flag:nth-child(5) { background-color: #fff9db; color: #f4a261; transform: rotate(1deg); }
-.flag:nth-child(7) { background-color: #fce4ec; color: #c2185b; transform: rotate(3deg); }
-.flag:nth-child(8) { background-color: #e0f2f1; color: #00796b; transform: rotate(5deg); }
-.flag:nth-child(9) { background-color: #f3e5f5; color: #7b1fa2; transform: rotate(7deg); }
-.flag:nth-child(10) { background-color: #fff3e0; color: #ef6c00; transform: rotate(9deg); }
-.flag:nth-child(11) { background-color: #e3f2fd; color: #1976d2; transform: rotate(11deg); }
-.flag:nth-child(12) { background-color: #fbe9e7; color: #d84315; transform: rotate(13deg); }
-.flag:nth-child(13) { background-color: #e8eaf6; color: #303f9f; transform: rotate(15deg); }
+/* Флажки БЕЗ наклона */
+.flag:nth-child(1) { background-color: #ffe5e5; color: #e63946; }
+.flag:nth-child(3) { background-color: #e5f3ff; color: #457b9d; }
+.flag:nth-child(4) { background-color: #e8f5e9; color: #2a9d8f; }
+.flag:nth-child(5) { background-color: #fff9db; color: #f4a261; }
+.flag:nth-child(7) { background-color: #fce4ec; color: #c2185b; }
+.flag:nth-child(8) { background-color: #e0f2f1; color: #00796b; }
+.flag:nth-child(9) { background-color: #f3e5f5; color: #7b1fa2; }
+.flag:nth-child(10) { background-color: #fff3e0; color: #ef6c00; }
+.flag:nth-child(11) { background-color: #e3f2fd; color: #1976d2; }
+.flag:nth-child(12) { background-color: #fbe9e7; color: #d84315; }
+.flag:nth-child(13) { background-color: #e8eaf6; color: #303f9f; }
 
 .word-gap { width: 15px; }
 
@@ -152,7 +153,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     font-size: 2.2rem;
     color: var(--red);
     position: absolute;
-    bottom: 15px; /* Опустил имя ниже */
+    bottom: 15px;
     left: 0;
     width: 100%;
     text-align: center;
@@ -384,7 +385,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .collage-item img { height: 150px; }
     .collage-item.left { top: 0; left: 0; transform: rotate(-3deg); }
     .collage-item.right { top: 0; right: 0; transform: rotate(3deg); }
-    .collage-item .name { font-size: 1.5rem; bottom: 10px; } /* Опустил и на телефоне */
+    .collage-item .name { font-size: 1.5rem; bottom: 10px; }
     .names-title { font-size: 3rem; }
     .hero-date { font-size: 2.2rem; margin-bottom: 15px; }
     .hero-timer-title { font-size: 1.4rem; }
