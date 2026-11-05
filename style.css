@@ -234,7 +234,13 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     overflow: hidden;
     text-align: center;
 }
-.place-widget-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+.place-widget-img { 
+    width: 100%; 
+    height: auto; 
+    max-height: 400px; 
+    object-fit: cover; 
+    display: block; 
+}
 .place-widget-content { padding: 30px 20px; }
 .place-widget-address { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
 
@@ -404,6 +410,11 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .calendar { grid-template-columns: repeat(7, 30px); gap: 5px; }
     .calendar .day { height: 30px; width: 30px; font-size: 0.9rem; }
     .story-date .handwritten { font-size: 2.5rem; }
+    
+    /* Фото места на телефоне */
+    .place-widget-img {
+        max-height: 250px;
+    }
 }
 
 @media (max-width: 380px) {
