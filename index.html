@@ -1,197 +1,261 @@
-// --- ЗАЩИТА ОТ СКРОЛЛА ВНИЗ ---
-if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Малышата</title>
 
-// --- ГЕНЕРАЦИЯ ГАЛЕРЕИ ---
-const galleryGrid = document.getElementById('gallery-grid');
-if (galleryGrid) {
-    for (let i = 1; i <= 6; i++) {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="lightbox-trigger" style="cursor: zoom-in;" loading="lazy" decoding="async">`;
-        galleryGrid.appendChild(item);
-    }
-}
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Малышата">
+    <meta property="og:description" content="Мы женимся! Будем счастливы видеть тебя на нашем празднике.">
+    <meta property="og:image" content="img/og-preview.jpg">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
 
-// --- ГЕНЕРАЦИЯ КАЛЕНДАРЯ ---
-const calendarGrid = document.getElementById('calendar-grid');
-if (calendarGrid) {
-    const dayNames = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
-    dayNames.forEach(name => {
-        const el = document.createElement('div');
-        el.className = 'day day-name';
-        el.textContent = name;
-        calendarGrid.appendChild(el);
-    });
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
-    const emptyCell = document.createElement('div');
-    emptyCell.className = 'day';
-    calendarGrid.appendChild(emptyCell);
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-    for (let i = 1; i <= 30; i++) {
-        const el = document.createElement('div');
-        el.className = i === 13 ? 'day wedding-day' : 'day';
-        el.textContent = i;
-        calendarGrid.appendChild(el);
-    }
-}
+    <link rel="preload" as="image" href="img/alex.jpg">
+    <link rel="preload" as="image" href="img/julia.jpg">
 
-// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ---
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
 
-if (lightbox) {
-    document.body.addEventListener('click', (e) => {
-        if (e.target.classList.contains('lightbox-trigger')) {
-            lightboxImg.src = e.target.src;
-            lightboxImg.alt = e.target.alt;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    });
+    <audio id="bg-music" loop preload="none">
+        <source src="music/our-song.mp3" type="audio/mpeg">
+        <source src="music/our-song.ogg" type="audio/ogg">
+    </audio>
 
-    const closeLightbox = () => {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    };
+    <div class="music-btn" id="music-btn" role="button" tabindex="0"
+         aria-label="Включить музыку" aria-pressed="false">🎵</div>
 
-    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
-    });
-}
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="Отправка формы"></iframe>
 
-// --- ТАЙМЕР ---
-const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
-const timerContainer = document.getElementById('hero-timer');
-const timer = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
+    <!-- ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="Увеличенное фото" id="lightbox-img">
+    </div>
 
-    if (distance < 0) {
-        clearInterval(timer);
-        const timerBlock = document.querySelector('.hero-timer');
-        if (timerBlock) timerBlock.innerHTML = "<h3>Свадьба состоялась!</h3>";
-        return;
-    }
+    <!-- ШАПКА -->
+    <section class="hero-section" id="hero">
+        <div class="garland-wrapper">
+            <div class="flags-row">
+                <div class="flag">У</div><div class="word-gap"></div><div class="flag">Н</div><div class="flag">А</div><div class="flag">С</div>
+                <div class="word-gap"></div>
+                <div class="flag">С</div><div class="flag">В</div><div class="flag">А</div><div class="flag">Д</div><div class="flag">Ь</div><div class="flag">Б</div><div class="flag">А</div>
+            </div>
+        </div>
 
-    if (distance < 86400000 && timerContainer) {
-        timerContainer.classList.add('urgent');
-    } else if (timerContainer) {
-        timerContainer.classList.remove('urgent');
-    }
+        <div class="photo-collage">
+            <div class="collage-item left">
+                <img src="img/alex.jpg" alt="Александр" width="240" height="200" class="lightbox-trigger" style="cursor: zoom-in;">
+                <div class="name">Александр</div>
+            </div>
+            <div class="collage-item right">
+                <img src="img/julia.jpg" alt="Юлия" width="240" height="200" class="lightbox-trigger" style="cursor: zoom-in;">
+                <div class="name">Юлия</div>
+            </div>
+        </div>
 
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
+        <h1 class="visually-hidden">Свадьба Александра и Юлии — 13 июня 2027</h1>
+        <p class="personal-greeting" id="personal-greeting"></p>
 
-    if (daysEl) daysEl.innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-    if (hoursEl) hoursEl.innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    if (minutesEl) minutesEl.innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    if (secondsEl) secondsEl.innerText = Math.floor((distance % (1000 * 60)) / 1000);
-}, 1000);
+        <div class="hero-date" style="margin-top: 20px;">13 Июня 2027</div>
 
-// --- МУЗЫКА (ИСХОДНАЯ ЛОГИКА) ---
-const audio = document.getElementById('bg-music');
-const musicBtn = document.getElementById('music-btn');
+        <div class="hero-timer-title">До нашей свадьбы осталось:</div>
+        <div class="hero-timer" id="hero-timer">
+            <div><span id="days">0</span><small>дней</small></div>
+            <div><span id="hours">0</span><small>часов</small></div>
+            <div><span id="minutes">0</span><small>минут</small></div>
+            <div><span id="seconds">0</span><small>секунд</small></div>
+        </div>
 
-if (musicBtn && audio) {
-    musicBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            musicBtn.classList.add('playing');
-        } else {
-            audio.pause();
-            musicBtn.classList.remove('playing');
-        }
-    });
-}
+        <button class="btn-open" id="btn-open">Открыть приглашение</button>
+    </section>
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ИСХОДНАЯ ЛОГИКА) ---
-const btnOpen = document.getElementById('btn-open');
-if (btnOpen) {
-    btnOpen.addEventListener('click', () => {
-        document.body.classList.remove('locked');
+    <div class="container" id="main-content">
 
-        if (audio && audio.paused) {
-            audio.play()
-                .then(() => musicBtn.classList.add('playing'))
-                .catch(e => console.log('Музыка заблокирована'));
-        }
+        <!-- БЛОК 1: ПРИВЕТСТВИЕ -->
+        <section class="section fade-in" aria-labelledby="greeting-title">
+            <h2 class="handwritten section-title" id="greeting-title">Узнали этих малышей?</h2>
+            <p class="intro-text">
+                Спешим поделиться с тобой радостью — мы женимся!<br><br>
+                Мы верим и надеемся, что этот день станет красивым началом долгой и счастливой жизни.<br><br>
+                И мы не представляем этот праздник без тебя, близкого и дорогого нам человека.<br><br>
+                Раздели с нами нашу радость, подари свою поддержку и добрые пожелания!
+            </p>
+        </section>
 
-        const content = document.getElementById('main-content');
-        if (content) {
-            setTimeout(() => content.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-        }
-    });
-}
+        <!-- БЛОК 2: ГАЛЕРЕЯ -->
+        <section class="section fade-in" aria-labelledby="gallery-title">
+            <h2 class="handwritten section-title" id="gallery-title">Наши моменты</h2>
+            <p class="intro-text">
+                Несколько теплых воспоминаний из нашей жизни.<br>
+                <span style="font-size: 0.9em; opacity: 0.8; font-style: italic;">(Нажмите на любое фото, чтобы посмотреть его в полном размере)</span>
+            </p>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </section>
 
-// --- ИМЯ ГОСТЯ ИЗ URL ---
-const urlParams = new URLSearchParams(window.location.search);
-const nama = (urlParams.get('n') || '').trim();
-if (nama) {
-    const input = document.getElementById('nama');
-    if (input) input.value = nama;
+        <!-- БЛОК 3: МЕСТО -->
+        <section class="section fade-in" aria-labelledby="place-title">
+            <h2 class="handwritten section-title" id="place-title">Место</h2>
+            <div class="map-container" style="margin-top: 0;">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1f4b5384142685655bd9fdc0b911eec2bb5530228941aa56e280d2576e7d8580&source=constructor" width="100%" height="419" frameborder="0" style="border-radius: 15px;"></iframe>
+            </div>
+        </section>
 
-    const greeting = document.getElementById('personal-greeting');
-    if (greeting) greeting.textContent = `${nama}, мы женимся!`;
-}
+        <!-- БЛОК 4: ИСТОРИЯ -->
+        <section class="section fade-in" aria-labelledby="story-title">
+            <h2 class="handwritten section-title" id="story-title">Наша история</h2>
+            <p class="intro-text" style="text-align: center;">
+                Это официальное приглашение на нашу свадьбу! А получил ты его потому, что мы очень хотим видеть тебя в этот день рядом с нами!
+            </p>
+            <div class="story-date">
+                <span class="handwritten">13</span>
+                <span class="handwritten">Июня</span>
+                <span class="handwritten">2027</span>
+            </div>
 
-// --- ОТПРАВКА ФОРМЫ ---
-let submitted = false;
-const form = document.getElementById('my-form');
-const submitBtn = document.getElementById('btn-submit');
-const thanksBlock = document.getElementById('rsvp-thanks');
-const thanksText = document.getElementById('rsvp-thanks-text');
+            <div class="calendar-wrapper">
+                <div class="calendar" id="calendar-grid"></div>
+            </div>
+        </section>
 
-if (form) {
-    form.addEventListener("submit", (e) => {
-        const honey = form.querySelector('input[name="website"]');
-        if (honey && honey.value) {
-            e.preventDefault();
-            return;
-        }
+        <!-- БЛОК 5: ТАЙМИНГ -->
+        <section class="section fade-in" aria-labelledby="timeline-title">
+            <h2 class="handwritten section-title" id="timeline-title">Тайминг</h2>
+            <p class="subtitle-handwritten">Самого важного дня</p>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/furshet.png" alt="Сбор гостей" loading="lazy" decoding="async"></div><div class="timeline-time">14:00</div><div class="timeline-desc">Сбор гостей</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/kolco.webp" alt="Фуршет" loading="lazy" decoding="async"></div><div class="timeline-time">14:30</div><div class="timeline-desc">Фуршет</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/svadba.webp" alt="Выездная церемония" loading="lazy" decoding="async"></div><div class="timeline-time">15:00</div><div class="timeline-desc">Выездная церемония</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/camera.webp" alt="Памятная фотосессия" loading="lazy" decoding="async"></div><div class="timeline-time">15:30</div><div class="timeline-desc">Памятная фотосессия с молодоженами</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/bokal.png" alt="Банкет" loading="lazy" decoding="async"></div><div class="timeline-time">16:00</div><div class="timeline-desc">Банкет</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/tort.webp" alt="Вынос свадебного торта" loading="lazy" decoding="async"></div><div class="timeline-time">20:00</div><div class="timeline-desc">Вынос свадебного торта</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/fireworks.webp" alt="Фейерверк" loading="lazy" decoding="async"></div><div class="timeline-time">21:00</div><div class="timeline-desc">Волшебный огненный финал вечера</div></div>
+            </div>
+        </section>
 
-        const nameInput = document.getElementById('nama');
-        if (nameInput && !nameInput.value.trim()) {
-            e.preventDefault();
-            nameInput.classList.add('is-invalid');
-            nameInput.focus();
-            return;
-        }
-        if (nameInput) nameInput.classList.remove('is-invalid');
+        <!-- БЛОК 6: ДРЕСС-КОД -->
+        <section class="section fade-in" aria-labelledby="dress-title">
+            <h2 class="handwritten section-title" id="dress-title">Дресс-код</h2>
+            <p class="intro-text">
+                Для нас главное - ваше присутствие!<br><br>
+                Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму нашей свадьбы.<br><br>
+                Пожалуйста, воздержитесь от белых и красных оттенков, а также от каких-либо принтов (цветочки, горошек, рисунки и т.п)
+            </p>
+            <div class="color-palette">
+                <div class="color-circle" style="background-color: #4a3a32;"></div>
+                <div class="color-circle" style="background-color: #a9927f;"></div>
+                <div class="color-circle" style="background-color: #d5c3b3;"></div>
+                <div class="color-circle" style="background-color: #dfd1bc;"></div>
+                <div class="color-circle" style="background-color: #b5c4a1;"></div>
+                <div class="color-circle" style="background-color: #6b7c59;"></div>
+            </div>
+            <img src="img/politra.webp" alt="Дресс-код" class="dress-img" loading="lazy" decoding="async" width="512" height="249">
+        </section>
 
-        submitted = true;
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправляем…';
-        }
-    });
-}
+        <!-- БЛОК 7: ДЕТАЛИ -->
+        <section class="section fade-in" aria-labelledby="details-title">
+            <h2 class="handwritten section-title" id="details-title">Детали</h2>
+            <div class="wishes-text">
+                <p style="margin-bottom: 15px;">Для нас главное - ваше присутствие!</p>
+                <p style="margin-bottom: 15px;">Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму нашей свадьбы.</p>
+                <p>Пожалуйста, воздержитесь от белых и красных оттенков, а также от каких-либо принтов (цветочки, горошек, рисунки и т.п)</p>
+            </div>
+        </section>
 
-// --- ОБРАБОТЧИК iframe ---
-const hiddenIframe = document.getElementById('hidden_iframe');
-if (hiddenIframe) {
-    hiddenIframe.addEventListener('load', () => {
-        if (!submitted) return;
-        submitted = false;
+        <!-- БЛОК 8: АНКЕТА -->
+        <section class="section fade-in" aria-labelledby="rsvp-title">
+            <div class="rsvp-box">
+                <h2 class="handwritten rsvp-title" id="rsvp-title">Анкета</h2>
+                <p class="rsvp-desc">Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
+                <div class="rsvp-date">13.06.2027</div>
 
-        if (form) form.hidden = true;
-        if (thanksBlock) {
-            thanksBlock.hidden = false;
-            if (thanksText && nama) {
-                thanksText.textContent = `Спасибо, ${nama}! Мы очень рады, что ты будешь с нами.`;
-            }
-            thanksBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Подтвердить';
-        }
-    });
-}
+                <form action="https://script.google.com/macros/s/AKfycbxnZXZbEQYaxdA3dW_J8ENGXXXgpIbDPLLkY7cXNmDBm9YmzTxGMm_uJyWQRRJNN36hPA/exec" method="POST" id="my-form" target="hidden_iframe">
+                    <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                        <label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama">Ваше Имя</label>
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Придете ли вы?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="status" value="Приду" required> Обязательно буду!</label>
+                            <label class="radio-item"><input type="radio" name="status" value="Не приду"> К сожалению, не смогу</label>
+                            <label class="radio-item"><input type="radio" name="status" value="Позже"> Дам ответ позже</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlah">Количество гостей (включая вас)</label>
+                        <input type="number" class="form-control" name="jumlah" id="jumlah" min="1" max="5" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Нужен ли вам ночлег?</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Да, нужен" required> Да, нужен</label>
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Нет, не нужен"> Нет, не нужен</label>
+                            <label class="radio-item"><input type="radio" name="nochleg" value="Пока не знаю"> Пока не знаю</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btn-submit">Подтвердить</button>
+                </form>
+
+                <div class="rsvp-thanks" id="rsvp-thanks" hidden>
+                    <div class="rsvp-thanks-heart">❤</div>
+                    <h3 class="handwritten">Спасибо!</h3>
+                    <p id="rsvp-thanks-text">Твой ответ отправлен. Мы очень рады!</p>
+                    <p class="handwritten" style="font-size: 1.8rem; color: var(--green); margin-top: 20px;">Не забудьте добавить эту дату в свой календарь!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК 9: КОНТАКТЫ -->
+        <section class="section fade-in" aria-labelledby="contacts-title">
+            <h2 class="handwritten section-title" id="contacts-title">Контакты</h2>
+            <p class="intro-text" style="margin-bottom: 30px;">По всем вопросам, связанным с торжественным вечером и сюрпризами, просьба обращаться к свадебному организатору Оксане.</p>
+            <div class="contact-card">
+                <img class="avatar" src="img/oksana.PNG" alt="Оксана" loading="lazy" decoding="async">
+                <h3 class="contact-name">Оксана</h3>
+                <a href="tel:+79251227252" class="btn-outline" style="margin-bottom: 30px; margin-top: 20px;">Написать</a>
+
+                <p class="max-text">А также приглашаем вас вступить в общий чат в MAX</p>
+
+                <a href="https://max.ru/join/vfZ-DhLhPPh5XFpMMZ7lOC8dTs2qhe_QoFZ_QWH7Fo4" target="_blank" rel="noopener" class="max-btn">
+                    <img src="img/max.jpg" alt="MAX" loading="lazy" decoding="async">
+                    <span>Вступить в чат</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- БЛОК 10: ФИНАЛ -->
+        <section class="section fade-in" style="margin-bottom: 20px;" aria-labelledby="final-title">
+            <div class="final-heart pulsing-heart">❤</div>
+            <h2 class="handwritten final-title" id="final-title">До скорой встречи!</h2>
+            <p class="final-text">С любовью,<br>Александр и Юлия</p>
+
+            <div class="final-polaroid" style="margin-top: 40px;">
+                <img src="img/kon.jpg" alt="Разделите с нами этот момент" loading="lazy" decoding="async" class="lightbox-trigger" style="cursor: zoom-in;">
+                <p class="handwritten">Раздели с нами этот момент</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
