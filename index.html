@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Александр & Юлия — Свадьба</title>
-    
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Александр & Юлия — 13 июня 2027">
+    <meta property="og:description" content="Мы женимся! Будем счастливы видеть тебя на нашем празднике.">
+    <meta property="og:image" content="img/og-preview.jpg">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    
+
+    <link rel="preload" as="image" href="img/alex.jpg">
+    <link rel="preload" as="image" href="img/julia.jpg">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="locked">
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="none">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="music-btn" id="music-btn">🎵</div>
+    <div class="music-btn" id="music-btn" role="button" tabindex="0"
+         aria-label="Включить музыку" aria-pressed="false">🎵</div>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="Отправка формы"></iframe>
 
     <!-- ШАПКА -->
     <section class="hero-section" id="hero">
@@ -33,14 +49,17 @@
 
         <div class="photo-collage">
             <div class="collage-item left">
-                <img src="img/alex.jpg" alt="Александр">
+                <img src="img/alex.jpg" alt="Александр" width="240" height="200">
                 <div class="name">Александр</div>
             </div>
             <div class="collage-item right">
-                <img src="img/julia.jpg" alt="Юлия">
+                <img src="img/julia.jpg" alt="Юлия" width="240" height="200">
                 <div class="name">Юлия</div>
             </div>
         </div>
+
+        <h1 class="visually-hidden">Свадьба Александра и Юлии — 13 июня 2027</h1>
+        <p class="personal-greeting" id="personal-greeting"></p>
 
         <div class="hero-date" style="margin-top: 20px;">13 Июня 2027</div>
 
@@ -56,10 +75,10 @@
     </section>
 
     <div class="container" id="main-content">
-        
+
         <!-- БЛОК 1: ПРИВЕТСТВИЕ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Узнали этих малышей?</h2>
+        <section class="section fade-in" aria-labelledby="greeting-title">
+            <h2 class="handwritten section-title" id="greeting-title">Узнали этих малышей?</h2>
             <p class="intro-text">
                 Спешим поделиться с тобой радостью — мы женимся!<br><br>
                 Мы верим и надеемся, что этот день станет красивым началом долгой и счастливой жизни.<br><br>
@@ -69,38 +88,38 @@
         </section>
 
         <!-- БЛОК 2: ГАЛЕРЕЯ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Наши моменты</h2>
+        <section class="section fade-in" aria-labelledby="gallery-title">
+            <h2 class="handwritten section-title" id="gallery-title">Наши моменты</h2>
             <p class="intro-text">Несколько теплых воспоминаний из нашей жизни.</p>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="img/photo1.jpg" alt="Фото 1"></div>
-                <div class="gallery-item"><img src="img/photo2.jpg" alt="Фото 2"></div>
-                <div class="gallery-item"><img src="img/photo3.jpg" alt="Фото 3"></div>
-                <div class="gallery-item"><img src="img/photo4.jpg" alt="Фото 4"></div>
-                <div class="gallery-item"><img src="img/photo5.jpg" alt="Фото 5"></div>
-                <div class="gallery-item"><img src="img/photo6.jpg" alt="Фото 6"></div>
+                <div class="gallery-item"><img src="img/photo1.jpg" alt="Фото 1" loading="lazy" decoding="async" width="600" height="400"></div>
+                <div class="gallery-item"><img src="img/photo2.jpg" alt="Фото 2" loading="lazy" decoding="async" width="600" height="400"></div>
+                <div class="gallery-item"><img src="img/photo3.jpg" alt="Фото 3" loading="lazy" decoding="async" width="600" height="400"></div>
+                <div class="gallery-item"><img src="img/photo4.jpg" alt="Фото 4" loading="lazy" decoding="async" width="600" height="400"></div>
+                <div class="gallery-item"><img src="img/photo5.jpg" alt="Фото 5" loading="lazy" decoding="async" width="600" height="400"></div>
+                <div class="gallery-item"><img src="img/photo6.jpg" alt="Фото 6" loading="lazy" decoding="async" width="600" height="400"></div>
             </div>
         </section>
 
         <!-- БЛОК 3: МЕСТО -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Место</h2>
+        <section class="section fade-in" aria-labelledby="place-title">
+            <h2 class="handwritten section-title" id="place-title">Место</h2>
             <div class="place-widget">
-                <img src="img/banket.JPG" alt="Место" class="place-widget-img">
+                <img src="img/banket.JPG" alt="Место проведения" class="place-widget-img" loading="lazy" decoding="async" width="800" height="600">
                 <div class="place-widget-content">
                     <p class="place-widget-address">
                         <strong>Капитан club</strong><br>
                         Речной проезд, 17,<br>
                         Жуковский
                     </p>
-                    <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" class="btn-outline">Посмотреть на карте</a>
+                    <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" rel="noopener" class="btn-outline">Посмотреть на карте</a>
                 </div>
             </div>
         </section>
 
         <!-- БЛОК 4: ИСТОРИЯ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Наша история</h2>
+        <section class="section fade-in" aria-labelledby="story-title">
+            <h2 class="handwritten section-title" id="story-title">Наша история</h2>
             <p class="intro-text" style="text-align: center;">
                 Это официальное приглашение на нашу свадьбу! А получил ты его потому, что мы очень хотим видеть тебя в этот день рядом с нами!
             </p>
@@ -109,7 +128,7 @@
                 <span class="handwritten">Июня</span>
                 <span class="handwritten">2027</span>
             </div>
-            
+
             <div class="calendar-wrapper">
                 <div class="calendar">
                     <div class="day day-name">ПН</div><div class="day day-name">ВТ</div><div class="day day-name">СР</div><div class="day day-name">ЧТ</div><div class="day day-name">ПТ</div><div class="day day-name">СБ</div><div class="day day-name">ВС</div>
@@ -123,23 +142,23 @@
         </section>
 
         <!-- БЛОК 5: ТАЙМИНГ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Тайминг</h2>
+        <section class="section fade-in" aria-labelledby="timeline-title">
+            <h2 class="handwritten section-title" id="timeline-title">Тайминг</h2>
             <p class="subtitle-handwritten">Самого важного дня</p>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/furshet.png" alt="Фуршет"></div><div class="timeline-time">14:00</div><div class="timeline-desc">Сбор гостей</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/kolco.webp" alt="Кольцо"></div><div class="timeline-time">14:30</div><div class="timeline-desc">Фуршет</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/camera.webp" alt="Фотоаппарат"></div><div class="timeline-time">15:00</div><div class="timeline-desc">Выездная церемония</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/bokal.png" alt="Бокал"></div><div class="timeline-time">15:30</div><div class="timeline-desc">Памятная фотосессия с молодоженами</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/tort.webp" alt="Торт"></div><div class="timeline-time">16:00</div><div class="timeline-desc">Банкет</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/fireworks.webp" alt="Фейерверк"></div><div class="timeline-time">20:00</div><div class="timeline-desc">Вынос свадебного торта</div></div>
-                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/fireworks.webp" alt="Фейерверк"></div><div class="timeline-time">21:00</div><div class="timeline-desc">Волшебный огненный финал вечера</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/furshet.png" alt="Сбор гостей" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">14:00</div><div class="timeline-desc">Сбор гостей</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/kolco.webp" alt="Фуршет" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">14:30</div><div class="timeline-desc">Фуршет</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/camera.webp" alt="Фотоаппарат" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">15:00</div><div class="timeline-desc">Выездная церемония</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/bokal.png" alt="Бокал" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">15:30</div><div class="timeline-desc">Памятная фотосессия с молодоженами</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/tort.webp" alt="Торт" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">16:00</div><div class="timeline-desc">Банкет</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/fireworks.webp" alt="Вынос торта" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">20:00</div><div class="timeline-desc">Вынос свадебного торта</div></div>
+                <div class="timeline-item"><div class="timeline-icon-box"><img src="img/fireworks.webp" alt="Фейерверк" loading="lazy" decoding="async" width="35" height="35"></div><div class="timeline-time">21:00</div><div class="timeline-desc">Волшебный огненный финал вечера</div></div>
             </div>
         </section>
 
         <!-- БЛОК 6: ДРЕСС-КОД -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Дресс-код</h2>
+        <section class="section fade-in" aria-labelledby="dress-title">
+            <h2 class="handwritten section-title" id="dress-title">Дресс-код</h2>
             <p class="intro-text">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия.</p>
             <div class="color-palette">
                 <div class="color-circle" style="background-color: #4a3a32;"></div>
@@ -149,12 +168,12 @@
                 <div class="color-circle" style="background-color: #b5c4a1;"></div>
                 <div class="color-circle" style="background-color: #6b7c59;"></div>
             </div>
-            <img src="img/politra.webp" alt="Дресс-код" class="dress-img">
+            <img src="img/politra.webp" alt="Дресс-код" class="dress-img" loading="lazy" decoding="async" width="500" height="500">
         </section>
 
         <!-- БЛОК 7: ДЕТАЛИ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Детали</h2>
+        <section class="section fade-in" aria-labelledby="details-title">
+            <h2 class="handwritten section-title" id="details-title">Детали</h2>
             <div class="wishes-text">
                 <p style="margin-bottom: 15px;">Будем очень признательны, если Вы воздержитесь от криков «Горько». Ведь поцелуй — это знак выражения чувств, и он не может быть по заказу.</p>
                 <p>Пожалуйста, не переживайте о выборе цветов. Самым ценным подарком для нас будет Ваше присутствие, теплые объятия и искренние пожелания в этот день.</p>
@@ -162,18 +181,22 @@
         </section>
 
         <!-- БЛОК 8: АНКЕТА -->
-        <section class="section fade-in">
+        <section class="section fade-in" aria-labelledby="rsvp-title">
             <div class="rsvp-box">
-                <h2 class="handwritten rsvp-title">Анкета</h2>
+                <h2 class="handwritten rsvp-title" id="rsvp-title">Анкета</h2>
                 <p class="rsvp-desc">Пожалуйста, подтвердите свое присутствие на мероприятии до:</p>
                 <div class="rsvp-date">13.06.2027</div>
-                
+
                 <form action="https://script.google.com/macros/s/AKfycbxnZXZbEQYaxdA3dW_J8ENGXXXgpIbDPLLkY7cXNmDBm9YmzTxGMm_uJyWQRRJNN36hPA/exec" method="POST" id="my-form" target="hidden_iframe">
+                    <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                        <label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
+
                     <div class="form-group">
                         <label for="nama">Ваше Имя</label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Иван Иванов" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Придете ли вы?</label>
                         <div class="radio-group">
@@ -197,37 +220,45 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">Подтвердить</button>
+                    <button type="submit" class="btn-submit" id="btn-submit">Подтвердить</button>
                 </form>
+
+                <div class="rsvp-thanks" id="rsvp-thanks" hidden>
+                    <div class="rsvp-thanks-heart">❤</div>
+                    <h3 class="handwritten">Спасибо!</h3>
+                    <p id="rsvp-thanks-text">Твой ответ отправлен. Мы очень рады!</p>
+                    <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270613T140000%0ADTEND:20270613T230000%0ASUMMARY:Свадьба Александра и Юлии%0ALOCATION:Капитан club, Речной проезд 17, Жуковский%0ADESCRIPTION:Ждём тебя!%0AEND:VEVENT%0AEND:VCALENDAR"
+                       class="btn-outline" download="wedding.ics">Добавить в календарь</a>
+                </div>
             </div>
         </section>
 
         <!-- БЛОК 9: КОНТАКТЫ -->
-        <section class="section fade-in">
-            <h2 class="handwritten section-title">Контакты</h2>
+        <section class="section fade-in" aria-labelledby="contacts-title">
+            <h2 class="handwritten section-title" id="contacts-title">Контакты</h2>
             <p class="intro-text" style="margin-bottom: 30px;">По всем вопросам, связанным с торжественным вечером и сюрпризами, просьба обращаться к свадебному организатору Оксане.</p>
             <div class="contact-card">
-                <img class="avatar" src="img/oksana.PNG" alt="Оксана">
+                <img class="avatar" src="img/oksana.PNG" alt="Оксана" loading="lazy" decoding="async" width="140" height="140">
                 <h3 class="contact-name">Оксана</h3>
                 <div class="contact-phone">+7 (925) 122-72-52</div>
                 <a href="tel:+79251227252" class="btn-outline" style="margin-bottom: 30px;">Написать</a>
-                
+
                 <p class="max-text">А также приглашаем вас вступить в общий чат в MAX</p>
-                
-                <a href="https://max.ru/join/vfZ-DhLhPPh5XFpMMZ7lOC8dTs2qhe_QoFZ_QWH7Fo4" target="_blank" class="max-btn">
-                    <img src="img/max.jpg" alt="MAX">
+
+                <a href="https://max.ru/join/vfZ-DhLhPPh5XFpMMZ7lOC8dTs2qhe_QoFZ_QWH7Fo4" target="_blank" rel="noopener" class="max-btn">
+                    <img src="img/max.jpg" alt="MAX" loading="lazy" decoding="async" width="40" height="40">
                     <span>Вступить в чат</span>
                 </a>
             </div>
         </section>
 
         <!-- БЛОК 10: ФИНАЛ -->
-        <section class="section fade-in" style="margin-bottom: 20px;">
+        <section class="section fade-in" style="margin-bottom: 20px;" aria-labelledby="final-title">
             <div class="final-heart">❤</div>
-            <h2 class="handwritten final-title">До скорой встречи!</h2>
+            <h2 class="handwritten final-title" id="final-title">До скорой встречи!</h2>
             <p class="final-text">С любовью,<br>Юлия и Александр</p>
             <div class="final-polaroid">
-                <img src="img/kon.jpg" alt="Разделите с нами этот момент">
+                <img src="img/kon.jpg" alt="Разделите с нами этот момент" loading="lazy" decoding="async" width="400" height="500">
                 <p class="handwritten">Раздели с нами этот момент</p>
             </div>
         </section>
