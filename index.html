@@ -94,18 +94,12 @@
             </p>
         </section>
 
-        <!-- БЛОК 2: ГАЛЕРЕЯ -->
+        <!-- БЛОК 2: ГАЛЕРЕЯ (сокращено) -->
         <section class="section fade-in" aria-labelledby="gallery-title">
             <h2 class="handwritten section-title" id="gallery-title">Наши моменты</h2>
             <p class="intro-text">Несколько теплых воспоминаний из нашей жизни.</p>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="img/photo1.jpg" alt="Фото 1" class="gallery-img" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo2.jpg" alt="Фото 2" class="gallery-img" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo3.jpg" alt="Фото 3" class="gallery-img" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo4.jpg" alt="Фото 4" class="gallery-img" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo5.jpg" alt="Фото 5" class="gallery-img" loading="lazy" decoding="async"></div>
-                <div class="gallery-item"><img src="img/photo6.jpg" alt="Фото 6" class="gallery-img" loading="lazy" decoding="async"></div>
-            </div>
+            <!-- Галерея генерируется в script.js -->
+            <div class="gallery-grid" id="gallery-grid"></div>
         </section>
 
         <!-- БЛОК 3: МЕСТО -->
@@ -119,7 +113,6 @@
                         Речной проезд, 17,<br>
                         Жуковский
                     </p>
-                    <a href="https://yandex.ru/maps/-/CXFGRHKG" target="_blank" rel="noopener" class="btn-outline" style="margin-bottom: 20px;">Посмотреть на карте</a>
                 </div>
             </div>
             <!-- ВСТРОЕННАЯ КАРТА -->
@@ -128,7 +121,7 @@
             </div>
         </section>
 
-        <!-- БЛОК 4: ИСТОРИЯ -->
+        <!-- БЛОК 4: ИСТОРИЯ (календарь сокращён) -->
         <section class="section fade-in" aria-labelledby="story-title">
             <h2 class="handwritten section-title" id="story-title">Наша история</h2>
             <p class="intro-text" style="text-align: center;">
@@ -141,14 +134,8 @@
             </div>
 
             <div class="calendar-wrapper">
-                <div class="calendar">
-                    <div class="day day-name">ПН</div><div class="day day-name">ВТ</div><div class="day day-name">СР</div><div class="day day-name">ЧТ</div><div class="day day-name">ПТ</div><div class="day day-name">СБ</div><div class="day day-name">ВС</div>
-                    <div class="day"></div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div>
-                    <div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day wedding-day">13</div>
-                    <div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div>
-                    <div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div>
-                    <div class="day">28</div><div class="day">29</div><div class="day">30</div>
-                </div>
+                <!-- Календарь генерируется в script.js -->
+                <div class="calendar" id="calendar-grid"></div>
             </div>
         </section>
 
