@@ -1,10 +1,13 @@
-// --- ПРИНУДИТЕЛЬНЫЙ СКРОЛЛ ВВЕРХ ПРИ ЗАГРУЗКЕ ---
-// Это гарантирует, что страница всегда открывается с начала
+// --- ЗАЩИТА ОТ СКРОЛЛА ВНИЗ ---
+// 1. Запрещаем браузеру восстанавливать позицию скролла
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+// 2. Принудительно ставим скролл в самый верх при загрузке
 window.scrollTo(0, 0);
 
 // --- ТАЙМЕР ---
 const countDownDate = new Date("June 13, 2027 12:00:00").getTime();
-
 const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
@@ -83,19 +86,15 @@ if (nama) {
 if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 } else {
-    // Если браузер старый — просто показываем всё сразу
     document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
 }
 
-// --- ОБРАБОТЧИК iframe (для формы) ---
+// --- ОБРАБОТЧИК iframe ---
 const hiddenIframe = document.getElementById('hidden_iframe');
 if (hiddenIframe) {
     hiddenIframe.addEventListener('load', () => {
