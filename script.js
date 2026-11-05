@@ -1,29 +1,21 @@
-// --- РАЗБЛОКИРОВКА АУДИО ДЛЯ МОБИЛЬНЫХ ---
-// Этот код "будит" аудио при первом же касании экрана
+// --- РАЗБЛОКИРОВКА И ПРОГРЕВ АУДИО ДЛЯ МОБИЛЬНЫХ ---
+const audio = document.getElementById('bg-music');
 let audioUnlocked = false;
-const audioElement = document.getElementById('bg-music');
 
 function unlockAudio() {
-    if (audioUnlocked || !audioElement) return;
-    
-    // Пытаемся проиграть кусочек без звука (или с нулевой громкостью)
-    // Это дает браузеру сигнал, что пользователь разрешил воспроизведение
-    audioElement.play().then(() => {
-        audioElement.pause();
-        audioElement.currentTime = 0;
+    if (audioUnlocked || !audio) return;
+    // Пытаемся запустить и сразу остановить, чтобы "разбудить" движок
+    audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
         audioUnlocked = true;
         console.log('Аудио разблокировано');
     }).catch((e) => {
-        // Если не получилось, просто игнорируем (значит, браузер все равно не даст)
         console.log('Не удалось разблокировать аудио:', e);
     });
-    
-    // Убираем слушатели после первой попытки
-    document.removeEventListener('touchstart', unlockAudio);
-    document.removeEventListener('click', unlockAudio);
 }
 
-// Слушаем первое касание или клик по документу
+// Слушаем первое касание или клик на странице
 document.addEventListener('touchstart', unlockAudio, { once: true });
 document.addEventListener('click', unlockAudio, { once: true });
 
@@ -66,7 +58,7 @@ if (calendarGrid) {
     }
 }
 
-// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ---
+// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС (УВЕЛИЧЕНИЕ ФОТО) ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
@@ -95,7 +87,7 @@ if (lightbox) {
     });
 }
 
-// --- ТАЙМЕР ---
+// --- ТАЙМЕР (с анимацией при < 24 часов) ---
 const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
 const timerContainer = document.getElementById('hero-timer');
 const timer = setInterval(() => {
@@ -126,8 +118,7 @@ const timer = setInterval(() => {
     if (secondsEl) secondsEl.innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
 
-// --- МУЗЫКА ---
-const audio = document.getElementById('bg-music');
+// --- МУЗЫКА (КНОПКА В УГЛУ) ---
 const musicBtn = document.getElementById('music-btn');
 
 function updateMusicBtn(playing) {
@@ -144,7 +135,7 @@ if (musicBtn && audio) {
         if (audio.paused) {
             audio.play()
                 .then(() => updateMusicBtn(true))
-                .catch(() => console.log('Музыка заблокирована'));
+                .catch((e) => console.log('Кнопка музыки заблокирована:', e));
         } else {
             audio.pause();
             updateMusicBtn(false);
@@ -160,17 +151,17 @@ if (musicBtn && audio) {
     });
 }
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ ---
+// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (СИНХРОННЫЙ ЗАПУСК МУЗЫКИ) ---
 const btnOpen = document.getElementById('btn-open');
 if (btnOpen) {
     btnOpen.addEventListener('click', () => {
         document.body.classList.remove('locked');
 
-        // Пытаемся включить музыку еще раз, если она не играет
+        // Синхронный запуск музыки прямо в обработчике клика
         if (audio && audio.paused) {
-            audio.play()
-                .then(() => updateMusicBtn(true))
-                .catch(() => console.log('Музыка заблокирована при открытии'));
+            audio.play().catch((e) => {
+                console.log('Музыка при открытии заблокирована:', e);
+            });
         }
 
         const content = document.getElementById('main-content');
@@ -180,7 +171,7 @@ if (btnOpen) {
     });
 }
 
-// --- ИМЯ ГОСТЯ ИЗ URL ---
+// --- ИМЯ ГОСТЯ ИЗ URL + ПЕРСОНАЛЬНОЕ ПРИВЕТСТВИЕ ---
 const urlParams = new URLSearchParams(window.location.search);
 const nama = (urlParams.get('n') || '').trim();
 if (nama) {
@@ -223,7 +214,7 @@ if (form) {
     });
 }
 
-// --- ОБРАБОТЧИК iframe ---
+// --- ОБРАБОТЧИК iframe (успех) ---
 const hiddenIframe = document.getElementById('hidden_iframe');
 if (hiddenIframe) {
     hiddenIframe.addEventListener('load', () => {
