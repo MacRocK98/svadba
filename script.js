@@ -96,7 +96,7 @@ const timer = setInterval(() => {
     if (secondsEl) secondsEl.innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
 
-// --- МУЗЫКА (ИСХОДНАЯ ЛОГИКА) ---
+// --- МУЗЫКА ---
 const audio = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
@@ -112,7 +112,7 @@ if (musicBtn && audio) {
     });
 }
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ИСХОДНАЯ ЛОГИКА) ---
+// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ ---
 const btnOpen = document.getElementById('btn-open');
 if (btnOpen) {
     btnOpen.addEventListener('click', () => {
