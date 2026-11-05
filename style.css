@@ -152,7 +152,8 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     font-size: 2.2rem;
     color: var(--red);
     position: absolute;
-    bottom: 8px; left: 0;
+    bottom: 15px; /* Опустил имя ниже */
+    left: 0;
     width: 100%;
     text-align: center;
 }
@@ -383,7 +384,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .collage-item img { height: 150px; }
     .collage-item.left { top: 0; left: 0; transform: rotate(-3deg); }
     .collage-item.right { top: 0; right: 0; transform: rotate(3deg); }
-    .collage-item .name { font-size: 1.5rem; bottom: 5px; }
+    .collage-item .name { font-size: 1.5rem; bottom: 10px; } /* Опустил и на телефоне */
     .names-title { font-size: 3rem; }
     .hero-date { font-size: 2.2rem; margin-bottom: 15px; }
     .hero-timer-title { font-size: 1.4rem; }
