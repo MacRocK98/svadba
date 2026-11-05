@@ -42,18 +42,17 @@ if (musicBtn && audio) {
     });
 }
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ФИКС) ---
+// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ИСХОДНАЯ РАБОЧАЯ ЛОГИКА) ---
 const btnOpen = document.getElementById('btn-open');
 if (btnOpen) {
     btnOpen.addEventListener('click', () => {
-        // 1. СНАЧАЛА ЗАПУСКАЕМ МУЗЫКУ (синхронно, в самом начале)
-        if (audio && audio.paused) {
-            audio.play(); 
-            musicBtn.classList.add('playing');
-        }
-
-        // 2. ПОТОМ ДЕЛАЕМ ВСЕ ОСТАЛЬНОЕ
         document.body.classList.remove('locked');
+
+        if (audio && audio.paused) {
+            audio.play()
+                .then(() => musicBtn.classList.add('playing'))
+                .catch(e => console.log('Музыка заблокирована'));
+        }
 
         const content = document.getElementById('main-content');
         if (content) {
