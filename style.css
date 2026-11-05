@@ -15,7 +15,7 @@
 
 /* --- БАЗОВЫЕ СТИЛИ --- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 
 /* ГЛАВНОЕ: все картинки адаптивные */
 img {
@@ -85,14 +85,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     outline: 2px solid var(--red);
     outline-offset: 3px;
 }
-
-/* --- АНИМАЦИЯ --- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* --- ШАПКА --- */
 .hero-section {
@@ -361,7 +353,6 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     height: auto;
     margin: 30px auto 0;
     border-radius: 10px;
-    /* фон не заливаем, blend-mode убран — прозрачность сохраняется */
 }
 
 /* --- АНКЕТА --- */
@@ -511,14 +502,4 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .calendar .day { height: 25px; width: 25px; font-size: 0.8rem; }
     .story-date .handwritten { font-size: 2rem; }
     .personal-greeting { font-size: 1.5rem; }
-}
-
-/* --- ОТКЛЮЧЕНИЕ АНИМАЦИЙ --- */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
 }
