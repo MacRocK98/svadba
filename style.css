@@ -137,7 +137,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     position: absolute;
     width: 240px;
     background: var(--white);
-    padding: 12px 12px 65px; /* Увеличил нижний отступ (было 50px) */
+    padding: 12px 12px 65px;
     box-shadow: var(--shadow-lg);
     transition: transform var(--transition);
 }
@@ -152,7 +152,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     font-size: 2.2rem;
     color: var(--red);
     position: absolute;
-    bottom: 5px; /* Опустил имя еще ниже */
+    bottom: 5px;
     left: 0;
     width: 100%;
     text-align: center;
@@ -309,7 +309,14 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 /* --- ДРЕСС-КОД --- */
 .color-palette { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
 .color-circle { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.15); border: 3px solid var(--white); }
-.dress-img { width: 100%; max-width: 500px; border-radius: 10px; box-shadow: var(--shadow-md); margin-top: 30px; }
+.dress-img { 
+    width: 100%; 
+    max-width: 500px; 
+    border-radius: 10px; 
+    box-shadow: var(--shadow-md); 
+    margin-top: 30px; 
+    mix-blend-mode: multiply; /* Делает белый фон прозрачным */
+}
 
 /* --- АНКЕТА --- */
 .rsvp-box { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-md); max-width: 550px; margin: 0 auto; text-align: center; }
@@ -380,11 +387,11 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     .word-gap { width: 8px; }
     .garland-wrapper::before { height: 30px; }
     .photo-collage { display: flex; flex-direction: row; height: auto; gap: 15px; }
-    .collage-item { position: relative; width: 46%; padding: 8px 8px 45px; } /* Увеличил низ и на телефоне */
+    .collage-item { position: relative; width: 46%; padding: 8px 8px 45px; }
     .collage-item img { height: 150px; }
     .collage-item.left { top: 0; left: 0; transform: rotate(-3deg); }
     .collage-item.right { top: 0; right: 0; transform: rotate(3deg); }
-    .collage-item .name { font-size: 1.5rem; bottom: 5px; } /* Ниже */
+    .collage-item .name { font-size: 1.5rem; bottom: 5px; }
     .names-title { font-size: 3rem; }
     .hero-date { font-size: 2.2rem; margin-bottom: 15px; }
     .hero-timer-title { font-size: 1.4rem; }
