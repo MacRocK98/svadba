@@ -2,8 +2,39 @@
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
-// --- ТАЙМЕР (синхронизирован с таймингом: 14:00) ---
+// --- ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+const galleryImages = document.querySelectorAll('.gallery-img');
+
+if (lightbox && galleryImages.length > 0) {
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+}
+
+// --- ТАЙМЕР (с анимацией при < 24 часов) ---
 const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
+const timerContainer = document.getElementById('hero-timer');
 const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
@@ -13,6 +44,12 @@ const timer = setInterval(() => {
         const timerBlock = document.querySelector('.hero-timer');
         if (timerBlock) timerBlock.innerHTML = "<h3>Свадьба состоялась!</h3>";
         return;
+    }
+
+    if (distance < 86400000 && timerContainer) {
+        timerContainer.classList.add('urgent');
+    } else if (timerContainer) {
+        timerContainer.classList.remove('urgent');
     }
 
     const daysEl = document.getElementById("days");
@@ -99,14 +136,12 @@ const thanksText = document.getElementById('rsvp-thanks-text');
 
 if (form) {
     form.addEventListener("submit", (e) => {
-        // honeypot
         const honey = form.querySelector('input[name="website"]');
         if (honey && honey.value) {
             e.preventDefault();
             return;
         }
 
-        // простая валидация имени
         const nameInput = document.getElementById('nama');
         if (nameInput && !nameInput.value.trim()) {
             e.preventDefault();
