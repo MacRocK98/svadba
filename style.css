@@ -261,7 +261,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 2px;
-    cursor: zoom-in; /* Курсор-лупа */
+    cursor: zoom-in;
     transition: opacity 0.3s ease;
 }
 .gallery-item img:hover {
@@ -311,13 +311,20 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
 
 /* --- МЕСТО --- */
 .map-container {
-    margin-top: 0; /* Убрали верхний отступ, так как убрали блок с адресом */
+    margin-top: 0;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow-md);
+}
+.place-address-text {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-align: center;
 }
 
 .btn-outline {
