@@ -2,8 +2,72 @@
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
+// --- ГЕНЕРАЦИЯ ГАЛЕРЕИ ---
+const galleryGrid = document.getElementById('gallery-grid');
+if (galleryGrid) {
+    for (let i = 1; i <= 6; i++) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="lightbox-trigger" style="cursor: zoom-in;" loading="lazy" decoding="async">`;
+        galleryGrid.appendChild(item);
+    }
+}
+
+// --- ГЕНЕРАЦИЯ КАЛЕНДАРЯ ---
+const calendarGrid = document.getElementById('calendar-grid');
+if (calendarGrid) {
+    const dayNames = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+    dayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'day day-name';
+        el.textContent = name;
+        calendarGrid.appendChild(el);
+    });
+
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'day';
+    calendarGrid.appendChild(emptyCell);
+
+    for (let i = 1; i <= 30; i++) {
+        const el = document.createElement('div');
+        el.className = i === 13 ? 'day wedding-day' : 'day';
+        el.textContent = i;
+        calendarGrid.appendChild(el);
+    }
+}
+
+// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+
+if (lightbox) {
+    document.body.addEventListener('click', (e) => {
+        if (e.target.classList.contains('lightbox-trigger')) {
+            lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+}
+
 // --- ТАЙМЕР ---
 const countDownDate = new Date("June 13, 2027 14:00:00").getTime();
+const timerContainer = document.getElementById('hero-timer');
 const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
@@ -13,6 +77,12 @@ const timer = setInterval(() => {
         const timerBlock = document.querySelector('.hero-timer');
         if (timerBlock) timerBlock.innerHTML = "<h3>Свадьба состоялась!</h3>";
         return;
+    }
+
+    if (distance < 86400000 && timerContainer) {
+        timerContainer.classList.add('urgent');
+    } else if (timerContainer) {
+        timerContainer.classList.remove('urgent');
     }
 
     const daysEl = document.getElementById("days");
@@ -26,7 +96,7 @@ const timer = setInterval(() => {
     if (secondsEl) secondsEl.innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
 
-// --- МУЗЫКА ---
+// --- МУЗЫКА (ИСХОДНАЯ ЛОГИКА) ---
 const audio = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
@@ -42,7 +112,7 @@ if (musicBtn && audio) {
     });
 }
 
-// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ИСХОДНАЯ РАБОЧАЯ ЛОГИКА) ---
+// --- ОТКРЫТИЕ ПРИГЛАШЕНИЯ (ИСХОДНАЯ ЛОГИКА) ---
 const btnOpen = document.getElementById('btn-open');
 if (btnOpen) {
     btnOpen.addEventListener('click', () => {
@@ -61,42 +131,67 @@ if (btnOpen) {
     });
 }
 
-// --- ОТПРАВКА ФОРМЫ ---
-let submitted = false;
-window.addEventListener("load", () => {
-    const form = document.getElementById('my-form');
-    if (form) {
-        form.addEventListener("submit", () => { submitted = true; });
-    }
-});
-
 // --- ИМЯ ГОСТЯ ИЗ URL ---
 const urlParams = new URLSearchParams(window.location.search);
-const nama = urlParams.get('n') || '';
+const nama = (urlParams.get('n') || '').trim();
 if (nama) {
     const input = document.getElementById('nama');
     if (input) input.value = nama;
+
+    const greeting = document.getElementById('personal-greeting');
+    if (greeting) greeting.textContent = `${nama}, мы женимся!`;
 }
 
-// --- АНИМАЦИЯ ПОЯВЛЕНИЯ ---
-if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-} else {
-    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+// --- ОТПРАВКА ФОРМЫ ---
+let submitted = false;
+const form = document.getElementById('my-form');
+const submitBtn = document.getElementById('btn-submit');
+const thanksBlock = document.getElementById('rsvp-thanks');
+const thanksText = document.getElementById('rsvp-thanks-text');
+
+if (form) {
+    form.addEventListener("submit", (e) => {
+        const honey = form.querySelector('input[name="website"]');
+        if (honey && honey.value) {
+            e.preventDefault();
+            return;
+        }
+
+        const nameInput = document.getElementById('nama');
+        if (nameInput && !nameInput.value.trim()) {
+            e.preventDefault();
+            nameInput.classList.add('is-invalid');
+            nameInput.focus();
+            return;
+        }
+        if (nameInput) nameInput.classList.remove('is-invalid');
+
+        submitted = true;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправляем…';
+        }
+    });
 }
 
 // --- ОБРАБОТЧИК iframe ---
 const hiddenIframe = document.getElementById('hidden_iframe');
 if (hiddenIframe) {
     hiddenIframe.addEventListener('load', () => {
-        if (submitted) {
-            alert('Спасибо! Ваш ответ отправлен.');
-            submitted = false;
+        if (!submitted) return;
+        submitted = false;
+
+        if (form) form.hidden = true;
+        if (thanksBlock) {
+            thanksBlock.hidden = false;
+            if (thanksText && nama) {
+                thanksText.textContent = `Спасибо, ${nama}! Мы очень рады, что ты будешь с нами.`;
+            }
+            thanksBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Подтвердить';
         }
     });
 }
