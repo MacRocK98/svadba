@@ -8,7 +8,8 @@ if (galleryGrid) {
     for (let i = 1; i <= 6; i++) {
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="gallery-img" loading="lazy" decoding="async">`;
+        // ВАЖНО: Добавляем класс lightbox-trigger и курсор для сгенерированных фото
+        item.innerHTML = `<img src="img/photo${i}.jpg" alt="Фото ${i}" class="lightbox-trigger" style="cursor: zoom-in;" loading="lazy" decoding="async">`;
         galleryGrid.appendChild(item);
     }
 }
@@ -24,7 +25,6 @@ if (calendarGrid) {
         calendarGrid.appendChild(el);
     });
 
-    // Пустая ячейка (если 1 число попадает не на понедельник, тут 1 число - вторник)
     const emptyCell = document.createElement('div');
     emptyCell.className = 'day';
     calendarGrid.appendChild(emptyCell);
@@ -37,31 +37,38 @@ if (calendarGrid) {
     }
 }
 
-// --- ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ ---
+// --- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС (УВЕЛИЧЕНИЕ ФОТО) ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 
-if (lightbox && galleryGrid) {
-    // Используем делегирование событий, так как галерея создается динамически
-    galleryGrid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('gallery-img')) {
-            lightboxImg.src = e.target.src;
+if (lightbox) {
+    // Делегирование событий: ловим клик по всему body
+    document.body.addEventListener('click', (e) => {
+        // Если кликнули на элемент с классом lightbox-trigger
+        if (e.target.classList.contains('lightbox-trigger')) {
+            lightboxImg.src = e.target.src; // Берем src у кликнутой картинки
             lightboxImg.alt = e.target.alt;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lightbox.classList.add('active'); // Показываем лайтбокс
+            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
         }
     });
 
+    // Функция закрытия
     const closeLightbox = () => {
         lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.style.overflow = ''; // Возвращаем скролл
     };
 
+    // Закрытие по крестику
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    
+    // Закрытие по клику на затемненный фон
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
     });
+    
+    // Закрытие по клавише Esc
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
     });
