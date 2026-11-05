@@ -345,7 +345,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     justify-content: center;
     align-items: center;
     gap: clamp(6px, 2vw, 15px);
-    margin: 30px auto 0;
+    margin: 30px auto 20px; /* Увеличен нижний отступ */
     max-width: 100%;
     overflow-x: auto;
     padding: 4px 0;
@@ -355,7 +355,7 @@ p, h1, h2, h3, .intro-text, .timeline-desc, .wishes-text p {
     width: clamp(32px, 7vw, 60px);
     height: clamp(32px, 7vw, 60px);
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    /* box-shadow убран */
     border: 3px solid var(--white);
 }
 .dress-img {
